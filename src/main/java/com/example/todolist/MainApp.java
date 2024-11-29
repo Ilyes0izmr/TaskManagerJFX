@@ -13,7 +13,7 @@ public class MainApp extends Application{
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);
-        stage.show();
+        stage.show(); //im just testing this shit
     }
 
     public static void main(String[] args) {
