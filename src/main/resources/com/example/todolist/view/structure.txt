@@ -1,0 +1,43 @@
+src/
+|-- main/
+|   |-- java/
+|   |   |-- com/
+|   |   |   |-- example/
+|   |   |   |   |-- todolist/
+|   |   |   |   |   |-- MainApp.java                // Main entry point of the JavaFX application
+|   |   |   |   |   |-- model/
+|   |   |   |   |   |   |-- Task.java
+|   |   |   |   |   |   |-- Comment.java
+|   |   |   |   |   |   |-- Reminder.java
+|   |   |   |   |   |   |-- User.java
+|   |   |   |   |   |   |-- Enums.java
+|   |   |   |   |   |
+|   |   |   |   |   |-- dao/
+|   |   |   |   |   |   |-- TaskDAO.java
+|   |   |   |   |   |   |-- UserDAO.java
+|   |   |   |   |   |
+|   |   |   |   |   |-- controller/
+|   |   |   |   |   |   |-- TaskController.java
+|   |   |   |   |   |   |-- UserController.java
+|   |   |   |   |   |   |-- NotificationController.java
+|   |   |   |   |   |   |-- DashboardController.java
+|   |   |   |   |   |   |-- LoginController.java
+|   |   |   |   |   |
+|   |   |   |   |   |-- util/
+|   |   |   |   |   |   |-- DatabaseConnection.java
+|   |   |   |   |   |   |-- Validator.java
+|   |-- resources/
+|   |   |-- com/
+|   |   |   |-- example/
+|   |   |   |   |-- todolist/
+|   |   |   |   |   |-- view/
+|   |   |   |   |   |   |-- fxml/
+|   |   |   |   |   |   |   |-- LoginView.fxml
+|   |   |   |   |   |   |   |-- Dashboard.fxml
+|   |   |   |   |   |   |   |-- TaskForm.fxml
+|   |   |   |   |   |   |-- css/
+|   |   |   |   |   |   |   |-- styles.css
+|   |   |   |   |   |   |-- font/
+|   |   |   |   |   |   |   |-- font.ttf
+|   |   |   |   |   |   |-- images/
+|   |   |   |   |   |   |   |-- image.png
