@@ -11,6 +11,7 @@ src/
 |   |   |   |   |   |   |-- Reminder.java
 |   |   |   |   |   |   |-- User.java
 |   |   |   |   |   |   |-- Enums.java
+|   |   |   |   |   |   |-- user.java
 |   |   |   |   |   |
 |   |   |   |   |   |-- dao/
 |   |   |   |   |   |   |-- TaskDAO.java
