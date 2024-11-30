@@ -1,0 +1,13 @@
+VBox {
+    -fx-padding: 20;
+}
+
+Button {
+    -fx-background-color: #5cb85c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+Button:hover {
+    -fx-background-color: #4cae4c;
+}

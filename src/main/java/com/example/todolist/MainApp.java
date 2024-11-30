@@ -6,17 +6,22 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-public class MainApp extends Application{
+
+public class MainApp extends Application {
+
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/com/example/todolist/view/fxml/hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show(); //im just testing this shit
+    public void start(Stage primaryStage) throws IOException {
+        // Load the FXML file for the login view
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/fxml/LoginView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        // Set up the stage (main window)
+        primaryStage.setTitle("To-Do List Application");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(); // Launch the JavaFX application
     }
 }
