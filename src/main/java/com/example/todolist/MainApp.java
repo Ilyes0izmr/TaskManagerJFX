@@ -23,5 +23,7 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
         launch(); // Launch the JavaFX application
+        //test test test test test
+
     }
 }
