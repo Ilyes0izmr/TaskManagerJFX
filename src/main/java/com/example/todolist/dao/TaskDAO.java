@@ -25,37 +25,38 @@ public class TaskDAO {
      */
     public boolean addTask(TaskImpl task) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "INSERT INTO tasks (title, description, status, dueDate, creationDate, priority, reminder, categoryId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlQuery = "INSERT INTO tasks (title, description, status, dueDate, creationDate, priority, userName) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1, task.getTitle());
             statement.setString(2, task.getDescription());
-            statement.setString(3, task.getStatus().toString());
+            statement.setString(3, task.getStatus().name());
             statement.setDate(4, Date.valueOf(task.getDueDate()));
-            statement.setDate(5, Date.valueOf(task.getCreationDate())); // Setting creationDate
-            statement.setString(6, task.getPriority().toString());
-            statement.setString(7, task.getReminder().toString());
-            statement.setInt(8, task.getCategoryId());
-
-            int rowsAffected = statement.executeUpdate();
-            return rowsAffected > 0;
+            statement.setDate(5, Date.valueOf(task.getCreationDate()));
+            statement.setString(6, task.getPriority().name());
+            statement.setString(7, task.getUserName()); // Include userName
+            return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
 
+
+
     /**
-     * Retrieves all tasks for a specific category from the database.
+     * Retrieves a list of tasks associated with a specific user by their username.
      *
-     * @param categoryId The ID of the category for which tasks are to be retrieved.
-     * @return A list of tasks that belong to the specified category.
+     * @param userName The username of the user whose tasks are to be retrieved.
+     * @return A list of tasks belonging to the specified user.
      */
-    public ArrayList<TaskImpl> getTasksByCategory(int categoryId) {
+    public ArrayList<TaskImpl> getTasksByUserName(String userName) {
         ArrayList<TaskImpl> tasks = new ArrayList<>();
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "SELECT * FROM tasks WHERE categoryId = ?";
-            PreparedStatement statement = connection.prepareStatement(sqlQuery);
-            statement.setInt(1, categoryId);
+        String sqlQuery = "SELECT * FROM tasks WHERE userName = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+
+            statement.setString(1, userName);
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
@@ -65,20 +66,21 @@ public class TaskDAO {
                         result.getString("description"),
                         Status.valueOf(result.getString("status")),
                         result.getDate("dueDate").toLocalDate(),
-                        result.getDate("creationDate").toLocalDate(), // Corrected for DATE type
+                        result.getDate("creationDate").toLocalDate(),
                         Priority.valueOf(result.getString("priority")),
-                        new ArrayList<>(),  // Initialize comments as an empty list
-                        Reminder.valueOf(result.getString("reminder")),
-                        result.getInt("categoryId")
+                        new ArrayList<>(), // Initialize comments as an empty list
+                        Reminder.valueOf(result.getString("reminder")), // Fetch reminder
+                        result.getInt("categoryId"), // Fetch categoryId
+                        result.getString("userName") // Fetch userName
                 );
                 tasks.add(task);
             }
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error while retrieving tasks by username: " + e.getMessage());
         }
         return tasks;
     }
+
 
     /**
      * Deletes a task from the database by its ID.
@@ -126,4 +128,46 @@ public class TaskDAO {
             return false;
         }
     }
+
+    /**
+     * Searches for tasks by a keyword in their titles, filtered by the username of the owner.
+     *
+     * @param keyword  The keyword to search for in the task titles.
+     * @param userName The username of the user to filter tasks by.
+     * @return A list of tasks that contain the keyword in their titles and belong to the specified user.
+     */
+    public ArrayList<TaskImpl> searchTasksByTitle(String keyword, String userName) {
+        ArrayList<TaskImpl> matchedTasks = new ArrayList<>();
+        String sqlQuery = "SELECT * FROM tasks WHERE title LIKE ? AND userName = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+
+            statement.setString(1, "%" + keyword + "%"); // Use wildcards for partial matching
+            statement.setString(2, userName); // Filter by userName
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                TaskImpl task = new TaskImpl(
+                        result.getInt("id"),
+                        result.getString("title"),
+                        result.getString("description"),
+                        Status.valueOf(result.getString("status")),
+                        result.getDate("dueDate").toLocalDate(),
+                        result.getDate("creationDate").toLocalDate(),
+                        Priority.valueOf(result.getString("priority")),
+                        new ArrayList<>(), // Initialize comments as an empty list (can be fetched separately if needed)
+                        Reminder.valueOf(result.getString("reminder")),
+                        result.getInt("categoryId"), // Fetch categoryId
+                        result.getString("userName") // Fetch userName
+                );
+                matchedTasks.add(task);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while searching tasks by title and userName: " + e.getMessage());
+        }
+        return matchedTasks;
+    }
+
+
 }

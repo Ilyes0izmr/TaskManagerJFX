@@ -20,6 +20,7 @@ public class TaskImpl implements Task {
     private ArrayList<Comment> comments;
     private Reminder reminder; // Enum: DAILY, WEEKLY, MONTHLY
     private int categoryId; // New field to store the category ID
+    private String userName;
 
     /**
      * Constructs a new TaskImpl with the specified details.
@@ -37,7 +38,7 @@ public class TaskImpl implements Task {
      */
     public TaskImpl(int id, String title, String description, Status status, LocalDate dueDate,
                     LocalDate creationDate, Priority priority, ArrayList<Comment> comments,
-                    Reminder reminder, int categoryId) {
+                    Reminder reminder, int categoryId, String userName) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -48,6 +49,7 @@ public class TaskImpl implements Task {
         this.comments = comments;
         this.reminder = reminder;
         this.categoryId = categoryId; // Initialize categoryId
+        this.userName=userName;
     }
 
     /**
@@ -213,4 +215,22 @@ public class TaskImpl implements Task {
      * @param reminder The reminder to set for the task.
      */
     public void setReminder(Reminder reminder) { this.reminder = reminder; }
+
+    /**
+     * Gets the userName for the task.
+     *
+     * @return The userName for the task.
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * Sets the userName for the task.
+     *
+     * @param userName The userName to set for the task.
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }

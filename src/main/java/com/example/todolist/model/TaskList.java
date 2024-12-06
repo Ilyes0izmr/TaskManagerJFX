@@ -7,18 +7,25 @@ import java.time.LocalDate;
  * Abstract class that represents a list of tasks in the to-do list application.
  * Provides methods to add, delete, edit, display tasks, and mark tasks as completed.
  * This class serves as a blueprint for concrete task list implementations.
+ * Each TaskList is associated with a user via their username.
  *
  * @author Meftah Mohamed
  */
 public abstract class TaskList {
     protected int id;
     protected String name;
+    protected String userName;  // User associated with this task list
     protected ArrayList<TaskImpl> tasks;
 
     /**
      * Constructs a new TaskList object and initializes the list of tasks.
+     *
+     * @param name     The name of the task list (category name).
+     * @param userName The username of the user associated with the task list.
      */
-    public TaskList() {
+    public TaskList(String name, String userName) {
+        this.name = name;
+        this.userName = userName;
         tasks = new ArrayList<TaskImpl>();
     }
 
@@ -58,4 +65,58 @@ public abstract class TaskList {
      * @param task The task to mark as completed.
      */
     public abstract void markTaskAsCompleted(TaskImpl task);
+
+    /**
+     * Gets the ID of the task list.
+     *
+     * @return The ID of the task list.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets the ID of the task list.
+     *
+     * @param id The ID to set for the task list.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Gets the name of the task list.
+     *
+     * @return The name of the task list.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the name of the task list.
+     *
+     * @param name The name to set for the task list.
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Gets the username of the user associated with the task list.
+     *
+     * @return The username of the user.
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * Sets the username of the user associated with the task list.
+     *
+     * @param userName The username to set for the task list.
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }

@@ -13,6 +13,16 @@ import java.util.ArrayList;
 public class TaskListImpl extends TaskList {
 
     /**
+     * Constructs a new TaskList object and initializes the list of tasks.
+     *
+     * @param name
+     * @param userName
+     */
+    public TaskListImpl(String name, String userName) {
+        super(name, userName);
+    }
+
+    /**
      * Adds a task to the task list.
      *
      * @param task The task to be added to the list.
