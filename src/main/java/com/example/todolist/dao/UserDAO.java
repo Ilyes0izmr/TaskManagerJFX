@@ -11,18 +11,17 @@ import java.sql.SQLException;
 public class UserDAO {
 
     /**
-     * Authenticates a user based on email and password.
+     * Authenticates a user based on username and password.
      *
-     * @param email The email of the user.
+     * @param userName The username of the user.
      * @param passWord The password of the user.
      * @return true if the user is authenticated, false otherwise.
-     * @author Izemmouren Ilyes
      */
-    public boolean login(String email, String passWord) {
+    public boolean login(String userName, String passWord) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "SELECT * FROM users WHERE email = ? AND passWord = ?";
+            String sqlQuery = "SELECT * FROM users WHERE userName = ? AND passWord = ?";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
-            statement.setString(1, email);
+            statement.setString(1, userName);
             statement.setString(2, passWord);
             ResultSet result = statement.executeQuery();
             return result.next();
@@ -40,12 +39,12 @@ public class UserDAO {
      */
     public boolean signUp(User user) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "INSERT INTO users (email, passWord, userName, fullName) VALUES (?, ?, ?, ?)";
+            String sqlQuery = "INSERT INTO users (userName, passWord, fullName, email) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
-            statement.setString(1, user.getEmail());
+            statement.setString(1, user.getUserName());
             statement.setString(2, user.getPassWord());
-            statement.setString(3, user.getUserName());
-            statement.setString(4, user.getFullName());
+            statement.setString(3, user.getFullName());
+            statement.setString(4, user.getEmail());
             int rowsAffected = statement.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {

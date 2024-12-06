@@ -7,6 +7,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
+
 
 public class SignUpController {
 
@@ -71,6 +78,21 @@ public class SignUpController {
             showAlert("Error", "Registration failed.");
         }
     }
+
+    @FXML
+    private void handleLogIn() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/LoginView.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) userNameField.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Login - To-Do List Application");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     private boolean isValidEmail(String email) {
         return email.contains("@");

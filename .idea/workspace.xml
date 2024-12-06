@@ -5,7 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4138a9b-6d62-4903-87fc-3b154d6e1c51" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/HomeViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/Priority.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/Reminder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/TaskImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/TaskList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/TaskListImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/HomeView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/MainApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/LoginView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/SignUpView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/SignUpView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/mySQL/users.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/mySQL/users.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +38,7 @@
       <list>
         <option value="package-info" />
         <option value="JavaFXApplication" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -52,14 +74,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "ilyes",
+    "git-widget-placeholder": "Merging ilyes",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/JAVA2/SceneBuilder.exe",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RecentsManager">
