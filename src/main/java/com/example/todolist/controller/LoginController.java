@@ -7,6 +7,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ * TODO: you have to fix this controler ilyes later on
+ */
 public class LoginController {
     @FXML
     private TextField usernameField;
@@ -16,7 +19,7 @@ public class LoginController {
     private final UserDAO userDAO = new UserDAO();
 
     @FXML
-    private void handleLogin() {
+    /*private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
         if (userDAO.login(username, password)) {
@@ -27,7 +30,7 @@ public class LoginController {
     }
 
     @FXML
-    private void handleSignUp() {
+    /*private void handleSignUp() {
         String username = usernameField.getText();
         String password = passwordField.getText();
         User user = new User(username, password);
@@ -36,7 +39,7 @@ public class LoginController {
         } else {
             showAlert("Error", "Sign-up failed. Try again.", Alert.AlertType.ERROR);
         }
-    }
+    }*/
 
     private void showAlert(String title, String content, Alert.AlertType type) {
         Alert alert = new Alert(type);
@@ -44,4 +47,5 @@ public class LoginController {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
 }
