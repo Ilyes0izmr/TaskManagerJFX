@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1550.0" style="-fx-background-color: #2A2438;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1550.0" style="-fx-background-color: #2A2438;" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.SignUpController">
 
     <!-- Background Image -->
     <ImageView fitHeight="899.0" fitWidth="744.0" layoutX="-2.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
@@ -25,12 +25,12 @@
         </font></Label>
 
     <!-- User Input Fields -->
-    <TextField layoutX="867.0" layoutY="242.0" prefHeight="55.0" prefWidth="543.0" promptText="  Email" styleClass="input-field" />
-    <TextField layoutX="867.0" layoutY="326.0" prefHeight="55.0" prefWidth="258.0" promptText="  User name" styleClass="input-field" />
-    <TextField layoutX="1146.0" layoutY="326.0" prefHeight="55.0" prefWidth="265.0" promptText=" Full Name" styleClass="input-field" />
+    <TextField fx:id="emailField" layoutX="867.0" layoutY="242.0" prefHeight="55.0" prefWidth="543.0" promptText="  Email" styleClass="input-field" />
+    <TextField fx:id="userNameField" layoutX="867.0" layoutY="326.0" prefHeight="55.0" prefWidth="258.0" promptText="  User name" styleClass="input-field" />
+    <TextField fx:id="fullNameField" layoutX="1146.0" layoutY="326.0" prefHeight="55.0" prefWidth="265.0" promptText=" Full Name" styleClass="input-field" />
 
-    <PasswordField layoutX="866.0" layoutY="412.0" prefHeight="55.0" prefWidth="543.0" promptText="  Enter your password" styleClass="input-field" />
-    <PasswordField layoutX="867.0" layoutY="498.0" prefHeight="55.0" prefWidth="543.0" promptText="  Confirm your password" styleClass="input-field" />
+    <PasswordField fx:id="passwordField" layoutX="866.0" layoutY="412.0" prefHeight="55.0" prefWidth="543.0" promptText="  Enter your password" styleClass="input-field" />
+    <PasswordField fx:id="passwordFieldConfirmation" layoutX="867.0" layoutY="498.0" prefHeight="55.0" prefWidth="543.0" promptText="  Confirm your password" styleClass="input-field" />
 
     <!-- Terms and Conditions -->
     <CheckBox layoutX="868.0" layoutY="597.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="382.0" styleClass="checkbox" text="I agree to the" />
@@ -41,7 +41,7 @@
         </font></Hyperlink>
 
     <!-- Create Account Button -->
-    <Button layoutX="867.0" layoutY="693.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="543.0" styleClass="submit-button" text="Create an Account" />
+    <Button fx:id="signUpButton" layoutX="867.0" layoutY="693.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="543.0" styleClass="submit-button" text="Create an Account" onAction="#handleSignUp" />
 
     <!-- Already have an account label -->
     <Label layoutX="867.0" layoutY="140.0" styleClass="account-text" text="Already have an account? " />
