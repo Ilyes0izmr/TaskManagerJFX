@@ -8,6 +8,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Provides Data Access Object (DAO) methods for user authentication and registration in the database.
+ * This class allows checking user credentials for login and adding new users for signup.
+ *
+ * @author Ilyes Izemmouren
+ */
 public class UserDAO {
 
     /**
@@ -15,7 +21,7 @@ public class UserDAO {
      *
      * @param userName The username of the user.
      * @param passWord The password of the user.
-     * @return true if the user is authenticated, false otherwise.
+     * @return {@code true} if the user is authenticated, {@code false} otherwise.
      */
     public boolean login(String userName, String passWord) {
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -35,7 +41,7 @@ public class UserDAO {
      * Registers a new user.
      *
      * @param user The User object containing the user details.
-     * @return true if the user is registered successfully, false otherwise.
+     * @return {@code true} if the user is registered successfully, {@code false} otherwise.
      */
     public boolean signUp(User user) {
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -52,5 +58,4 @@ public class UserDAO {
             return false;
         }
     }
-
 }
