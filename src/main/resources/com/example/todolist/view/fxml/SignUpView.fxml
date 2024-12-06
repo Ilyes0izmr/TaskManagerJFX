@@ -22,28 +22,36 @@
     <Label layoutX="859.0" layoutY="50.0" prefHeight="80.0" prefWidth="664.0" styleClass="header-text" text="Create New Account">
         <font>
             <Font name="JetBrains Mono Regular" size="18.0" />
-        </font></Label>
+        </font>
+    </Label>
 
     <!-- User Input Fields -->
     <TextField fx:id="emailField" layoutX="867.0" layoutY="242.0" prefHeight="55.0" prefWidth="543.0" promptText="  Email" styleClass="input-field" />
-    <TextField fx:id="userNameField" layoutX="867.0" layoutY="326.0" prefHeight="55.0" prefWidth="258.0" promptText="  User name" styleClass="input-field" />
-    <TextField fx:id="fullNameField" layoutX="1146.0" layoutY="326.0" prefHeight="55.0" prefWidth="265.0" promptText=" Full Name" styleClass="input-field" />
 
+    <!-- Username and Full Name Fields -->
+    <TextField fx:id="userNameField" layoutX="867.0" layoutY="326.0" prefHeight="55.0" prefWidth="258.0" promptText="  User name" styleClass="input-field" />
+    <TextField fx:id="fullNameField" layoutX="1146.0" layoutY="326.0" prefHeight="55.0" prefWidth="265.0" promptText="  Full Name" styleClass="input-field" />
+
+    <!-- Password Fields -->
     <PasswordField fx:id="passwordField" layoutX="866.0" layoutY="412.0" prefHeight="55.0" prefWidth="543.0" promptText="  Enter your password" styleClass="input-field" />
     <PasswordField fx:id="passwordFieldConfirmation" layoutX="867.0" layoutY="498.0" prefHeight="55.0" prefWidth="543.0" promptText="  Confirm your password" styleClass="input-field" />
 
     <!-- Terms and Conditions -->
     <CheckBox layoutX="868.0" layoutY="597.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="382.0" styleClass="checkbox" text="I agree to the" />
     <Hyperlink layoutX="1091.0" layoutY="595.0" styleClass="hyperlink" text="Terms &amp; Conditions" />
-    <Hyperlink layoutX="1171.0" layoutY="133.0" prefHeight="39.0" prefWidth="110.0" styleClass="hyperlink" text="Log in" textFill="#b73a3a">
+
+    <!-- Log In Hyperlink -->
+    <Hyperlink layoutX="1171.0" layoutY="133.0" prefHeight="39.0" prefWidth="110.0" styleClass="hyperlink" text="Log in" textFill="#b73a3a" onAction="#handleLogIn">
         <font>
             <Font name="JetBrains Mono Regular" size="12.0" />
-        </font></Hyperlink>
+        </font>
+    </Hyperlink>
+
+
 
     <!-- Create Account Button -->
     <Button fx:id="signUpButton" layoutX="867.0" layoutY="693.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="543.0" styleClass="submit-button" text="Create an Account" onAction="#handleSignUp" />
 
     <!-- Already have an account label -->
-    <Label layoutX="867.0" layoutY="140.0" styleClass="account-text" text="Already have an account? " />
-
+    <Label layoutX="867.0" layoutY="140.0" styleClass="account-text" text="Already have an account?" />
 </Pane>
