@@ -16,7 +16,7 @@ import java.io.IOException;
 public class LoginController {
 
     @FXML
-    private TextField usernameField;
+    private TextField emailField;
 
     @FXML
     private PasswordField passwordField;
@@ -25,28 +25,45 @@ public class LoginController {
 
     @FXML
     private void handleLogin() {
-        String username = usernameField.getText();
+        String email = emailField.getText();
         String password = passwordField.getText();
 
-        if (userDAO.login(username, password)) {
+        if (userDAO.login(email, password)) {
             showAlert("Success", "Login successful!", Alert.AlertType.INFORMATION);
+            try {
+                // Ensure the correct path to your FXML file
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/HomeView.fxml"));
+                Parent root = loader.load();
 
+                // Get current stage and set new scene
+                Stage stage = (Stage) emailField.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Home Page - To-Do List Application");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert("Error", "Failed to load Home page.", Alert.AlertType.ERROR);
+            }
         } else {
-            showAlert("Error", "Invalid username or password.", Alert.AlertType.ERROR);
+            showAlert("Error", "Invalid email or password.", Alert.AlertType.ERROR);
         }
     }
 
     @FXML
     private void handleSignUp() {
         try {
-            // Switch to the Sign Up view
+            // Switch to the Sign-Up view
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/SignUpView.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) usernameField.getScene().getWindow();  // Reuse the same stage
+
+            // Get current stage and set new scene
+            Stage stage = (Stage) emailField.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Sign Up - To-Do List Application");
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace();  // Handle the exception if loading fails
+            e.printStackTrace();
+            showAlert("Error", "Failed to load Sign-Up page.", Alert.AlertType.ERROR);
         }
     }
 

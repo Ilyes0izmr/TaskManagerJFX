@@ -5,6 +5,7 @@ public class Comment {
     private int id;
     private String text;
     private LocalDateTime creationDate;
+    private Task task ;
 
     public Comment(int id, String text, LocalDateTime creationDate) {
         this.id = id;
