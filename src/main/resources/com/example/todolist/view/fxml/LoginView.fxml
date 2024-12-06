@@ -27,7 +27,7 @@
       </Label>
 
       <!-- Email TextField -->
-      <TextField fx:id="usernameField" layoutX="153.0" layoutY="341.0" prefHeight="68.0" prefWidth="543.0" promptText="  Email" styleClass="input-field"/>
+      <TextField fx:id="emailField" layoutX="153.0" layoutY="341.0" prefHeight="68.0" prefWidth="543.0" promptText="  Email" styleClass="input-field"/>
 
       <!-- PasswordField -->
       <PasswordField fx:id="passwordField" layoutX="153.0" layoutY="441.0" prefHeight="73.0" prefWidth="543.0" promptText="  Enter your password" styleClass="input-field"/>
