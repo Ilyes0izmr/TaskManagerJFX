@@ -19,6 +19,7 @@ public class UserDAO {
             return result.next() ;
         }catch (Exception e){
             e.printStackTrace();
+            System.out.println("error table");
             return false ;
         }
     }
