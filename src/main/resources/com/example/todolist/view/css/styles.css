@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Root Container Styling */
 VBox {
     -fx-padding: 30;
@@ -61,4 +62,89 @@ HBox {
 /* Scene Background */
 .root {
     -fx-background-color: #f4f4f4;
+=======
+/* General Styles */
+.root {
+    -fx-background-color: #2A2438;
+    -fx-font-family: "JetBrains Mono Regular"; /* Font Name */
+}
+
+
+.header-text {
+    -fx-font-size: 50px;
+    -fx-text-fill: #f3f1f1;
+}
+
+.account-text {
+    -fx-background-color: transparent;
+    -fx-text-fill: #f3f1f1;
+    -fx-font-size: 20px;
+}
+
+.input-field {
+    -fx-background-color: #5C5470; /* Background color */
+    -fx-text-fill: #f9f6f6; /* Text color */
+    /*-fx-prompt-text-fill: #aaaaaa; /* Subtle color for prompt text */
+    -fx-font-size: 20px; /* Font size */
+    -fx-padding: 10px; /* Padding for better look */
+    -fx-border-color: transparent; /* Default border color */
+    -fx-border-width: 2px; /* Border width */
+    -fx-background-radius: 10px; /* Rounded corners */
+    -fx-border-radius: 10px; /* Matching border radius */
+    -fx-focus-color: transparent; /* Remove default blue focus color */
+    -fx-faint-focus-color: transparent; /* Remove faint focus ring */
+}
+
+.input-field:hover {
+    -fx-border-color: #f9f6f6; /* Light border on hover */
+    -fx-border-width: 2px;
+}
+
+.input-field:focused {
+    -fx-border-color: #f9f6f6; /* Purple highlight border when focused */
+    -fx-border-width: 2px;
+    -fx-background-color: #6D6875; /* Slightly darker background when focused */
+}
+
+/* Checkbox Styles */
+.checkbox {
+    -fx-text-fill: #f3f1f1;
+    -fx-font-size: 20px;
+}
+
+/* Hyperlink Styles */
+.hyperlink {
+    -fx-text-fill: #7a56ff;
+    -fx-font-size: 20px;
+    -fx-underline: true;
+}
+
+/* Button Styles */
+.submit-button {
+    -fx-background-color: #7a56ff; /* Background color */
+    -fx-text-fill: #f3f1f1; /* Text color */
+    -fx-font-size: 25px; /* Font size */
+    -fx-padding: 10px 20px; /* Padding for better look */
+    -fx-border-color: transparent; /* Initially no border */
+    -fx-border-width: 2px; /* Border width */
+    -fx-background-radius: 10px; /* Rounded corners */
+    -fx-border-radius: 10px; /* Matching border radius */
+    -fx-transition: all 0.3s ease-in-out; /* Transition for smooth effect */
+}
+
+.submit-button:hover {
+    -fx-background-color: #7a65cc; /* Darker purple on hover */
+    -fx-border-color: #f3f1f1; /* Add border color on hover */
+    -fx-border-width: 2px; /* Border width on hover */
+    -fx-scale-x: 1.01; /* Slightly enlarge on hover */
+    -fx-scale-y: 1.01; /* Slightly enlarge on hover */
+}
+
+/* ImageView Styles */
+.image-view {
+    -fx-border-radius: 20px; /* Apply border radius */
+    -fx-border-color: #7a56ff; /* Border color */
+    -fx-border-width: 5px; /* Border width */
+    -fx-transition: all 0.7s ease-in-out; /* Transition for smooth effect */
+>>>>>>> 3e95067eb1009886dd3c983f3ebdaee3ec7ef13c
 }

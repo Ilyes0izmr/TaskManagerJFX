@@ -29,9 +29,9 @@ public class DatabaseConnection {
         if(connection == null || connection.isClosed()){
             try{
                 connection = DriverManager.getConnection(URL , USER , PASSWORD ) ;
-                System.out.println("Connected to the database successfully!");
+                System.out.println("\nConnected to the database successfully!");
             }catch (SQLException e){
-                System.out.println("Connection Error");
+                System.out.println("\nConnection Error !!");
                 throw e ;
             }
         }
@@ -50,9 +50,9 @@ public class DatabaseConnection {
         if(connection != null){
             try{
                 connection.close() ;
-                System.out.println("Database connection closed successfully!");
+                System.out.println("\nDatabase connection closed successfully!");
             }catch(SQLException e){
-                System.out.println("Failed to close the data base !!");
+                System.out.println("\nFailed to close the data base !!");
             }
         }
     }
