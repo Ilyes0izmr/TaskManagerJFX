@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -93,14 +94,65 @@ public class TaskCell extends ListCell<TaskImpl> {
     }
 
     private void handleEditTask(TaskImpl task) {
-        // Implement the logic to edit the task
-        System.out.println("Edit task: " + task.getTitle());
+        try {
+            // Load the FXML file for the edit task view
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/EditTaskView.fxml"));
+            Pane pane = loader.load();
+
+            // Get the controller for the EditTaskView
+            EditTaskController controller = loader.getController();
+            controller.setTask(task); // Pass the task to be edited to the controller
+
+            // Create a new stage for the edit task window
+            Stage stage = new Stage();
+            stage.setTitle("Edit Task");
+            stage.setScene(new Scene(pane));
+
+            // Make the stage modal, so the user must close it to interact with the main window
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            // Show the window
+            stage.showAndWait();  // Use showAndWait to block interaction until the window is closed
+
+            // Optionally, refresh the main view after closing the edit window
+            HomeController.getInstance().refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading EditTaskView.");
+        }
     }
 
+
+
     private void handleDeleteTask(TaskImpl task) {
-        // Implement the logic to delete the task
-        System.out.println("Delete task: " + task.getTitle());
+        try {
+            // Load the FXML file for the delete confirmation dialog
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/DeleteTaskView.fxml"));
+            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/HomeView.fxml"));
+            Pane pane = loader.load();
+
+            // Get the controller for the DeleteTaskView
+            DeleteTaskController controller = loader.getController();
+            controller.setTask(task); // Pass the task to be deleted to the controller
+
+            // Create a new stage for the delete confirmation dialog
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Delete Task");
+            popupStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with other windows
+            popupStage.setResizable(false);
+            popupStage.setScene(new Scene(pane));
+            // Refresh the task list after deletion
+            // Show the popup and wait for it to close
+            popupStage.showAndWait();
+            HomeController.getInstance().refresh();
+
+            System.out.println("Delete task: " + task.getTitle());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading DeleteTaskView.");
+        }
     }
+
 
     private void handleViewDetails(TaskImpl task) {
         try {

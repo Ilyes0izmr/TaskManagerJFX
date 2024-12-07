@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="226.0" prefWidth="442.0" styleClass="root" stylesheets="@../css/deleteTask.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.DeleteTaskController">
+
+    <VBox alignment="CENTER" prefHeight="229.0" prefWidth="463.0" spacing="20" styleClass="vbox" stylesheets="@../css/deleteTask.css">
+        <Label stylesheets="@../css/deleteTask.css" text="Are you sure you want to delete this task?">
+         <VBox.margin>
+            <Insets left="20.0" top="50.0" />
+         </VBox.margin></Label>
+
+        <HBox alignment="CENTER" spacing="20" styleClass="hbox" stylesheets="@../css/deleteTask.css">
+            <Button fx:id="confirmButton" onAction="#handleConfirm" stylesheets="@../css/deleteTask.css" text="Confirm">
+            <HBox.margin>
+               <Insets left="40.0" top="10.0" />
+            </HBox.margin></Button>
+            <Button fx:id="cancelButton" onAction="#handleCancel" stylesheets="@../css/deleteTask.css" text="Cancel">
+            <HBox.margin>
+               <Insets left="10.0" right="10.0" top="10.0" />
+            </HBox.margin></Button>
+        </HBox>
+    </VBox>
+
+</AnchorPane>
