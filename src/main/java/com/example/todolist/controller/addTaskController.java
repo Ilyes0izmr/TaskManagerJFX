@@ -2,6 +2,8 @@ package com.example.todolist.controller;
 
 import com.example.todolist.dao.TaskDAO;
 import com.example.todolist.model.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -24,6 +26,17 @@ public class addTaskController {
     @FXML
     private ComboBox<Reminder> taskReminderComboBox;
 
+
+    public void initialize(){
+        ObservableList<Priority> priorities = FXCollections.observableArrayList();
+        priorities.addAll(Priority.values());
+        taskPriorityComboBox.setItems(priorities);
+
+        ObservableList<Reminder> reminders = FXCollections.observableArrayList();
+        reminders.addAll(Reminder.values());
+        taskReminderComboBox.setItems(reminders);
+
+    }
 
 
     public void handleAddTask(){
@@ -48,7 +61,7 @@ public class addTaskController {
     }
 
     public void insertTask(String taskTitle ,String taskDescription,Status status , LocalDate deuDate , LocalDate creationDate ,Priority priority , Reminder reminder , String categoryName, String userName){
-        TaskImpl task = new TaskImpl(taskTitle,taskDescription,status,deuDate,creationDate,priority,null,reminder,categoryName,userName) ;
+        TaskImpl task = new TaskImpl(11,taskTitle,taskDescription,status,deuDate,creationDate,priority,null,reminder,categoryName,userName) ;
         TaskDAO.getInstance().addTask(task);
     }
 }

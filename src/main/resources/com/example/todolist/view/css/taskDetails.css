@@ -1,0 +1,26 @@
+.anchor-pane {
+    -fx-background-color: #f4f4f4; /* Light background */
+}
+
+.vbox-card {
+    -fx-background-color: #ffffff; /* White card */
+    -fx-background-radius: 10; /* Rounded corners */
+    -fx-border-color: #dddddd; /* Light border */
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
+}
+
+.grid-pane {
+    -fx-padding: 10;
+}
+
+.field-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Darker text for labels */
+}
+
+.field-value {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666; /* Subtle gray for values */
+}

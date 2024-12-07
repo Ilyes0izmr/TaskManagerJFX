@@ -26,6 +26,7 @@ public class HomeController {
     @FXML
     private ListView<TaskListImpl> collabList;
 
+
     @FXML
     private ListView<TaskImpl> taskList;
     private TaskListImpl taskListModel ;
@@ -39,10 +40,12 @@ public class HomeController {
 
     public void initialize() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
             taskList.getItems().clear();
+            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
             taskListModel.getTasks().addAll(tasks);
             taskList.setItems(taskListModel.getTasks());
+            //for the cell factory 7inka
+            taskList.setCellFactory(param -> new TaskCell());
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error during initialization: " + e.getMessage());
