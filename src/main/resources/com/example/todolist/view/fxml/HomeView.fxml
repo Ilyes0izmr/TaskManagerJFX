@@ -13,159 +13,157 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1550.0" styleClass="anchor-pane" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane layoutX="387.0" prefHeight="850.0" prefWidth="1166.0" styleClass="anchor-pane" stylesheets="@../css/home.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="386.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <AnchorPane prefHeight="92.0" prefWidth="1161.0" styleClass="anchor-pane" stylesheets="@../css/home.css">
-               <children>
-                  <HBox alignment="CENTER_LEFT" layoutY="1.0" prefHeight="90.0" prefWidth="1163.0" styleClass="hbox" stylesheets="@../css/home.css">
-                     <children>
-                        <TextField prefHeight="51.0" prefWidth="300.0" promptText="search" styleClass="text-field" stylesheets="@../css/home.css">
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <Pane prefHeight="90.0" prefWidth="342.0" styleClass="pane" stylesheets="@../css/home.css" />
-                        <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="106.0" stylesheets="@../css/home.css" text="Sort">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="farest Date" />
-                              <MenuItem mnemonicParsing="false" text="closest Date" />
-                              <MenuItem mnemonicParsing="false" text="Highest" />
-                              <MenuItem mnemonicParsing="false" text="Lowest" />
-                           </items>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </MenuButton>
-                        <MenuButton mnemonicParsing="false" prefHeight="29.0" prefWidth="118.0" stylesheets="@../css/home.css" text="Status">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <items>
-                              <CheckMenuItem mnemonicParsing="false" text="Completed" />
-                              <CheckMenuItem mnemonicParsing="false" text="IN PROGRESS" />
-                              <CheckMenuItem mnemonicParsing="false" text="ABANDONED" />
-                              <CheckMenuItem mnemonicParsing="false" text="PENDING" />
-                           </items>
-                        </MenuButton>
-                        <MenuButton mnemonicParsing="false" prefHeight="54.0" prefWidth="126.0" stylesheets="@../css/home.css" text="Priority">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="High" />
-                              <MenuItem mnemonicParsing="false" text="Medium" />
-                              <MenuItem mnemonicParsing="false" text="Low" />
-                           </items>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </MenuButton>
-                     </children>
-                  </HBox>
-               </children></AnchorPane>
-            <AnchorPane layoutY="707.0" prefHeight="92.0" prefWidth="1163.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="90.0" prefWidth="1163.0" stylesheets="@../css/home.css">
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="162.0" stylesheets="@../css/home.css" text="ADD TASK">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Pane prefHeight="90.0" prefWidth="729.0" stylesheets="@../css/home.css" />
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="102.0" text="export">
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="81.0" text="import">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="8.0" layoutY="90.0" prefHeight="618.0" prefWidth="1133.0">
-               <children>
-                  <ListView layoutX="10.0" prefHeight="618.0" prefWidth="1117.0" stylesheets="@../css/home.css" />
-               </children>
-            </AnchorPane>
-         </children>
+<AnchorPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="800.0" prefWidth="1550.0" styleClass="anchor-pane" stylesheets="@../css/home.css"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.todolist.controller.HomeController">
+   <AnchorPane layoutX="387.0" prefHeight="850.0" prefWidth="1166.0" styleClass="anchor-pane"
+               stylesheets="@../css/home.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="386.0"
+               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="92.0" prefWidth="1161.0" styleClass="anchor-pane" stylesheets="@../css/home.css">
+         <HBox alignment="CENTER_LEFT" layoutY="1.0" prefHeight="90.0" prefWidth="1163.0" styleClass="hbox"
+               stylesheets="@../css/home.css">
+            <TextField prefHeight="51.0" prefWidth="300.0" promptText="search" styleClass="text-field"
+                       stylesheets="@../css/home.css">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0"/>
+               </HBox.margin>
+            </TextField>
+            <Pane prefHeight="90.0" prefWidth="342.0" styleClass="pane" stylesheets="@../css/home.css"/>
+            <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="106.0"
+                        stylesheets="@../css/home.css" text="Sort">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="farest Date"/>
+                  <MenuItem mnemonicParsing="false" text="closest Date"/>
+                  <MenuItem mnemonicParsing="false" text="Highest"/>
+                  <MenuItem mnemonicParsing="false" text="Lowest"/>
+               </items>
+               <HBox.margin>
+                  <Insets left="20.0"/>
+               </HBox.margin>
+            </MenuButton>
+            <MenuButton mnemonicParsing="false" prefHeight="29.0" prefWidth="118.0"
+                        stylesheets="@../css/home.css" text="Status">
+               <HBox.margin>
+                  <Insets left="20.0"/>
+               </HBox.margin>
+               <items>
+                  <CheckMenuItem mnemonicParsing="false" text="Completed"/>
+                  <CheckMenuItem mnemonicParsing="false" text="IN PROGRESS"/>
+                  <CheckMenuItem mnemonicParsing="false" text="ABANDONED"/>
+                  <CheckMenuItem mnemonicParsing="false" text="PENDING"/>
+               </items>
+            </MenuButton>
+            <MenuButton mnemonicParsing="false" prefHeight="54.0" prefWidth="126.0"
+                        stylesheets="@../css/home.css" text="Priority">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="High"/>
+                  <MenuItem mnemonicParsing="false" text="Medium"/>
+                  <MenuItem mnemonicParsing="false" text="Low"/>
+               </items>
+               <HBox.margin>
+                  <Insets left="20.0"/>
+               </HBox.margin>
+            </MenuButton>
+         </HBox>
       </AnchorPane>
-      <AnchorPane prefHeight="802.0" prefWidth="401.0" styleClass="left-pane" stylesheets="@../css/home.css">
-         <children>
-            <HBox alignment="BOTTOM_LEFT" layoutX="2.0" layoutY="3.0" prefHeight="68.0" prefWidth="381.0" styleClass="hbox" stylesheets="@../css/home.css">
-               <children>
-                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="60.0" stylesheets="@../css/home.css" text="PFP">
-                     <padding>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="10.0" top="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label prefHeight="69.0" prefWidth="246.0" stylesheets="@../css/home.css" text="name ">
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" top="5.0" />
-                     </HBox.margin>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Label>
-               </children>
-            </HBox>
-            <AnchorPane layoutX="6.0" layoutY="63.0" prefHeight="158.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
-               <children>
-                  <VBox layoutX="6.0" layoutY="41.0" prefHeight="137.0" prefWidth="375.0" styleClass="vbox" stylesheets="@../css/home.css">
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="375.0" stylesheets="@../css/home.css" text="home">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="375.0" stylesheets="@../css/home.css" text="box">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Button>
-                        <TextField prefHeight="55.0" prefWidth="375.0" promptText="search" styleClass="text-field" stylesheets="@../css/home.css" />
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="5.0" layoutY="290.0" prefHeight="248.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
-               <children>
-                  <ListView layoutX="6.0" layoutY="64.0" prefHeight="182.0" prefWidth="375.0" stylesheets="@../css/home.css" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="5.0" layoutY="559.0" prefHeight="243.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
-               <children>
-                  <ListView layoutX="6.0" layoutY="38.0" prefHeight="182.0" prefWidth="374.0" stylesheets="@../css/home.css" />
-               </children>
-            </AnchorPane>
-            <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="544.0" prefHeight="51.0" prefWidth="376.0" styleClass="hbox" stylesheets="@../css/home.css">
-               <children>
-                  <Label prefHeight="46.0" prefWidth="274.0" stylesheets="@../css/home.css" text="   collaboration categories" />
-                  <Pane prefHeight="31.0" prefWidth="100.0" styleClass="pane" stylesheets="@../css/home.css" />
-                  <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="169.0" stylesheets="@../css/home.css" text="New Collab" />
-               </children>
-            </HBox>
-            <AnchorPane layoutX="11.0" layoutY="274.0" prefHeight="68.0" prefWidth="378.0" styleClass="anchor-pane" stylesheets="@../css/home.css">
-               <children>
-                  <HBox layoutX="5.0" layoutY="7.0" prefHeight="44.0" prefWidth="372.0" styleClass="hbox" stylesheets="@../css/home.css">
-                     <children>
-                        <Label prefHeight="58.0" prefWidth="211.0" stylesheets="@../css/home.css" text="   my categories" />
-                        <Pane prefHeight="37.0" prefWidth="100.0" styleClass="pane" stylesheets="@../css/home.css" />
-                        <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="217.0" stylesheets="@../css/home.css" text="New category">
-                           <HBox.margin>
-                              <Insets top="5.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
-         </children></AnchorPane>
-   </children>
+      <AnchorPane layoutY="707.0" prefHeight="92.0" prefWidth="1163.0">
+         <HBox alignment="CENTER_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="90.0" prefWidth="1163.0"
+               stylesheets="@../css/home.css">
+            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="162.0" stylesheets="@../css/home.css"
+                    text="ADD TASK">
+               <HBox.margin>
+                  <Insets left="20.0"/>
+               </HBox.margin>
+            </Button>
+            <Pane prefHeight="90.0" prefWidth="729.0" stylesheets="@../css/home.css"/>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="102.0" text="export">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0"/>
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="81.0" text="import">
+               <HBox.margin>
+                  <Insets/>
+               </HBox.margin>
+            </Button>
+         </HBox>
+      </AnchorPane>
+      <AnchorPane layoutX="8.0" layoutY="90.0" prefHeight="618.0" prefWidth="1133.0">
+         <ListView layoutX="10.0" prefHeight="618.0" prefWidth="1117.0" stylesheets="@../css/home.css"/>
+      </AnchorPane>
+   </AnchorPane>
+   <AnchorPane prefHeight="802.0" prefWidth="401.0" styleClass="left-pane" stylesheets="@../css/home.css">
+      <HBox alignment="BOTTOM_LEFT" layoutX="2.0" layoutY="3.0" prefHeight="68.0" prefWidth="381.0" styleClass="hbox"
+            stylesheets="@../css/home.css">
+         <Label alignment="CENTER" prefHeight="60.0" prefWidth="60.0" stylesheets="@../css/home.css" text="PFP">
+            <padding>
+               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+            <HBox.margin>
+               <Insets bottom="5.0" left="10.0" top="5.0"/>
+            </HBox.margin>
+         </Label>
+         <Label prefHeight="69.0" prefWidth="246.0" stylesheets="@../css/home.css" text="name ">
+            <HBox.margin>
+               <Insets bottom="5.0" left="5.0" top="5.0"/>
+            </HBox.margin>
+            <opaqueInsets>
+               <Insets/>
+            </opaqueInsets>
+         </Label>
+      </HBox>
+      <AnchorPane layoutX="6.0" layoutY="63.0" prefHeight="158.0" prefWidth="382.0" styleClass="left-pane"
+                  stylesheets="@../css/home.css">
+         <VBox layoutX="6.0" layoutY="41.0" prefHeight="137.0" prefWidth="375.0" styleClass="vbox"
+               stylesheets="@../css/home.css">
+            <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="375.0" stylesheets="@../css/home.css"
+                    text="home">
+               <VBox.margin>
+                  <Insets top="10.0"/>
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="375.0" stylesheets="@../css/home.css"
+                    text="box">
+               <VBox.margin>
+                  <Insets/>
+               </VBox.margin>
+            </Button>
+            <TextField prefHeight="55.0" prefWidth="375.0" promptText="search" styleClass="text-field"
+                       stylesheets="@../css/home.css"/>
+         </VBox>
+      </AnchorPane>
+      <AnchorPane layoutX="5.0" layoutY="290.0" prefHeight="248.0" prefWidth="382.0" styleClass="left-pane"
+                  stylesheets="@../css/home.css">
+         <ListView layoutX="6.0" layoutY="64.0" prefHeight="182.0" prefWidth="375.0"
+                   stylesheets="@../css/home.css"/>
+      </AnchorPane>
+      <AnchorPane layoutX="5.0" layoutY="559.0" prefHeight="243.0" prefWidth="382.0" styleClass="left-pane"
+                  stylesheets="@../css/home.css">
+         <ListView layoutX="6.0" layoutY="38.0" prefHeight="182.0" prefWidth="374.0"
+                   stylesheets="@../css/home.css"/>
+      </AnchorPane>
+      <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="544.0" prefHeight="51.0" prefWidth="376.0"
+            styleClass="hbox" stylesheets="@../css/home.css">
+         <Label prefHeight="46.0" prefWidth="274.0" stylesheets="@../css/home.css"
+                text="   collaboration categories"/>
+         <Pane prefHeight="31.0" prefWidth="100.0" styleClass="pane" stylesheets="@../css/home.css"/>
+         <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="169.0" stylesheets="@../css/home.css"
+                 text="New Collab"/>
+      </HBox>
+      <AnchorPane layoutX="11.0" layoutY="274.0" prefHeight="68.0" prefWidth="378.0" styleClass="anchor-pane"
+                  stylesheets="@../css/home.css">
+         <HBox layoutX="5.0" layoutY="7.0" prefHeight="44.0" prefWidth="372.0" styleClass="hbox"
+               stylesheets="@../css/home.css">
+            <Label prefHeight="58.0" prefWidth="211.0" stylesheets="@../css/home.css" text="   my categories"/>
+            <Pane prefHeight="37.0" prefWidth="100.0" styleClass="pane" stylesheets="@../css/home.css"/>
+            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="217.0" stylesheets="@../css/home.css"
+                    text="New category">
+               <HBox.margin>
+                  <Insets top="5.0"/>
+               </HBox.margin>
+            </Button>
+         </HBox>
+      </AnchorPane>
+   </AnchorPane>
 </AnchorPane>

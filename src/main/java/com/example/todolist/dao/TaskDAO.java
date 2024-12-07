@@ -16,6 +16,9 @@ import java.util.ArrayList;
  * @author Meftah Mohamed
  */
 public class TaskDAO {
+    private static TaskDAO instance;
+
+
 
     /**
      * Adds a new task to the database.
@@ -25,7 +28,7 @@ public class TaskDAO {
      */
     public boolean addTask(TaskImpl task) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "INSERT INTO tasks (title, description, status, dueDate, creationDate, priority, userName) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sqlQuery = "INSERT INTO tasks (title, description, status, dueDate, creationDate, priority, reminder ,userName ) VALUES (?, ?, ?, ?, ?, ?, ? ,?)";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1, task.getTitle());
             statement.setString(2, task.getDescription());
@@ -33,6 +36,7 @@ public class TaskDAO {
             statement.setDate(4, Date.valueOf(task.getDueDate()));
             statement.setDate(5, Date.valueOf(task.getCreationDate()));
             statement.setString(6, task.getPriority().name());
+            statement.setString(7, task.getReminder().name());
             statement.setString(7, task.getUserName()); // Include userName
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -40,6 +44,14 @@ public class TaskDAO {
             return false;
         }
     }
+
+    public static synchronized TaskDAO getInstance() {
+        if (instance == null){
+            instance = new TaskDAO();
+        }
+        return instance;
+    }
+
 
 
 
@@ -61,7 +73,7 @@ public class TaskDAO {
 
             while (result.next()) {
                 TaskImpl task = new TaskImpl(
-                        result.getInt("id"),
+                        //result.getInt("id"),
                         result.getString("title"),
                         result.getString("description"),
                         Status.valueOf(result.getString("status")),
@@ -70,7 +82,7 @@ public class TaskDAO {
                         Priority.valueOf(result.getString("priority")),
                         new ArrayList<>(), // Initialize comments as an empty list
                         Reminder.valueOf(result.getString("reminder")), // Fetch reminder
-                        result.getInt("categoryId"), // Fetch categoryId
+                        result.getString("categoryName"), // Fetch categoryId
                         result.getString("userName") // Fetch userName
                 );
                 tasks.add(task);
@@ -118,7 +130,7 @@ public class TaskDAO {
             statement.setDate(4, Date.valueOf(task.getDueDate()));
             statement.setString(5, task.getPriority().toString());
             statement.setString(6, task.getReminder().toString());
-            statement.setInt(7, task.getCategoryId());
+            statement.setString(7, task.getCategoryName());
             statement.setInt(8, task.getId());
 
             int rowsAffected = statement.executeUpdate();
@@ -149,7 +161,7 @@ public class TaskDAO {
 
             while (result.next()) {
                 TaskImpl task = new TaskImpl(
-                        result.getInt("id"),
+                        //result.getInt("id"),
                         result.getString("title"),
                         result.getString("description"),
                         Status.valueOf(result.getString("status")),
@@ -158,7 +170,7 @@ public class TaskDAO {
                         Priority.valueOf(result.getString("priority")),
                         new ArrayList<>(), // Initialize comments as an empty list (can be fetched separately if needed)
                         Reminder.valueOf(result.getString("reminder")),
-                        result.getInt("categoryId"), // Fetch categoryId
+                        result.getString("categoryName"), // Fetch categoryId
                         result.getString("userName") // Fetch userName
                 );
                 matchedTasks.add(task);

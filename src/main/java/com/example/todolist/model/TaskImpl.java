@@ -19,13 +19,13 @@ public class TaskImpl implements Task {
     private Priority priority; // Enum: LOW, MEDIUM, HIGH
     private ArrayList<Comment> comments;
     private Reminder reminder; // Enum: DAILY, WEEKLY, MONTHLY
-    private int categoryId; // New field to store the category ID
+    private String categoryName; // New field to store the category ID
     private String userName;
 
     /**
      * Constructs a new TaskImpl with the specified details.
      *
-     * @param id           The unique identifier for the task.
+     * //@param id           The unique identifier for the task.
      * @param title        The title of the task.
      * @param description  The description of the task.
      * @param status       The current status of the task (e.g., IN_PROGRESS).
@@ -34,12 +34,12 @@ public class TaskImpl implements Task {
      * @param priority     The priority level of the task (e.g., HIGH).
      * @param comments     The list of comments associated with the task.
      * @param reminder     The reminder frequency for the task (e.g., DAILY).
-     * @param categoryId   The category ID the task belongs to.
+     * @param categoryName   The category ID the task belongs to.
      */
-    public TaskImpl(int id, String title, String description, Status status, LocalDate dueDate,
+    public TaskImpl(/*int id ,*/String title, String description, Status status, LocalDate dueDate,
                     LocalDate creationDate, Priority priority, ArrayList<Comment> comments,
-                    Reminder reminder, int categoryId, String userName) {
-        this.id = id;
+                    Reminder reminder, String categoryName, String userName) {
+        /*this.id = id;*/
         this.title = title;
         this.description = description;
         this.status = status;
@@ -48,7 +48,7 @@ public class TaskImpl implements Task {
         this.priority = priority;
         this.comments = comments;
         this.reminder = reminder;
-        this.categoryId = categoryId; // Initialize categoryId
+        this.categoryName = categoryName; // Initialize categoryName
         this.userName=userName;
     }
 
@@ -81,14 +81,14 @@ public class TaskImpl implements Task {
      *
      * @return The category ID of the task.
      */
-    public int getCategoryId() { return categoryId; }
+    public String getCategoryName() { return categoryName; }
 
     /**
      * Sets the category ID of the task.
      *
-     * @param categoryId The category ID to set.
+     * @param categoryName The category ID to set.
      */
-    public void setCategoryId(int categoryId) { this.categoryId = categoryId; }
+    public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
 
     /**
      * Gets the unique ID of the task.
