@@ -8,12 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
 
+import java.io.IOException;
 
 public class SignUpController {
 
@@ -49,33 +48,54 @@ public class SignUpController {
         String password = passwordField.getText();
         String confirmPassword = passwordFieldConfirmation.getText();
 
-        if (!isValidEmail(email)) {
-            showAlert("Invalid Email", "Email must contain '@'.");
+        // Validation checks
+        if (email == null || email.isEmpty() || !isValidEmail(email)) {
+            showAlert("Invalid Email", "Please enter a valid email containing '@'.");
             return;
         }
 
-        if (!isValidPassword(password)) {
+        if (userName == null || userName.isEmpty() || !isValidUserName(userName)) {
+            showAlert("Invalid User Name", "User name must not contain spaces.");
+            return;
+        }
+
+        if (fullName == null || fullName.isEmpty() || !isValidFullName(fullName)) {
+            showAlert("Invalid Full Name", "Full name must not contain numbers.");
+            return;
+        }
+
+        if (password == null || password.isEmpty() || !isValidPassword(password)) {
             showAlert("Invalid Password", "Password must contain at least one uppercase letter, one lowercase letter, and one number.");
             return;
         }
 
-        if (!isValidUserName(userName)) {
-            showAlert("Invalid User Name", "User name must not contain white spaces.");
-            return;
-        }
-
         if (!isMatchConfirmationPassword(password, confirmPassword)) {
-            showAlert("Invalid Password", "Password does not match.");
+            showAlert("Password Mismatch", "Passwords do not match.");
             return;
         }
 
+        // Register new user
         User newUser = new User(userName, fullName, password, email);
         boolean isRegistered = userDAO.signUp(newUser);
 
         if (isRegistered) {
             showAlert("Success", "User registered successfully.");
+            try {
+                // Load HomeView.fxml
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/HomeView.fxml"));
+                Parent root = loader.load();
+
+                // Switch scene
+                Stage stage = (Stage) userNameField.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Home Page - To-Do List Application");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert("Error", "Failed to load Home page.");
+            }
         } else {
-            showAlert("Error", "Registration failed.");
+            showAlert("Error", "Registration failed. Please try again.");
         }
     }
 
@@ -84,16 +104,19 @@ public class SignUpController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/LoginView.fxml"));
             Parent root = loader.load();
+
+            // Switch to Login view
             Stage stage = (Stage) userNameField.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Login - To-Do List Application");
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+            showAlert("Error", "Failed to load Login page.");
         }
     }
 
-
-
+    // Validation methods
     private boolean isValidEmail(String email) {
         return email.contains("@");
     }
@@ -111,7 +134,7 @@ public class SignUpController {
     }
 
     private boolean isValidFullName(String fullName) {
-        return !fullName.matches(".*\\d.*");
+        return fullName != null && !fullName.matches(".*\\d.*");
     }
 
     private void showAlert(String title, String message) {

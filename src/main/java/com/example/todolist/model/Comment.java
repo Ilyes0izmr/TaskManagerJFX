@@ -12,6 +12,7 @@ public class Comment {
     private int id;
     private String text;
     private LocalDateTime creationDate;
+    private Task task ;
 
     /**
      * Constructs a new Comment with the specified ID, text, and creation date.

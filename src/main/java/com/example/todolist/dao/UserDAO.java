@@ -25,7 +25,7 @@ public class UserDAO {
      */
     public boolean login(String userName, String passWord) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "SELECT * FROM users WHERE userName = ? AND passWord = ?";
+            String sqlQuery = "SELECT * FROM users WHERE email = ? AND passWord = ?";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1, userName);
             statement.setString(2, passWord);

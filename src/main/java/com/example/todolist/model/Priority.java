@@ -13,5 +13,7 @@ package com.example.todolist.model;
  * @author Meftah Mohamed
  */
 public enum Priority {
-    LOW, MEDIUM, HIGH
+    LOW,
+    MEDIUM,
+    HIGH
 }
