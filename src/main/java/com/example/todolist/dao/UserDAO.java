@@ -30,7 +30,13 @@ public class UserDAO {
             statement.setString(1, userName);
             statement.setString(2, passWord);
             ResultSet result = statement.executeQuery();
-            return result.next();
+            if (result.next()) {
+                // If user exists and login is successful, set the static userName
+                User.setUserName(result.getString("userName"));  // Set static userName
+                return true;
+            } else {
+                return false;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

@@ -19,7 +19,7 @@ public class TaskImpl implements Task {
     private Priority priority; // Enum: LOW, MEDIUM, HIGH
     private ArrayList<Comment> comments;
     private Reminder reminder; // Enum: DAILY, WEEKLY, MONTHLY
-    private String categoryName; // New field to store the category ID
+    private String categoryName;
     private String userName;
 
     /**

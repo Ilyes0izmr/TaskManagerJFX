@@ -23,47 +23,22 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `email` varchar(255) NOT NULL,
-  `passWord` varchar(255) NOT NULL,
-  `userName` varchar(255) NOT NULL,
-  `fullName` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`email`, `passWord`, `userName`, `fullName`) VALUES
-('ilyes@gmail.com', '1Il', 'ilyes', 'ilyesIzmr');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`email`),
-  ADD UNIQUE KEY `userName` (`userName`);
-COMMIT;
+CREATE TABLE users (
+    userName VARCHAR(255) PRIMARY KEY NOT NULL,
+    passWord VARCHAR(255) NOT NULL,
+    fullName VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL
+);
 
 --
 --category:
 --
 CREATE TABLE categories (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) PRIMARY KEY,
+    userName VARCHAR(255) NOT NULL,
+    FOREIGN KEY (userName) REFERENCES users(userName) ON DELETE SET NULL
 );
 
---
---Tasks:
---
 CREATE TABLE tasks (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -73,8 +48,10 @@ CREATE TABLE tasks (
     creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     priority ENUM('LOW', 'MEDIUM', 'HIGH') NOT NULL,
     reminder ENUM('DAILY', 'WEEKLY', 'MONTHLY'),
-    categoryId INT,
-    FOREIGN KEY (categoryId) REFERENCES categories(id) ON DELETE SET NULL
+    categoryName VARCHAR(255),
+    userName VARCHAR(255) NOT NULL,
+    FOREIGN KEY (categoryName) REFERENCES categories(name) ON DELETE SET NULL,
+    FOREIGN KEY (userName) REFERENCES users(userName) ON DELETE SET NULL
 );
 
 --
@@ -88,14 +65,8 @@ CREATE TABLE comments (
     FOREIGN KEY (taskId) REFERENCES tasks(id) ON DELETE CASCADE
 );
 
-DROP TABLE users;
 
-CREATE TABLE users (
-    userName VARCHAR(255) PRIMARY KEY NOT NULL,
-    passWord VARCHAR(255) NOT NULL,
-    fullName VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL
-);
+
 
 
 
