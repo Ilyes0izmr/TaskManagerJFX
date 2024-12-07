@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2024 at 06:09 PM
+-- Generation Time: Dec 07, 2024 at 10:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,9 +70,9 @@ CREATE TABLE `tasks` (
 
 INSERT INTO `tasks` (`id`, `title`, `description`, `status`, `dueDate`, `creationDate`, `priority`, `reminder`, `categoryName`, `userName`) VALUES
 (23, 'l7inka l7inka ', 'qqqq', 'COMPLETED', '2025-01-01', '2024-12-07', 'MEDIUM', 'WEEKLY', NULL, '111'),
-(24, 'l7inka dio dio ', 'ro7 tkft', 'PENDING', '2024-12-19', '2024-12-07', 'HIGH', 'DAILY', NULL, '111'),
-(26, '7inka dyal priority', 'qwqweqwqwe', 'COMPLETED', '2025-01-11', '2024-12-07', 'LOW', 'DAILY', NULL, '111'),
-(27, 'jurking offf', 'i have to jurk off ', 'COMPLETED', '2025-01-11', '2024-12-07', 'HIGH', 'DAILY', NULL, '111');
+(51, 'ilyes', 'ewqwqeqwqew', 'COMPLETED', '2024-12-14', '2024-12-07', 'MEDIUM', 'DAILY', NULL, '111'),
+(52, 'pizza11233221', 'qweqwe12', 'PENDING', '2025-01-09', '2024-12-07', 'LOW', 'MONTHLY', NULL, '111'),
+(54, 'ilyes ro7 t3ti tr9od sa7it', '123213', 'PENDING', '2024-12-18', '2024-12-07', 'LOW', 'WEEKLY', NULL, '111');
 
 -- --------------------------------------------------------
 
@@ -143,7 +143,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Constraints for dumped tables
