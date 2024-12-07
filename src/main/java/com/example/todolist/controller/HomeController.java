@@ -10,6 +10,15 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
 
 
 public class HomeController {
@@ -33,16 +42,29 @@ public class HomeController {
     private ComboBox<Reminder> taskReminderComboBox;
 
 
-    public void handleAddTask(){
-        String taskTitle = taskFieldTitle.getText();
-        String taskDescription = taskFieldDescription.getText();
-        Status status = Status.PENDING ;
-        LocalDate deuDate = taskFieldDueDate.getValue();
-        LocalDate creationDate = LocalDate.now();
-        Priority priority = taskPriorityComboBox.getValue();
-        Reminder reminder = taskReminderComboBox.getValue();
-        String categoryName = taskCategoryComboBox.getValue();
+    public void handleAddTaskPopup() {
+        try {
+            // Load the FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/addTaskPopup.fxml"));
 
+            AnchorPane popupRoot = loader.load();
+
+            // Get the controller for the popup
+            addTaskController controller = loader.getController();
+
+            // Create a new stage for the popup
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Add Task");
+            popupStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with the main window
+            popupStage.setResizable(false);
+            popupStage.setScene(new Scene(popupRoot));
+
+            // Show the popup
+            popupStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading Add Task Popup.");
+        }
     }
 
 

@@ -27,17 +27,26 @@ public class TaskDAO {
      * @return {@code true} if the task was successfully added, {@code false} otherwise.
      */
     public boolean addTask(TaskImpl task) {
+        String reminderName=null;
+        if (task.getReminder() != null) {
+            reminderName = task.getReminder().name(); // Safely get the reminder name
+        }
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "INSERT INTO tasks (title, description, status, dueDate, creationDate, priority, reminder ,userName ) VALUES (?, ?, ?, ?, ?, ?, ? ,?)";
+            String sqlQuery = "INSERT INTO tasks (title, description, status, dueDate, creationDate, priority, reminder ,userName ,categoryName ) VALUES (?, ?, ?, ?, ?, ?, ? ,? ,?)";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1, task.getTitle());
             statement.setString(2, task.getDescription());
             statement.setString(3, task.getStatus().name());
             statement.setDate(4, Date.valueOf(task.getDueDate()));
             statement.setDate(5, Date.valueOf(task.getCreationDate()));
-            statement.setString(6, task.getPriority().name());
-            statement.setString(7, task.getReminder().name());
-            statement.setString(7, task.getUserName()); // Include userName
+            if (task.getPriority() != null) {
+                statement.setString(6, task.getPriority().name());
+            } else {
+                statement.setNull(6, Types.VARCHAR); // Use null if no priority is set
+            }
+            statement.setString(7, reminderName);
+            statement.setString(8, task.getUserName());
+            statement.setString(9, task.getCategoryName());
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
