@@ -28,9 +28,9 @@ public class HomeController {
 
     @FXML
     private ListView<TaskImpl> taskList;
-    private final TaskListImpl taskListModel ;
+    private TaskListImpl taskListModel ;
 
-    private final TaskDAO taskDAO;
+    private TaskDAO taskDAO;
 
     public HomeController() {
         this.taskListModel = new TaskListImpl("general" , User.getUserName()) ;
@@ -40,6 +40,7 @@ public class HomeController {
     public void initialize() {
         try {
             ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            taskList.getItems().clear();
             taskListModel.getTasks().addAll(tasks);
             taskList.setItems(taskListModel.getTasks());
         } catch (Exception e) {
@@ -63,6 +64,7 @@ public class HomeController {
             popupStage.setScene(new Scene(popupRoot));
             // Show the popup
             popupStage.showAndWait();
+            initialize();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error loading Add Task Popup.");

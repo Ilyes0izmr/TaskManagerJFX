@@ -18,7 +18,7 @@ public class MainApp extends Application {
         // Set up the stage (main window)
         primaryStage.setTitle("To-Do List Application - Sign Up");
         primaryStage.setScene(scene);
-
+        //
         // Optional: make the window resizable or not
         primaryStage.setResizable(true);
         //primaryStage.setFullScreen(false);
