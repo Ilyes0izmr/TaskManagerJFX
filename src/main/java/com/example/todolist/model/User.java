@@ -8,7 +8,7 @@ package com.example.todolist.model;
 public class User {
 
     private String fullName;
-    private String userName;
+    private static String userName;
     private String passWord;
     private String email;
 
@@ -50,7 +50,7 @@ public class User {
      *
      * @return The username of the user.
      */
-    public String getUserName() {
+    public static String getUserName() {
         return userName;
     }
 
@@ -59,8 +59,8 @@ public class User {
      *
      * @param userName The username to set.
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public static void setUserName(String userName) {
+        User.userName = userName;
     }
 
     /**
