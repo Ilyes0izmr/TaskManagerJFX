@@ -43,12 +43,6 @@ public class HomeController {
         Reminder reminder = taskReminderComboBox.getValue();
         String categoryName = taskCategoryComboBox.getValue();
 
-
-
-
-
-
-
     }
 
 
