@@ -104,7 +104,6 @@ public class SignUpController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/LoginView.fxml"));
             Parent root = loader.load();
-
             // Switch to Login view
             Stage stage = (Stage) userNameField.getScene().getWindow();
             stage.setScene(new Scene(root));

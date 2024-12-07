@@ -11,22 +11,16 @@ import javafx.scene.control.TextField;
 import java.time.LocalDate;
 
 public class addTaskController {
-
     @FXML
     private ComboBox<String> taskCategoryComboBox;
-
     @FXML
     private TextField taskFieldDescription;
-
     @FXML
     private DatePicker taskFieldDueDate;
-
     @FXML
     private TextField taskFieldTitle;
-
     @FXML
     private ComboBox<Priority> taskPriorityComboBox;
-
     @FXML
     private ComboBox<Reminder> taskReminderComboBox;
 
@@ -43,8 +37,10 @@ public class addTaskController {
         String categoryName = taskCategoryComboBox.getValue();
         String userName = User.getUserName();  // Get the static userName
 
+        //TODO : error handling here
         if(taskTitle != null && !taskTitle.isEmpty() && deuDate != null){
             insertTask(taskTitle , taskDescription , status , deuDate , creationDate , priority , reminder ,categoryName,userName);
+            System.out.println("task added successfully");
         }else{
             System.out.println("task title / due date is empty ");
         }

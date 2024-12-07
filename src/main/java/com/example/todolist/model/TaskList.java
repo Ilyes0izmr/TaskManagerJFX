@@ -1,6 +1,8 @@
 package com.example.todolist.model;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.time.LocalDate;
 
 /**
@@ -8,25 +10,29 @@ import java.time.LocalDate;
  * Provides methods to add, delete, edit, display tasks, and mark tasks as completed.
  * This class serves as a blueprint for concrete task list implementations.
  * Each TaskList is associated with a user via their username.
+ * Task list AKA abstract category
  *
- * @author Meftah Mohamed
+ * @note seems all good tbh ig we will use this instead of the task manager
+ *
+ * @author Meftah Mohamed+
+ * @author Izemmouren ilyes
  */
 public abstract class TaskList {
     protected int id;
-    protected String name;
+    protected String categoryName;      //the name of the category
     protected String userName;  // User associated with this task list
-    protected ArrayList<TaskImpl> tasks;
+    protected ObservableList<TaskImpl> tasks;
 
     /**
      * Constructs a new TaskList object and initializes the list of tasks.
      *
-     * @param name     The name of the task list (category name).
+     * @param categoryName     The name of the task list (category name).
      * @param userName The username of the user associated with the task list.
      */
-    public TaskList(String name, String userName) {
-        this.name = name;
+    public TaskList(String categoryName, String userName) {
+        this.categoryName = categoryName;
         this.userName = userName;
-        tasks = new ArrayList<TaskImpl>();
+        tasks = FXCollections.observableArrayList();
     }
 
     /**
@@ -90,16 +96,16 @@ public abstract class TaskList {
      * @return The name of the task list.
      */
     public String getName() {
-        return name;
+        return categoryName;
     }
 
     /**
      * Sets the name of the task list.
      *
-     * @param name The name to set for the task list.
+     * @param categoryName The name to set for the task list.
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     /**
@@ -118,5 +124,14 @@ public abstract class TaskList {
      */
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    /**
+     * Gets the list of tasks.
+     *
+     * @return The list of tasks.
+     */
+    public ObservableList<TaskImpl> getTasks() {
+        return tasks;
     }
 }
