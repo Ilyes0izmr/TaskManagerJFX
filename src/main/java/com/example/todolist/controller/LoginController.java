@@ -14,10 +14,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
-
     @FXML
     private TextField emailField;
-
     @FXML
     private PasswordField passwordField;
 

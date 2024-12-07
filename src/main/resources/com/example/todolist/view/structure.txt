@@ -4,29 +4,32 @@ src/
 |   |   |-- com/
 |   |   |   |-- example/
 |   |   |   |   |-- todolist/
-|   |   |   |   |   |-- MainApp.java                // Main entry point of the JavaFX application
+|   |   |   |   |   |-- MainApp.java             // Main entry point of the JavaFX application
 |   |   |   |   |   |-- model/
-|   |   |   |   |   |   |-- Task.java
 |   |   |   |   |   |   |-- Comment.java
+|   |   |   |   |   |   |-- Priority.java
 |   |   |   |   |   |   |-- Reminder.java
+|   |   |   |   |   |   |-- Status.java
+|   |   |   |   |   |   |-- Task.java           //interface implemented by TaskImpl
+|   |   |   |   |   |   |-- TaskImpl.java       // represent a task
+|   |   |   |   |   |   |-- TaskList.java       // abstract class represents the listOf tasks
+|   |   |   |   |   |   |-- TaskListImpl.java   //inherit the list of tasks
 |   |   |   |   |   |   |-- User.java
-|   |   |   |   |   |   |-- Enums.java
-|   |   |   |   |   |   |-- user.java
 |   |   |   |   |   |
 |   |   |   |   |   |-- dao/
 |   |   |   |   |   |   |-- TaskDAO.java
 |   |   |   |   |   |   |-- UserDAO.java
+|   |   |   |   |   |   |-- CommentDAO.java
+|   |   |   |   |   |   |-- CategoryDAO.java
 |   |   |   |   |   |
 |   |   |   |   |   |-- controller/
-|   |   |   |   |   |   |-- TaskController.java
-|   |   |   |   |   |   |-- UserController.java
-|   |   |   |   |   |   |-- NotificationController.java
-|   |   |   |   |   |   |-- DashboardController.java
-|   |   |   |   |   |   |-- LoginController.java
+|   |   |   |   |   |   |-- addTaskController.java
+|   |   |   |   |   |   |-- LogInController.java
+|   |   |   |   |   |   |-- SignUpController.java
+|   |   |   |   |   |   |-- addTaskController.java
 |   |   |   |   |   |
 |   |   |   |   |   |-- util/
 |   |   |   |   |   |   |-- DatabaseConnection.java
-|   |   |   |   |   |   |-- Validator.java
 |   |-- resources/
 |   |   |-- com/
 |   |   |   |-- example/
@@ -34,8 +37,9 @@ src/
 |   |   |   |   |   |-- view/
 |   |   |   |   |   |   |-- fxml/
 |   |   |   |   |   |   |   |-- LoginView.fxml
-|   |   |   |   |   |   |   |-- Dashboard.fxml
-|   |   |   |   |   |   |   |-- TaskForm.fxml
+|   |   |   |   |   |   |   |-- HomeView.fxml
+|   |   |   |   |   |   |   |-- AddTaskPopUp.fxml
+|   |   |   |   |   |   |   |-- SignUpView.fxml
 |   |   |   |   |   |   |-- css/
 |   |   |   |   |   |   |   |-- styles.css
 |   |   |   |   |   |   |-- font/

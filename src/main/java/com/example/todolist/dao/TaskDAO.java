@@ -81,16 +81,21 @@ public class TaskDAO {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
+                String priorityStr = result.getString("priority");
+                Priority priority = (priorityStr != null) ? Priority.valueOf(priorityStr) : null;
+
+                String reminderStr = result.getString("reminder");
+                Reminder reminder = (reminderStr != null) ? Reminder.valueOf(reminderStr) : null;
+
                 TaskImpl task = new TaskImpl(
-                        //result.getInt("id"),
                         result.getString("title"),
                         result.getString("description"),
                         Status.valueOf(result.getString("status")),
                         result.getDate("dueDate").toLocalDate(),
                         result.getDate("creationDate").toLocalDate(),
-                        Priority.valueOf(result.getString("priority")),
+                        priority,
                         new ArrayList<>(), // Initialize comments as an empty list
-                        Reminder.valueOf(result.getString("reminder")), // Fetch reminder
+                        reminder,
                         result.getString("categoryName"), // Fetch categoryId
                         result.getString("userName") // Fetch userName
                 );
