@@ -233,4 +233,9 @@ public class TaskImpl implements Task {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+
+    public String toString(){
+        return "Task: "+title+", Status: "+status+", Due Date: "+dueDate;
+    }
 }

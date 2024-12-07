@@ -41,6 +41,7 @@ public class addTaskController {
         if(taskTitle != null && !taskTitle.isEmpty() && deuDate != null){
             insertTask(taskTitle , taskDescription , status , deuDate , creationDate , priority , reminder ,categoryName,userName);
             System.out.println("task added successfully");
+            taskFieldTitle.getScene().getWindow().hide();
         }else{
             System.out.println("task title / due date is empty ");
         }
