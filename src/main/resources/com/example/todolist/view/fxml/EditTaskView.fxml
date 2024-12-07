@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="419.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.EditTaskController">
+    <children>
+        <VBox alignment="CENTER" layoutX="5.0" layoutY="9.0" prefHeight="366.0" prefWidth="330.0" spacing="10.0">
+            <!-- Title -->
+            <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="347.0" styleClass="header-label" text="ENTER YOUR TASK" />
+
+            <!-- Task Title -->
+            <Label prefHeight="18.0" prefWidth="358.0" styleClass="field-label" text="Title :" />
+            <TextField fx:id="taskFieldTitle" prefHeight="45.0" prefWidth="330.0" promptText="Enter a title" styleClass="field-input" />
+
+            <!-- Task Description -->
+            <Label prefHeight="18.0" prefWidth="334.0" styleClass="field-label" text="Description :" />
+            <TextField fx:id="taskFieldDescription" prefHeight="94.0" prefWidth="330.0" promptText="Enter your task description" styleClass="field-input" />
+
+            <!-- Due Date -->
+            <Label prefHeight="18.0" prefWidth="439.0" styleClass="field-label" text="Due Date :" />
+            <DatePicker fx:id="taskFieldDueDate" prefHeight="36.0" prefWidth="330.0" promptText="Select a date" styleClass="field-input" />
+
+            <!-- Reminder -->
+            <ComboBox fx:id="taskReminderComboBox" prefHeight="26.0" prefWidth="330.0" promptText="Reminder" styleClass="field-input" />
+
+            <!-- Priority -->
+            <ComboBox fx:id="taskPriorityComboBox" prefHeight="36.0" prefWidth="330.0" promptText="Priority" styleClass="field-input" />
+
+            <!-- Category -->
+            <ComboBox fx:id="taskCategoryComboBox" prefHeight="35.0" prefWidth="330.0" promptText="Categories" styleClass="field-input" />
+        </VBox>
+
+        <!-- Add Button -->
+        <Button layoutX="80.0" layoutY="379.0" onAction="#handleSaveTask" styleClass="action-button" text="Save" />
+        <Button layoutX="131.0" layoutY="379.0" onAction="#handleCancel" text="Cancel" />
+    </children>
+
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+    </padding>
+</AnchorPane>

@@ -1,0 +1,35 @@
+/* General styling for labels and text fields */
+.field-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-padding: 5px 0;
+}
+
+.field-input {
+    -fx-font-size: 14px;
+    -fx-pref-height: 40px;
+    -fx-padding: 10px;
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+}
+
+.header-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3c3c3c;
+    -fx-padding: 10px;
+}
+
+.action-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+}
+
+.action-button:hover {
+    -fx-background-color: #45a049;
+}
