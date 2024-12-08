@@ -1,0 +1,59 @@
+/* DeleteTask.css */
+
+/* Styling for the AnchorPane */
+.root {
+    -fx-background-color: #f4f4f9; /* Light background color */
+    -fx-padding: 20px; /* Padding around the content */
+    -fx-border-radius: 10px; /* Rounded corners for the window */
+    -fx-background-radius: 10px;
+}
+
+/* Styling for the VBox (container for label and buttons) */
+.vbox {
+    -fx-alignment: center; /* Center-align the contents */
+    -fx-spacing: 20px; /* Space between the label and the buttons */
+}
+
+/* Styling for the Label */
+.label {
+    -fx-font-size: 16px; /* Font size for the label */
+    -fx-text-fill: #333333; /* Dark text color */
+    -fx-font-weight: bold;
+}
+
+/* Styling for the HBox (button container) */
+.hbox {
+    -fx-alignment: center; /* Center-align the buttons */
+    -fx-spacing: 20px; /* Space between the buttons */
+}
+
+/* Button Styles */
+.button {
+    -fx-font-size: 14px; /* Font size for the buttons */
+    -fx-background-color: #4CAF50; /* Green background for Confirm */
+    -fx-text-fill: white; /* White text color */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-padding: 10px 20px; /* Padding inside buttons */
+    -fx-cursor: hand; /* Pointer cursor on hover */
+}
+
+.button:hover {
+    -fx-background-color: #45a049; /* Darker green on hover */
+}
+
+.button:pressed {
+    -fx-background-color: #3e8e41; /* Even darker green when pressed */
+}
+
+/* Cancel Button */
+#cancelButton {
+    -fx-background-color: #f44336; /* Red background for Cancel */
+}
+
+#cancelButton:hover {
+    -fx-background-color: #da190b; /* Darker red on hover */
+}
+
+#cancelButton:pressed {
+    -fx-background-color: #b71c1c; /* Even darker red when pressed */
+}

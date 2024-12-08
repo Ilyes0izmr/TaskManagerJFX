@@ -31,7 +31,7 @@ public class UserDAO {
             statement.setString(2, passWord);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
-                // If user exists and login is successful, set the static userName
+                // If user exists and login is successful, set the static userName @author Mohammed Meftah
                 User.setUserName(result.getString("userName"));  // Set static userName
                 return true;
             } else {
@@ -59,6 +59,8 @@ public class UserDAO {
             statement.setString(4, user.getEmail());
             int rowsAffected = statement.executeUpdate();
             return rowsAffected > 0;
+
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

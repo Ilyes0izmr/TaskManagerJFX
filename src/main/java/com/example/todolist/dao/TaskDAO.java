@@ -28,9 +28,6 @@ public class TaskDAO {
      */
     public boolean addTask(TaskImpl task) {
         String reminderName=null;
-        if (task.getReminder() != null) {
-            reminderName = task.getReminder().name(); // Safely get the reminder name
-        }
         try (Connection connection = DatabaseConnection.getConnection()) {
             String sqlQuery = "INSERT INTO tasks (title, description, status, dueDate, creationDate, priority, reminder ,userName ,categoryName ) VALUES (?, ?, ?, ?, ?, ?, ? ,? ,?)";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
@@ -39,12 +36,19 @@ public class TaskDAO {
             statement.setString(3, task.getStatus().name());
             statement.setDate(4, Date.valueOf(task.getDueDate()));
             statement.setDate(5, Date.valueOf(task.getCreationDate()));
+
             if (task.getPriority() != null) {
                 statement.setString(6, task.getPriority().name());
             } else {
-                statement.setNull(6, Types.VARCHAR); // Use null if no priority is set
+                statement.setString(6, Priority.LOW.name()); // Use null if no priority is set
             }
-            statement.setString(7, reminderName);
+            if (task.getReminder() != null) {
+                statement.setString(7, task.getReminder().name());
+            }
+            else{
+                statement.setString(7, Reminder.WEEKLY.name());
+            }
+
             statement.setString(8, task.getUserName());
             statement.setString(9, task.getCategoryName());
             return statement.executeUpdate() > 0;
@@ -81,16 +85,22 @@ public class TaskDAO {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
+                String priorityStr = result.getString("priority");
+                Priority priority = (priorityStr != null) ? Priority.valueOf(priorityStr) : null;
+
+                String reminderStr = result.getString("reminder");
+                Reminder reminder = (reminderStr != null) ? Reminder.valueOf(reminderStr) : null;
+
                 TaskImpl task = new TaskImpl(
-                        //result.getInt("id"),
+                        result.getInt("id"),
                         result.getString("title"),
                         result.getString("description"),
                         Status.valueOf(result.getString("status")),
                         result.getDate("dueDate").toLocalDate(),
                         result.getDate("creationDate").toLocalDate(),
-                        Priority.valueOf(result.getString("priority")),
+                        priority,
                         new ArrayList<>(), // Initialize comments as an empty list
-                        Reminder.valueOf(result.getString("reminder")), // Fetch reminder
+                        reminder,
                         result.getString("categoryName"), // Fetch categoryId
                         result.getString("userName") // Fetch userName
                 );
@@ -131,7 +141,7 @@ public class TaskDAO {
      */
     public boolean editTask(TaskImpl task) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "UPDATE tasks SET title = ?, description = ?, status = ?, dueDate = ?, priority = ?, reminder = ?, categoryId = ? WHERE id = ?";
+            String sqlQuery = "UPDATE tasks SET title = ?, description = ?, status = ?, dueDate = ?, priority = ?, reminder = ?, categoryName = ? WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1, task.getTitle());
             statement.setString(2, task.getDescription());
@@ -170,7 +180,7 @@ public class TaskDAO {
 
             while (result.next()) {
                 TaskImpl task = new TaskImpl(
-                        //result.getInt("id"),
+                        result.getInt("id"),
                         result.getString("title"),
                         result.getString("description"),
                         Status.valueOf(result.getString("status")),

@@ -12,13 +12,13 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         // Load the FXML file for the sign-up view
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/LogInView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/LoginView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         // Set up the stage (main window)
         primaryStage.setTitle("To-Do List Application - Sign Up");
         primaryStage.setScene(scene);
-
+        //
         // Optional: make the window resizable or not
         primaryStage.setResizable(true);
         //primaryStage.setFullScreen(false);

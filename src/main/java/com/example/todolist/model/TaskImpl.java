@@ -36,10 +36,10 @@ public class TaskImpl implements Task {
      * @param reminder     The reminder frequency for the task (e.g., DAILY).
      * @param categoryName   The category ID the task belongs to.
      */
-    public TaskImpl(/*int id ,*/String title, String description, Status status, LocalDate dueDate,
+    public TaskImpl(int id ,String title, String description, Status status, LocalDate dueDate,
                     LocalDate creationDate, Priority priority, ArrayList<Comment> comments,
                     Reminder reminder, String categoryName, String userName) {
-        /*this.id = id;*/
+        this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
@@ -232,5 +232,10 @@ public class TaskImpl implements Task {
      */
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+
+    public String toString(){
+        return "Task: "+title+", Status: "+status+", Due Date: "+dueDate;
     }
 }
