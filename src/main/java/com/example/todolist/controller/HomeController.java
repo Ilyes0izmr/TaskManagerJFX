@@ -1,8 +1,10 @@
 package com.example.todolist.controller;
 
-import com.example.todolist.model.*;
+import javafx.scene.control.CheckMenuItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import com.example.todolist.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,10 +13,28 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import com.example.todolist.dao.TaskDAO;
-
 import java.io.IOException;
+import java.util.Comparator;
 
 public class HomeController {
+    @FXML
+    private CheckMenuItem checkMenuItemCompleted;
+
+    @FXML
+    private CheckMenuItem checkMenuItemInProgress;
+
+    @FXML
+    private CheckMenuItem checkMenuItemAbandoned;
+
+    @FXML
+    private CheckMenuItem checkMenuItemPending;
+
+    @FXML
+    private CheckMenuItem checkMenuItemHigh;
+    @FXML
+    private CheckMenuItem checkMenuItemMedium;
+    @FXML
+    private CheckMenuItem checkMenuItemLow;
 
     @FXML
     private ListView<TaskListImpl> categoryList;
@@ -24,6 +44,8 @@ public class HomeController {
 
     @FXML
     private ListView<TaskImpl> taskList;
+
+
 
     private TaskListImpl taskListModel = new TaskListImpl("general", User.getUserName());
     private TaskDAO taskDAO = new TaskDAO();
@@ -49,11 +71,26 @@ public class HomeController {
             taskList.setItems(taskListModel.getTasks());
             taskList.setCellFactory(param -> new TaskCell());
             System.out.println("Page refreshed successfully.");
+
+            // Uncheck all status filter checkboxes
+            checkMenuItemCompleted.setSelected(false);
+            checkMenuItemInProgress.setSelected(false);
+            checkMenuItemAbandoned.setSelected(false);
+            checkMenuItemPending.setSelected(false);
+
+            // Uncheck all priority filter checkboxes
+            checkMenuItemHigh.setSelected(false);
+            checkMenuItemMedium.setSelected(false);
+            checkMenuItemLow.setSelected(false);
+
+            System.out.println("All checkboxes unchecked.");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error during refresh: " + e.getMessage());
         }
     }
+
+
 
     public void initialize() {
         // If singleton is needed, ensure it's initialized here
@@ -80,4 +117,174 @@ public class HomeController {
             System.out.println("Error loading Add Task Popup.");
         }
     }
+
+    @FXML
+    private void handleSortFarthest() {
+        try {
+            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getDueDate).reversed()); // Sort by farthest date
+            taskList.setItems(tasks);
+            taskList.setCellFactory(param -> new TaskCell());
+            System.out.println("Tasks sorted by farthest due date.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error during sorting by farthest due date: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleSortClosest() {
+        try {
+            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getDueDate)); // Sort by closest due date
+            taskList.setItems(tasks);
+            taskList.setCellFactory(param -> new TaskCell());
+            System.out.println("Tasks sorted by closest due date.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error during sorting by closest due date: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleSortHighest() {
+        try {
+            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getPriority).reversed()); // Sort by highest priority
+            taskList.setItems(tasks);
+            taskList.setCellFactory(param -> new TaskCell());
+            System.out.println("Tasks sorted by highest priority.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error during sorting by highest priority: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleSortLowest() {
+        try {
+            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getPriority)); // Sort by lowest priority
+            taskList.setItems(tasks);
+            taskList.setCellFactory(param -> new TaskCell());
+            System.out.println("Tasks sorted by lowest priority.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error during sorting by lowest priority: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleFilterStatus() {
+        try {
+            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+
+            // Get selected statuses
+            boolean completedSelected = checkMenuItemCompleted.isSelected();
+            boolean inProgressSelected = checkMenuItemInProgress.isSelected();
+            boolean abandonedSelected = checkMenuItemAbandoned.isSelected();
+            boolean pendingSelected = checkMenuItemPending.isSelected();
+
+            // Filter tasks based on selected statuses
+            if (!completedSelected) {
+                tasks.removeIf(task -> task.getStatus() == Status.COMPLETED);
+            }
+            if (!inProgressSelected) {
+                tasks.removeIf(task -> task.getStatus() == Status.IN_PROGRESS);
+            }
+            if (!abandonedSelected) {
+                tasks.removeIf(task -> task.getStatus() == Status.ABANDONED);
+            }
+            if (!pendingSelected) {
+                tasks.removeIf(task -> task.getStatus() == Status.PENDING);
+            }
+
+            // Set the filtered tasks into the task list
+            taskList.setItems(tasks);
+            taskList.setCellFactory(param -> new TaskCell());
+            System.out.println("Tasks filtered by selected status.");
+
+            // If all checkboxes are unchecked, call refresh
+            if (!completedSelected && !inProgressSelected && !abandonedSelected && !pendingSelected) {
+                try {
+                    taskList.getItems().clear();
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+                    taskListModel.getTasks().setAll(tasks);
+                    taskList.setItems(taskListModel.getTasks());
+                    taskList.setCellFactory(param -> new TaskCell());
+                    System.out.println("Page refreshed successfully.");
+
+                    // Uncheck all status filter checkboxes
+                    checkMenuItemCompleted.setSelected(false);
+                    checkMenuItemInProgress.setSelected(false);
+                    checkMenuItemAbandoned.setSelected(false);
+                    checkMenuItemPending.setSelected(false);
+
+                    System.out.println("All checkboxes unchecked.");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("Error during refresh: " + e.getMessage());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error during filtering by status: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleFilterPriority() {
+        try {
+            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+
+            // Get selected priorities
+            boolean highSelected = checkMenuItemHigh.isSelected();
+            boolean mediumSelected = checkMenuItemMedium.isSelected();
+            boolean lowSelected = checkMenuItemLow.isSelected();
+
+            // Filter tasks based on selected priorities
+            if (!highSelected) {
+                tasks.removeIf(task -> task.getPriority() == Priority.HIGH);
+            }
+            if (!mediumSelected) {
+                tasks.removeIf(task -> task.getPriority() == Priority.MEDIUM);
+            }
+            if (!lowSelected) {
+                tasks.removeIf(task -> task.getPriority() == Priority.LOW);
+            }
+
+            // Set the filtered tasks into the task list
+            taskList.setItems(tasks);
+            taskList.setCellFactory(param -> new TaskCell());
+            System.out.println("Tasks filtered by selected priority.");
+
+            // If all checkboxes are unchecked, call refresh
+            if (!highSelected && !mediumSelected && !lowSelected) {
+                try {
+                    taskList.getItems().clear();
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+                    taskListModel.getTasks().setAll(tasks);
+                    taskList.setItems(taskListModel.getTasks());
+                    taskList.setCellFactory(param -> new TaskCell());
+                    System.out.println("Page refreshed successfully.");
+
+                    // Uncheck all priority filter checkboxes
+                    checkMenuItemHigh.setSelected(false);
+                    checkMenuItemMedium.setSelected(false);
+                    checkMenuItemLow.setSelected(false);
+
+                    System.out.println("All checkboxes unchecked.");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("Error during refresh: " + e.getMessage());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error during filtering by priority: " + e.getMessage());
+        }
+    }
+
+
+
 }

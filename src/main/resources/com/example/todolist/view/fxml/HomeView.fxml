@@ -25,36 +25,40 @@
             <Pane prefHeight="90.0" prefWidth="342.0" styleClass="pane" stylesheets="@../css/home.css" />
             <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="106.0" stylesheets="@../css/home.css" text="Sort">
                <items>
-                  <MenuItem mnemonicParsing="false" text="farest Date" />
-                  <MenuItem mnemonicParsing="false" text="closest Date" />
-                  <MenuItem mnemonicParsing="false" text="Highest" />
-                  <MenuItem mnemonicParsing="false" text="Lowest" />
+                  <MenuItem mnemonicParsing="false" text="Farest Date" onAction="#handleSortFarthest" />
+                  <MenuItem mnemonicParsing="false" text="Closest Date" onAction="#handleSortClosest" />
+                  <MenuItem mnemonicParsing="false" text="Highest" onAction="#handleSortHighest" />
+                  <MenuItem mnemonicParsing="false" text="Lowest" onAction="#handleSortLowest" />
                </items>
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
             </MenuButton>
+
             <MenuButton mnemonicParsing="false" prefHeight="29.0" prefWidth="118.0" stylesheets="@../css/home.css" text="Status">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
                <items>
-                  <CheckMenuItem mnemonicParsing="false" text="Completed" />
-                  <CheckMenuItem mnemonicParsing="false" text="IN PROGRESS" />
-                  <CheckMenuItem mnemonicParsing="false" text="ABANDONED" />
-                  <CheckMenuItem mnemonicParsing="false" text="PENDING" />
+                  <CheckMenuItem fx:id="checkMenuItemCompleted" mnemonicParsing="false" text="Completed" onAction="#handleFilterStatus"/>
+                  <CheckMenuItem fx:id="checkMenuItemInProgress" mnemonicParsing="false" text="IN PROGRESS" onAction="#handleFilterStatus"/>
+                  <CheckMenuItem fx:id="checkMenuItemAbandoned" mnemonicParsing="false" text="ABANDONED" onAction="#handleFilterStatus"/>
+                  <CheckMenuItem fx:id="checkMenuItemPending" mnemonicParsing="false" text="PENDING" onAction="#handleFilterStatus"/>
                </items>
             </MenuButton>
+
             <MenuButton mnemonicParsing="false" prefHeight="54.0" prefWidth="126.0" stylesheets="@../css/home.css" text="Priority">
                <items>
-                  <MenuItem mnemonicParsing="false" text="High" />
-                  <MenuItem mnemonicParsing="false" text="Medium" />
-                  <MenuItem mnemonicParsing="false" text="Low" />
+                  <CheckMenuItem mnemonicParsing="false" fx:id="checkMenuItemHigh" text="High" onAction="#handleFilterPriority" />
+                  <CheckMenuItem mnemonicParsing="false" fx:id="checkMenuItemMedium" text="Medium"  onAction="#handleFilterPriority"/>
+                  <CheckMenuItem mnemonicParsing="false" fx:id="checkMenuItemLow" text="Low"  onAction="#handleFilterPriority"/>
                </items>
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
             </MenuButton>
+
+
          </HBox>
       </AnchorPane>
       <AnchorPane layoutY="707.0" prefHeight="92.0" prefWidth="1163.0">
