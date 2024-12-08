@@ -135,11 +135,12 @@
          <HBox layoutX="5.0" layoutY="7.0" prefHeight="44.0" prefWidth="372.0" styleClass="hbox" stylesheets="@../css/home.css">
             <Label prefHeight="58.0" prefWidth="211.0" stylesheets="@../css/home.css" text="   my categories" />
             <Pane prefHeight="37.0" prefWidth="100.0" styleClass="pane" stylesheets="@../css/home.css" />
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="217.0" stylesheets="@../css/home.css" text="New category">
+            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="217.0" stylesheets="@../css/home.css" text="New Category" onAction="#handleAddCategoryPopup">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>
             </Button>
+
          </HBox>
       </AnchorPane>
    </AnchorPane>

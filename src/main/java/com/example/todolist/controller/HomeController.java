@@ -83,7 +83,6 @@ public class HomeController {
             checkMenuItemMedium.setSelected(false);
             checkMenuItemLow.setSelected(false);
 
-            System.out.println("All checkboxes unchecked.");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error during refresh: " + e.getMessage());
@@ -117,6 +116,34 @@ public class HomeController {
             System.out.println("Error loading Add Task Popup.");
         }
     }
+
+    @FXML
+    public void handleAddCategoryPopup() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/AddCategoryPopUp.fxml"));
+
+            AnchorPane popupRoot = loader.load();
+
+            // Get the controller to pass data or initialize if necessary
+            AddCategoryController controller = loader.getController();
+
+            // Create a new stage for the popup
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Add New Category");
+            popupStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with other windows
+            popupStage.setResizable(false); // Disable resizing
+            popupStage.setScene(new Scene(popupRoot));
+            popupStage.showAndWait(); // Wait until the popup is closed
+
+            // Refresh the categories list after closing the popup
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading Add Category Popup.");
+        }
+    }
+
+
 
     @FXML
     private void handleSortFarthest() {
