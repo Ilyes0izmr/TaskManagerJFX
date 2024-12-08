@@ -1,5 +1,6 @@
 package com.example.todolist.controller;
 
+import com.example.todolist.dao.CategoryDAO;
 import com.example.todolist.dao.TaskDAO;
 import com.example.todolist.model.*;
 import javafx.collections.FXCollections;
@@ -14,8 +15,6 @@ import java.time.LocalDate;
 
 public class addTaskController {
     @FXML
-    private ComboBox<String> taskCategoryComboBox;
-    @FXML
     private TextField taskFieldDescription;
     @FXML
     private DatePicker taskFieldDueDate;
@@ -26,6 +25,8 @@ public class addTaskController {
     @FXML
     private ComboBox<Reminder> taskReminderComboBox;
 
+    @FXML
+    private ComboBox<String> taskCategoryComboBox;
 
     public void initialize(){
         ObservableList<Priority> priorities = FXCollections.observableArrayList();
@@ -35,6 +36,11 @@ public class addTaskController {
         ObservableList<Reminder> reminders = FXCollections.observableArrayList();
         reminders.addAll(Reminder.values());
         taskReminderComboBox.setItems(reminders);
+
+        ObservableList<String> categories = FXCollections.observableArrayList();
+        CategoryDAO categoryDAO = new CategoryDAO();
+        categories.addAll(categoryDAO.getAllCategories(User.getUserName()));
+        taskCategoryComboBox.setItems(categories);
 
     }
 

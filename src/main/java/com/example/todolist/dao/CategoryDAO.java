@@ -20,11 +20,17 @@ public class CategoryDAO {
      * @return {@code true} if the category was successfully added, {@code false} otherwise.
      */
     public boolean addCategory(String categoryName, String userName) {
+        // First, check if the category already exists for the user
+        if (getCategoryByNameAndUser(categoryName, userName)) {
+            System.out.println("Category already exists for the user.");
+            return false; // Category already exists for this user
+        }
+
         try (Connection connection = DatabaseConnection.getConnection()) {
             String sqlQuery = "INSERT INTO categories (name, userName) VALUES (?, ?)";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1, categoryName);
-            statement.setString(2, userName); // Set the userId
+            statement.setString(2, userName); // Set the userName
 
             int rowsAffected = statement.executeUpdate();
             return rowsAffected > 0;
@@ -35,30 +41,26 @@ public class CategoryDAO {
     }
 
     /**
-     * Retrieves the category name by its ID, ensuring it's associated with the specified user.
+     * Checks if a category already exists for the user.
      *
-     * @param categoryId The ID of the category.
-     * @param userName The name of the user to verify the category ownership.
-     * @return The category name if found and associated with the user, otherwise null.
+     * @param categoryName The name of the category to check.
+     * @param userName The name of the user to check the category for.
+     * @return {@code true} if the category exists for the user, {@code false} otherwise.
      */
-    public String getCategoryById(int categoryId, String userName) {
+    public boolean getCategoryByNameAndUser(String categoryName, String userName) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "SELECT name FROM categories WHERE id = ? AND userId = ?";
+            String sqlQuery = "SELECT 1 FROM categories WHERE name = ? AND userName = ?";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
-            statement.setInt(1, categoryId);
-            statement.setString(2, userName); // Ensure user ownership
+            statement.setString(1, categoryName);
+            statement.setString(2, userName);
             ResultSet result = statement.executeQuery();
 
-            if (result.next()) {
-                return result.getString("name");
-            }
-            return null;
+            return result.next();
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
-
 
     /**
      * Retrieves all categories for a specific user.
@@ -69,9 +71,9 @@ public class CategoryDAO {
     public ArrayList<String> getAllCategories(String userName) {
         ArrayList<String> categories = new ArrayList<>();
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "SELECT name FROM categories WHERE userId = ?";
+            String sqlQuery = "SELECT name FROM categories WHERE userName = ?"; // Fixed column name
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
-            statement.setString(1, userName); // Set the userId filter
+            statement.setString(1, userName);
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
@@ -82,7 +84,6 @@ public class CategoryDAO {
         }
         return categories;
     }
-
 
     /**
      * Renames an existing category in the database.

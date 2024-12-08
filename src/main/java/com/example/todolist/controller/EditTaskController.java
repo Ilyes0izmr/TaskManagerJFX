@@ -1,9 +1,11 @@
 package com.example.todolist.controller;
 
+import com.example.todolist.dao.CategoryDAO;
 import com.example.todolist.dao.TaskDAO;
 import com.example.todolist.model.Priority;
 import com.example.todolist.model.Reminder;
 import com.example.todolist.model.TaskImpl;
+import com.example.todolist.model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,6 +33,9 @@ public class EditTaskController {
     private ComboBox<Priority> taskPriorityComboBox;
 
     @FXML
+    private ComboBox<String> taskCategoryComboBox;
+
+    @FXML
     private Button saveButton;
 
     @FXML
@@ -51,6 +56,11 @@ public class EditTaskController {
         ObservableList<Reminder> reminders = FXCollections.observableArrayList();
         reminders.addAll(Reminder.values());
         taskReminderComboBox.setItems(reminders);
+
+        ObservableList<String> categories = FXCollections.observableArrayList();
+        CategoryDAO categoryDAO = new CategoryDAO();
+        categories.addAll(categoryDAO.getAllCategories(User.getUserName()));
+        taskCategoryComboBox.setItems(categories);
     }
 
     private void loadTaskData() {
@@ -72,6 +82,7 @@ public class EditTaskController {
         Priority priority = taskPriorityComboBox.getValue();
         String dueDate = taskFieldDueDate.getValue().toString();
         Reminder reminder = taskReminderComboBox.getValue();
+        String category = taskCategoryComboBox.getValue();
 
         // Update the task object with the new data
         task.setTitle(title);
@@ -79,6 +90,7 @@ public class EditTaskController {
         task.setPriority(priority);
         task.setDueDate(java.time.LocalDate.parse(dueDate));
         task.setReminder(reminder);
+        task.setCategoryName(category);
 
         // Save the updated task using DAO
         TaskDAO taskDAO = new TaskDAO();
