@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class addTaskController {
     @FXML
@@ -39,7 +40,13 @@ public class addTaskController {
 
         ObservableList<String> categories = FXCollections.observableArrayList();
         CategoryDAO categoryDAO = new CategoryDAO();
-        categories.addAll(categoryDAO.getAllCategories(User.getUserName()));
+        ArrayList<Category> categoryList = categoryDAO.getAllCategories(User.getUserName());
+
+        // Transform Category objects to their names and add them to the ObservableList
+        for (Category category : categoryList) {
+            categories.add(category.getName());
+        }
+
         taskCategoryComboBox.setItems(categories);
 
     }

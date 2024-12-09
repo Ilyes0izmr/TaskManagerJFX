@@ -79,7 +79,6 @@ public class SignUpController {
         boolean isRegistered = userDAO.signUp(newUser);
 
         if (isRegistered) {
-            showAlert("Success", "User registered successfully.");
             try {
                 // Load HomeView.fxml
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/HomeView.fxml"));

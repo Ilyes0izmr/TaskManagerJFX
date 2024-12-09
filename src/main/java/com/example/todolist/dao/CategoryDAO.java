@@ -1,4 +1,5 @@
 package com.example.todolist.dao;
+import com.example.todolist.model.Category;
 import com.example.todolist.util.DatabaseConnection;
 
 import java.sql.*;
@@ -68,36 +69,45 @@ public class CategoryDAO {
      * @param userName The name of the user to fetch categories for.
      * @return A list of category names associated with the specified user.
      */
-    public ArrayList<String> getAllCategories(String userName) {
-        ArrayList<String> categories = new ArrayList<>();
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "SELECT name FROM categories WHERE userName = ?"; // Fixed column name
-            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+    public ArrayList<Category> getAllCategories(String userName) {
+        ArrayList<Category> categories = new ArrayList<>();
+
+        String sqlQuery = "SELECT name, userName FROM categories WHERE userName = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+
             statement.setString(1, userName);
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                categories.add(result.getString("name"));
+                String name = result.getString("name");
+                String user = result.getString("userName");
+
+                // Create a new Category object and add it to the list
+                categories.add(new Category(name, user));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Log the exception (consider logging frameworks in production)
         }
+
         return categories;
     }
+
 
     /**
      * Renames an existing category in the database.
      *
-     * @param categoryId The ID of the category to be renamed.
      * @param newName The new name for the category.
      * @return {@code true} if the category was successfully renamed, {@code false} otherwise.
      */
-    public boolean rename(int categoryId, String newName) {
+    public boolean rename(String categoryName, String userName, String newName) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "UPDATE categories SET name = ? WHERE id = ?";
+            String sqlQuery = "UPDATE categories SET name = ? WHERE name = ? AND userName = ?";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1, newName);
-            statement.setInt(2, categoryId);
+            statement.setString(2, categoryName);
+            statement.setString(3,userName);
 
             int rowsAffected = statement.executeUpdate();
             return rowsAffected > 0;
@@ -107,20 +117,14 @@ public class CategoryDAO {
         }
     }
 
-    /**
-     * Checks if a category exists in the database by name.
-     *
-     * @param categoryName The name of the category to check.
-     * @return {@code true} if the category exists, {@code false} otherwise.
-     */
-    public boolean getCategoryByName(String categoryName) {
+    public boolean deleteCategory(String name) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "SELECT 1 FROM categories WHERE name = ?";
+            String sqlQuery = "DELETE FROM categories WHERE name = ?";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
-            statement.setString(1, categoryName);
-            ResultSet result = statement.executeQuery();
+            statement.setString(1, name);
 
-            return result.next();
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
