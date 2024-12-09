@@ -18,7 +18,6 @@ import java.time.LocalDate;
  * @author Izemmouren ilyes
  */
 public abstract class TaskList {
-    protected int id;
     protected String categoryName;      //the name of the category
     protected String userName;  // User associated with this task list
     protected ObservableList<TaskImpl> tasks;
@@ -72,23 +71,6 @@ public abstract class TaskList {
      */
     public abstract void markTaskAsCompleted(TaskImpl task);
 
-    /**
-     * Gets the ID of the task list.
-     *
-     * @return The ID of the task list.
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Sets the ID of the task list.
-     *
-     * @param id The ID to set for the task list.
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
 
     /**
      * Gets the name of the task list.

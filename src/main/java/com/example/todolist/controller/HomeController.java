@@ -1,5 +1,6 @@
 package com.example.todolist.controller;
 
+import com.example.todolist.dao.CategoryDAO;
 import javafx.scene.control.CheckMenuItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,10 +38,10 @@ public class HomeController {
     private CheckMenuItem checkMenuItemLow;
 
     @FXML
-    private ListView<TaskListImpl> categoryList;
+    private ListView<Category> categoryList;
 
     @FXML
-    private ListView<TaskListImpl> collabList;
+    private ListView<Category> collabList;
 
     @FXML
     private ListView<TaskImpl> taskList;
@@ -49,6 +50,7 @@ public class HomeController {
 
     private TaskListImpl taskListModel = new TaskListImpl("general", User.getUserName());
     private TaskDAO taskDAO = new TaskDAO();
+    private CategoryDAO categoryDAO = new CategoryDAO();
 
     // Optional singleton pattern
     private static HomeController instance;
@@ -62,6 +64,20 @@ public class HomeController {
     public void setInstance(HomeController instance) {
         HomeController.instance = instance; // Set the singleton instance explicitly
     }
+
+    public void refreshCategories() {
+        try {
+            ObservableList<Category> categories = FXCollections.observableArrayList(categoryDAO.getAllCategories(User.getUserName()));
+            categoryList.setItems(categories);
+            categoryList.setCellFactory(param -> new CategoryCell());
+            System.out.println("Category list refreshed successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error refreshing categories: " + e.getMessage());
+        }
+    }
+
+
 
     public void refresh() {
         try {
@@ -92,12 +108,13 @@ public class HomeController {
 
 
     public void initialize() {
-        // If singleton is needed, ensure it's initialized here
         if (instance == null) {
             instance = this;
         }
         refresh();
+        refreshCategories(); // Refresh categories as well
     }
+
 
     public void handleAddTaskPopup() {
         try {
@@ -136,7 +153,7 @@ public class HomeController {
             popupStage.showAndWait(); // Wait until the popup is closed
 
             // Refresh the categories list after closing the popup
-
+            refreshCategories();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error loading Add Category Popup.");

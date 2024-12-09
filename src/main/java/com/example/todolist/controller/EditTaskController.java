@@ -2,10 +2,7 @@ package com.example.todolist.controller;
 
 import com.example.todolist.dao.CategoryDAO;
 import com.example.todolist.dao.TaskDAO;
-import com.example.todolist.model.Priority;
-import com.example.todolist.model.Reminder;
-import com.example.todolist.model.TaskImpl;
-import com.example.todolist.model.User;
+import com.example.todolist.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +11,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 public class EditTaskController {
 
@@ -59,7 +58,13 @@ public class EditTaskController {
 
         ObservableList<String> categories = FXCollections.observableArrayList();
         CategoryDAO categoryDAO = new CategoryDAO();
-        categories.addAll(categoryDAO.getAllCategories(User.getUserName()));
+        ArrayList<Category> categoryList = categoryDAO.getAllCategories(User.getUserName());
+
+        // Transform Category objects to their names and add them to the ObservableList
+        for (Category category : categoryList) {
+            categories.add(category.getName());
+        }
+
         taskCategoryComboBox.setItems(categories);
     }
 
