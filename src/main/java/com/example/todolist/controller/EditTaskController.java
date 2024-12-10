@@ -75,6 +75,7 @@ public class EditTaskController {
         taskFieldDueDate.setValue(task.getDueDate());
         taskPriorityComboBox.setValue(task.getPriority());
         taskReminderComboBox.setValue(task.getReminder());
+        taskCategoryComboBox.setValue(task.getCategoryName());
     }
 
     @FXML

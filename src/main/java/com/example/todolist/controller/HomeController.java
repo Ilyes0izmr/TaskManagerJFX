@@ -194,7 +194,12 @@ public class HomeController {
     @FXML
     private void handleSortFarthest() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getDueDate).reversed()); // Sort by farthest date
             taskList.setItems(tasks);
             taskList.setCellFactory(param -> new TaskCell());
@@ -208,7 +213,12 @@ public class HomeController {
     @FXML
     private void handleSortClosest() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getDueDate)); // Sort by closest due date
             taskList.setItems(tasks);
             taskList.setCellFactory(param -> new TaskCell());
@@ -222,7 +232,12 @@ public class HomeController {
     @FXML
     private void handleSortHighest() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getPriority).reversed()); // Sort by highest priority
             taskList.setItems(tasks);
             taskList.setCellFactory(param -> new TaskCell());
@@ -236,7 +251,12 @@ public class HomeController {
     @FXML
     private void handleSortLowest() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getPriority)); // Sort by lowest priority
             taskList.setItems(tasks);
             taskList.setCellFactory(param -> new TaskCell());
@@ -250,8 +270,12 @@ public class HomeController {
     @FXML
     private void handleFilterStatus() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
-
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             // Get selected statuses
             boolean completedSelected = checkMenuItemCompleted.isSelected();
             boolean inProgressSelected = checkMenuItemInProgress.isSelected();
@@ -281,7 +305,11 @@ public class HomeController {
             if (!completedSelected && !inProgressSelected && !abandonedSelected && !pendingSelected) {
                 try {
                     taskList.getItems().clear();
-                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+                    if(currentCategoryName == null) {
+                        tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+                    }else {
+                        tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                    }
                     taskListModel.getTasks().setAll(tasks);
                     taskList.setItems(taskListModel.getTasks());
                     taskList.setCellFactory(param -> new TaskCell());
@@ -308,7 +336,12 @@ public class HomeController {
     @FXML
     private void handleFilterPriority() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
 
             // Get selected priorities
             boolean highSelected = checkMenuItemHigh.isSelected();
@@ -335,7 +368,11 @@ public class HomeController {
             if (!highSelected && !mediumSelected && !lowSelected) {
                 try {
                     taskList.getItems().clear();
-                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+                    if(currentCategoryName == null) {
+                        tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+                    }else {
+                        tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                    }
                     taskListModel.getTasks().setAll(tasks);
                     taskList.setItems(taskListModel.getTasks());
                     taskList.setCellFactory(param -> new TaskCell());
