@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4138a9b-6d62-4903-87fc-3b154d6e1c51" name="Changes" comment="i added the ourDataBase">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/CategoryCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/DeleteCategoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/EditCategoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/DeleteCategoryView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/EditCategoryView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/EditTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/EditTaskController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/TaskCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/TaskCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/addTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/addTaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/CategoryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/TaskList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/TaskList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/mySQL/todolist.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/mySQL/todolist.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/TaskDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/TaskDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/HomeView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/HomeView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
