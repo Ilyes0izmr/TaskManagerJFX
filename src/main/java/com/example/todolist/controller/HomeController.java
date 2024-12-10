@@ -48,9 +48,10 @@ public class HomeController {
 
 
 
-    private TaskListImpl taskListModel = new TaskListImpl("general", User.getUserName());
+    private TaskListImpl taskListModel = new TaskListImpl(null, User.getUserName());
     private TaskDAO taskDAO = new TaskDAO();
     private CategoryDAO categoryDAO = new CategoryDAO();
+    private String currentCategoryName;
 
     // Optional singleton pattern
     private static HomeController instance;
@@ -82,8 +83,14 @@ public class HomeController {
     public void refresh() {
         try {
             taskList.getItems().clear();
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             taskListModel.getTasks().setAll(tasks);
+            taskListModel.setName(currentCategoryName);
             taskList.setItems(taskListModel.getTasks());
             taskList.setCellFactory(param -> new TaskCell());
             System.out.println("Page refreshed successfully.");
@@ -108,13 +115,35 @@ public class HomeController {
 
 
     public void initialize() {
+        categoryList.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                handleCategoryDoubleClick();
+            }
+        });
         if (instance == null) {
             instance = this;
         }
+        currentCategoryName = null;
         refresh();
         refreshCategories(); // Refresh categories as well
     }
 
+    private void handleCategoryDoubleClick() {
+        Category selectedCategory = categoryList.getSelectionModel().getSelectedItem();
+        if (selectedCategory != null) {
+            currentCategoryName = selectedCategory.getName(); // Assuming Category has a getName() method
+            System.out.println("Current category set to: " + currentCategoryName);
+            refresh();
+        } else {
+            System.out.println("No category selected.");
+        }
+    }
+
+    @FXML
+    private void handleHomeButton(){
+        currentCategoryName = null;
+        refresh();
+    }
 
     public void handleAddTaskPopup() {
         try {
