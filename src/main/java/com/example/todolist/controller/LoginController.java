@@ -27,7 +27,6 @@ public class LoginController {
         String password = passwordField.getText();
 
         if (userDAO.login(email, password)) {
-            showAlert("Success", "Login successful!", Alert.AlertType.INFORMATION);
             try {
                 // Ensure the correct path to your FXML file
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/HomeView.fxml"));

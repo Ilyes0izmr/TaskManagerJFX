@@ -71,7 +71,13 @@ public class TaskCell extends ListCell<TaskImpl> {
                 task.changeStatus(Status.COMPLETED);
                 System.out.println(task.getTitle() + ": " + task.getStatus());
                 taskDAO.editTask(task);
+            }else if (task != null && !completedCheckBox.isSelected()) {
+                TaskDAO taskDAO = new TaskDAO();
+                task.changeStatus(Status.PENDING);
+                System.out.println(task.getTitle() + ": " + task.getStatus());
+                taskDAO.editTask(task);
             }
+
         });
     }
 

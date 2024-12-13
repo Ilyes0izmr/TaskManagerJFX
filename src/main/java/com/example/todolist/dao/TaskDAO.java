@@ -1,9 +1,6 @@
 package com.example.todolist.dao;
 
-import com.example.todolist.model.Priority;
-import com.example.todolist.model.Reminder;
-import com.example.todolist.model.Status;
-import com.example.todolist.model.TaskImpl;
+import com.example.todolist.model.*;
 import com.example.todolist.util.DatabaseConnection;
 
 import java.sql.*;
@@ -82,6 +79,46 @@ public class TaskDAO {
              PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
 
             statement.setString(1, userName);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                String priorityStr = result.getString("priority");
+                Priority priority = (priorityStr != null) ? Priority.valueOf(priorityStr) : null;
+
+                String reminderStr = result.getString("reminder");
+                Reminder reminder = (reminderStr != null) ? Reminder.valueOf(reminderStr) : null;
+
+                TaskImpl task = new TaskImpl(
+                        result.getInt("id"),
+                        result.getString("title"),
+                        result.getString("description"),
+                        Status.valueOf(result.getString("status")),
+                        result.getDate("dueDate").toLocalDate(),
+                        result.getDate("creationDate").toLocalDate(),
+                        priority,
+                        new ArrayList<>(), // Initialize comments as an empty list
+                        reminder,
+                        result.getString("categoryName"), // Fetch categoryId
+                        result.getString("userName") // Fetch userName
+                );
+                tasks.add(task);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while retrieving tasks by username: " + e.getMessage());
+        }
+        return tasks;
+    }
+
+    public ArrayList<TaskImpl> getTasksByCategory(String categoryName) {
+        ArrayList<TaskImpl> tasks = new ArrayList<>();
+        String userName = User.getUserName();
+        String sqlQuery = "SELECT * FROM tasks WHERE userName = ? AND categoryName = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+
+            statement.setString(1, userName);
+            statement.setString(2, categoryName);
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {

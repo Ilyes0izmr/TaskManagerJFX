@@ -1,9 +1,8 @@
 package com.example.todolist.controller;
 
+import com.example.todolist.dao.CategoryDAO;
 import com.example.todolist.dao.TaskDAO;
-import com.example.todolist.model.Priority;
-import com.example.todolist.model.Reminder;
-import com.example.todolist.model.TaskImpl;
+import com.example.todolist.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +11,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 public class EditTaskController {
 
@@ -29,6 +30,9 @@ public class EditTaskController {
 
     @FXML
     private ComboBox<Priority> taskPriorityComboBox;
+
+    @FXML
+    private ComboBox<String> taskCategoryComboBox;
 
     @FXML
     private Button saveButton;
@@ -51,6 +55,17 @@ public class EditTaskController {
         ObservableList<Reminder> reminders = FXCollections.observableArrayList();
         reminders.addAll(Reminder.values());
         taskReminderComboBox.setItems(reminders);
+
+        ObservableList<String> categories = FXCollections.observableArrayList();
+        CategoryDAO categoryDAO = new CategoryDAO();
+        ArrayList<Category> categoryList = categoryDAO.getAllCategories(User.getUserName());
+
+        // Transform Category objects to their names and add them to the ObservableList
+        for (Category category : categoryList) {
+            categories.add(category.getName());
+        }
+
+        taskCategoryComboBox.setItems(categories);
     }
 
     private void loadTaskData() {
@@ -60,6 +75,7 @@ public class EditTaskController {
         taskFieldDueDate.setValue(task.getDueDate());
         taskPriorityComboBox.setValue(task.getPriority());
         taskReminderComboBox.setValue(task.getReminder());
+        taskCategoryComboBox.setValue(task.getCategoryName());
     }
 
     @FXML
@@ -72,6 +88,7 @@ public class EditTaskController {
         Priority priority = taskPriorityComboBox.getValue();
         String dueDate = taskFieldDueDate.getValue().toString();
         Reminder reminder = taskReminderComboBox.getValue();
+        String category = taskCategoryComboBox.getValue();
 
         // Update the task object with the new data
         task.setTitle(title);
@@ -79,6 +96,7 @@ public class EditTaskController {
         task.setPriority(priority);
         task.setDueDate(java.time.LocalDate.parse(dueDate));
         task.setReminder(reminder);
+        task.setCategoryName(category);
 
         // Save the updated task using DAO
         TaskDAO taskDAO = new TaskDAO();

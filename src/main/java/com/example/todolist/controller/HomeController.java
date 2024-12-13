@@ -1,5 +1,6 @@
 package com.example.todolist.controller;
 
+import com.example.todolist.dao.CategoryDAO;
 import javafx.scene.control.CheckMenuItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,18 +38,20 @@ public class HomeController {
     private CheckMenuItem checkMenuItemLow;
 
     @FXML
-    private ListView<TaskListImpl> categoryList;
+    private ListView<Category> categoryList;
 
     @FXML
-    private ListView<TaskListImpl> collabList;
+    private ListView<Category> collabList;
 
     @FXML
     private ListView<TaskImpl> taskList;
 
 
 
-    private TaskListImpl taskListModel = new TaskListImpl("general", User.getUserName());
+    private TaskListImpl taskListModel = new TaskListImpl(null, User.getUserName());
     private TaskDAO taskDAO = new TaskDAO();
+    private CategoryDAO categoryDAO = new CategoryDAO();
+    private String currentCategoryName;
 
     // Optional singleton pattern
     private static HomeController instance;
@@ -63,11 +66,31 @@ public class HomeController {
         HomeController.instance = instance; // Set the singleton instance explicitly
     }
 
+    public void refreshCategories() {
+        try {
+            ObservableList<Category> categories = FXCollections.observableArrayList(categoryDAO.getAllCategories(User.getUserName()));
+            categoryList.setItems(categories);
+            categoryList.setCellFactory(param -> new CategoryCell());
+            System.out.println("Category list refreshed successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error refreshing categories: " + e.getMessage());
+        }
+    }
+
+
+
     public void refresh() {
         try {
             taskList.getItems().clear();
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             taskListModel.getTasks().setAll(tasks);
+            taskListModel.setName(currentCategoryName);
             taskList.setItems(taskListModel.getTasks());
             taskList.setCellFactory(param -> new TaskCell());
             System.out.println("Page refreshed successfully.");
@@ -83,7 +106,6 @@ public class HomeController {
             checkMenuItemMedium.setSelected(false);
             checkMenuItemLow.setSelected(false);
 
-            System.out.println("All checkboxes unchecked.");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error during refresh: " + e.getMessage());
@@ -93,10 +115,33 @@ public class HomeController {
 
 
     public void initialize() {
-        // If singleton is needed, ensure it's initialized here
+        categoryList.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                handleCategoryDoubleClick();
+            }
+        });
         if (instance == null) {
             instance = this;
         }
+        currentCategoryName = null;
+        refresh();
+        refreshCategories(); // Refresh categories as well
+    }
+
+    private void handleCategoryDoubleClick() {
+        Category selectedCategory = categoryList.getSelectionModel().getSelectedItem();
+        if (selectedCategory != null) {
+            currentCategoryName = selectedCategory.getName(); // Assuming Category has a getName() method
+            System.out.println("Current category set to: " + currentCategoryName);
+            refresh();
+        } else {
+            System.out.println("No category selected.");
+        }
+    }
+
+    @FXML
+    private void handleHomeButton(){
+        currentCategoryName = null;
         refresh();
     }
 
@@ -119,9 +164,42 @@ public class HomeController {
     }
 
     @FXML
+    public void handleAddCategoryPopup() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/AddCategoryPopUp.fxml"));
+
+            AnchorPane popupRoot = loader.load();
+
+            // Get the controller to pass data or initialize if necessary
+            AddCategoryController controller = loader.getController();
+
+            // Create a new stage for the popup
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Add New Category");
+            popupStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with other windows
+            popupStage.setResizable(false); // Disable resizing
+            popupStage.setScene(new Scene(popupRoot));
+            popupStage.showAndWait(); // Wait until the popup is closed
+
+            // Refresh the categories list after closing the popup
+            refreshCategories();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading Add Category Popup.");
+        }
+    }
+
+
+
+    @FXML
     private void handleSortFarthest() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getDueDate).reversed()); // Sort by farthest date
             taskList.setItems(tasks);
             taskList.setCellFactory(param -> new TaskCell());
@@ -135,7 +213,12 @@ public class HomeController {
     @FXML
     private void handleSortClosest() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getDueDate)); // Sort by closest due date
             taskList.setItems(tasks);
             taskList.setCellFactory(param -> new TaskCell());
@@ -149,7 +232,12 @@ public class HomeController {
     @FXML
     private void handleSortHighest() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getPriority).reversed()); // Sort by highest priority
             taskList.setItems(tasks);
             taskList.setCellFactory(param -> new TaskCell());
@@ -163,7 +251,12 @@ public class HomeController {
     @FXML
     private void handleSortLowest() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getPriority)); // Sort by lowest priority
             taskList.setItems(tasks);
             taskList.setCellFactory(param -> new TaskCell());
@@ -177,8 +270,12 @@ public class HomeController {
     @FXML
     private void handleFilterStatus() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
-
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
             // Get selected statuses
             boolean completedSelected = checkMenuItemCompleted.isSelected();
             boolean inProgressSelected = checkMenuItemInProgress.isSelected();
@@ -208,7 +305,11 @@ public class HomeController {
             if (!completedSelected && !inProgressSelected && !abandonedSelected && !pendingSelected) {
                 try {
                     taskList.getItems().clear();
-                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+                    if(currentCategoryName == null) {
+                        tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+                    }else {
+                        tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                    }
                     taskListModel.getTasks().setAll(tasks);
                     taskList.setItems(taskListModel.getTasks());
                     taskList.setCellFactory(param -> new TaskCell());
@@ -235,7 +336,12 @@ public class HomeController {
     @FXML
     private void handleFilterPriority() {
         try {
-            ObservableList<TaskImpl> tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            ObservableList<TaskImpl> tasks;
+            if(currentCategoryName == null) {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+            }else {
+                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+            }
 
             // Get selected priorities
             boolean highSelected = checkMenuItemHigh.isSelected();
@@ -262,7 +368,11 @@ public class HomeController {
             if (!highSelected && !mediumSelected && !lowSelected) {
                 try {
                     taskList.getItems().clear();
-                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+                    if(currentCategoryName == null) {
+                        tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
+                    }else {
+                        tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                    }
                     taskListModel.getTasks().setAll(tasks);
                     taskList.setItems(taskListModel.getTasks());
                     taskList.setCellFactory(param -> new TaskCell());
