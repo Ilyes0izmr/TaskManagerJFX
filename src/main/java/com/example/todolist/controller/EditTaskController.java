@@ -20,6 +20,9 @@ public class EditTaskController {
     private TextField taskFieldTitle;
 
     @FXML
+    private ComboBox<Status> taskStatusComboBox;
+
+    @FXML
     private TextField taskFieldDescription;
 
     @FXML
@@ -60,6 +63,10 @@ public class EditTaskController {
         CategoryDAO categoryDAO = new CategoryDAO();
         ArrayList<Category> categoryList = categoryDAO.getAllCategories(User.getUserName());
 
+        ObservableList<Status> status = FXCollections.observableArrayList();
+        status.addAll(Status.values());
+        taskStatusComboBox.setItems(status);
+
         // Transform Category objects to their names and add them to the ObservableList
         for (Category category : categoryList) {
             categories.add(category.getName());
@@ -74,6 +81,7 @@ public class EditTaskController {
         taskFieldDescription.setText(task.getDescription());
         taskFieldDueDate.setValue(task.getDueDate());
         taskPriorityComboBox.setValue(task.getPriority());
+        taskStatusComboBox.setValue(task.getStatus());
         taskReminderComboBox.setValue(task.getReminder());
         taskCategoryComboBox.setValue(task.getCategoryName());
     }
@@ -87,6 +95,7 @@ public class EditTaskController {
         String description = taskFieldDescription.getText();
         Priority priority = taskPriorityComboBox.getValue();
         String dueDate = taskFieldDueDate.getValue().toString();
+        Status status = taskStatusComboBox.getValue();
         Reminder reminder = taskReminderComboBox.getValue();
         String category = taskCategoryComboBox.getValue();
 
@@ -97,6 +106,7 @@ public class EditTaskController {
         task.setDueDate(java.time.LocalDate.parse(dueDate));
         task.setReminder(reminder);
         task.setCategoryName(category);
+        task.setStatus(status);
 
         // Save the updated task using DAO
         TaskDAO taskDAO = new TaskDAO();

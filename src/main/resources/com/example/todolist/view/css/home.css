@@ -1,90 +1,94 @@
 /* General Styles */
 .root {
-    -fx-background-color: #2A2438; /* Deep Purple Background */
+    -fx-background-color: #1E2024; /* Dark Gray-Blue Background */
     -fx-font-family: "JetBrains Mono Regular"; /* Font Style */
-    -fx-text-fill: #f3f1f1; /* Default Text Color */
+    -fx-text-fill: #E0E5EC; /* Soft White Text */
 }
 
 /* Labels */
 .label {
-    -fx-text-fill: #f3f1f1; /* Light Text Color */
+    -fx-text-fill: #E0E5EC; /* Soft White Text */
     -fx-font-size: 16px; /* Default Font Size */
 }
 
-.left-pane{
-    -fx-background-color: #17153B; /* Match Background */
+.left-pane {
+    -fx-background-color: #2A303A; /* Slightly Lighter Gray-Blue */
+    -fx-background-radius: 8px; /* Rounded Corners */
 }
 
 /* Input Fields */
 .text-field {
-    -fx-background-color: #5C5470; /* Muted Purple */
-    -fx-text-fill: #f3f1f1; /* Light Text */
+    -fx-background-color: #3A404A; /* Muted Gray-Blue */
+    -fx-text-fill: #E0E5EC; /* Soft White Text */
     -fx-font-size: 14px;
     -fx-padding: 10px;
     -fx-border-color: transparent;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
 }
 
 .text-field:focused {
-    -fx-border-color: #7a56ff; /* Highlighted Purple Border */
+    -fx-background-color: #4A5A6E; /* Slightly Lighter Gray-Blue on Focus */
+    -fx-border-color: #5A6A80; /* Soft Blue-Gray Border */
     -fx-border-width: 2px;
-    -fx-background-color: #6D6875; /* Slightly Darker Background on Focus */
 }
 
 /* Buttons */
 .button {
-    -fx-background-color: #7a56ff; /* Vibrant Purple */
-    -fx-text-fill: #f3f1f1;
+    -fx-background-color: #5A6A80; /* Soft Blue-Gray */
+    -fx-text-fill: #E0E5EC; /* Soft White Text */
     -fx-font-size: 16px;
     -fx-padding: 10px;
-    -fx-background-radius: 8px;
-    -fx-border-radius: 8px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-transition: all 0.2s ease; /* Smooth Transition */
 }
 
 .button:hover {
-    -fx-background-color: #62459e; /* Darker Purple on Hover */
-    -fx-scale-x: 1.01;
-    -fx-scale-y: 1.01;
-    -fx-border-color: #f3f1f1;
-    -fx-border-width: 1px;
+    -fx-background-color: #4A5A6E; /* Slightly Lighter Gray-Blue on Hover */
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
 }
 
 .button:pressed {
-    -fx-background-color: #563d8a; /* Deep Purple on Click */
+    -fx-background-color: #2A303A; /* Darker Gray-Blue on Press */
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }
 
 /* Menu Buttons */
 .menu-button {
-    -fx-background-color: #5C5470; /* Input Purple */
-    -fx-text-fill: #f3f1f1;
+    -fx-background-color: #3A404A; /* Muted Gray-Blue */
+    -fx-text-fill: #E0E5EC; /* Soft White Text */
     -fx-font-size: 14px;
     -fx-padding: 8px 12px;
     -fx-border-color: transparent;
-    -fx-background-radius: 8px;
-    -fx-border-radius: 8px;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
 }
 
 .menu-button:hover {
-    -fx-background-color: #6D6875; /* Slightly Brighter on Hover */
+    -fx-background-color: #4A5A6E; /* Slightly Lighter Gray-Blue on Hover */
 }
 
 /* CheckMenu Items */
 .check-menu-item, .menu-item {
-    -fx-text-fill: #f3f1f1;
+    -fx-text-fill: #E0E5EC; /* Soft White Text */
     -fx-font-size: 14px;
 }
 
 /* ListView */
 .list-view {
-    -fx-control-inner-background: #2A2438; /* Deep Purple Background */
-    -fx-text-fill: #f3f1f1; /* Text Color */
+    -fx-control-inner-background: #2A303A; /* Slightly Lighter Gray-Blue */
+    -fx-text-fill: #E0E5EC; /* Soft White Text */
     -fx-border-color: transparent;
+    -fx-background-radius: 8px; /* Rounded Corners */
 }
 
 /* HBox and VBox */
 .hbox, .vbox {
     -fx-spacing: 10px; /* Space Between Items */
+    -fx-background-color: transparent; /* Transparent Background */
 }
 
 .hbox > .label, .vbox > .label {
@@ -93,7 +97,8 @@
 
 /* AnchorPane */
 .anchor-pane {
-    -fx-background-color: #2A2438; /* Match Background */
+    -fx-background-color: #2A303A; /* Slightly Lighter Gray-Blue */
+    -fx-background-radius: 8px; /* Rounded Corners */
 }
 
 /* Pane */

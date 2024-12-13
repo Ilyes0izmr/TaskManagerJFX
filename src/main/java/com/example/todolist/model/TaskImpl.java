@@ -24,8 +24,7 @@ public class TaskImpl implements Task {
 
     /**
      * Constructs a new TaskImpl with the specified details.
-     *
-     * //@param id           The unique identifier for the task.
+     * @param id           The unique identifier for the task.
      * @param title        The title of the task.
      * @param description  The description of the task.
      * @param status       The current status of the task (e.g., IN_PROGRESS).

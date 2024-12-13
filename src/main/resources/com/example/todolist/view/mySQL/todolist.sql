@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2024 at 10:34 PM
+-- Generation Time: Dec 13, 2024 at 07:14 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,6 +32,15 @@ CREATE TABLE `categories` (
   `userName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`name`, `userName`) VALUES
+('idk fr', 'hama'),
+('School', 'aa'),
+('School', 'hama');
+
 -- --------------------------------------------------------
 
 --
@@ -55,9 +64,9 @@ CREATE TABLE `tasks` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
-  `status` enum('COMPLETED','IN_PROGRESS','PENDING','ABANDONED') NOT NULL,
+  `status` enum('COMPLETED','IN_PROGRESS','PENDING','ABANDONED') NOT NULL DEFAULT 'PENDING',
   `dueDate` date DEFAULT NULL,
-  `creationDate` date NOT NULL DEFAULT current_timestamp(),
+  `creationDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `priority` enum('LOW','MEDIUM','HIGH') DEFAULT 'LOW',
   `reminder` enum('DAILY','WEEKLY','MONTHLY') DEFAULT 'WEEKLY',
   `categoryName` varchar(255) DEFAULT NULL,
@@ -69,10 +78,14 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `title`, `description`, `status`, `dueDate`, `creationDate`, `priority`, `reminder`, `categoryName`, `userName`) VALUES
-(23, 'l7inka l7inka ', 'qqqq', 'COMPLETED', '2025-01-01', '2024-12-07', 'MEDIUM', 'WEEKLY', NULL, '111'),
-(51, 'ilyes', 'ewqwqeqwqew', 'COMPLETED', '2024-12-14', '2024-12-07', 'MEDIUM', 'DAILY', NULL, '111'),
-(52, 'pizza11233221', 'qweqwe12', 'PENDING', '2025-01-09', '2024-12-07', 'LOW', 'MONTHLY', NULL, '111'),
-(54, 'ilyes ro7 t3ti tr9od sa7it', '123213', 'PENDING', '2024-12-18', '2024-12-07', 'LOW', 'WEEKLY', NULL, '111');
+(7, 'aaaaa', 'gg', 'COMPLETED', '2024-12-10', '2024-12-07 23:00:00', 'MEDIUM', 'WEEKLY', 'idk fr', 'hama'),
+(9, 'idk', 'asdfghjk', 'COMPLETED', '2024-12-16', '2024-12-07 23:00:00', 'LOW', 'WEEKLY', NULL, 'hama'),
+(10, 'aaaaaaa', 'aaaaaaaaaaaaaaaaaaaa', 'COMPLETED', '2024-12-27', '2024-12-07 23:00:00', 'HIGH', 'WEEKLY', NULL, 'hama'),
+(12, 'moatsm', 'asdfghj', 'PENDING', '2024-12-26', '2024-12-07 23:00:00', 'MEDIUM', 'WEEKLY', 'School', 'hama'),
+(13, 'ta', 'fff', 'PENDING', '2024-12-17', '2024-12-07 23:00:00', 'LOW', 'WEEKLY', NULL, 'aa'),
+(14, 'sd', 'ssssssss', 'PENDING', '2024-12-24', '2024-12-07 23:00:00', 'LOW', 'WEEKLY', 'School', 'aa'),
+(15, 'oday', 'asdfgh', 'PENDING', '2024-12-17', '2024-12-08 23:00:00', 'HIGH', 'WEEKLY', NULL, 'hama'),
+(16, 'asdfgh', 'sdfghj', 'COMPLETED', '2024-12-18', '2024-12-08 23:00:00', 'HIGH', 'WEEKLY', 'School', 'hama');
 
 -- --------------------------------------------------------
 
@@ -82,18 +95,18 @@ INSERT INTO `tasks` (`id`, `title`, `description`, `status`, `dueDate`, `creatio
 
 CREATE TABLE `users` (
   `userName` varchar(255) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `fullName` varchar(255) DEFAULT NULL
+  `passWord` varchar(255) NOT NULL,
+  `fullName` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userName`, `email`, `password`, `fullName`) VALUES
-('111', '1', '1', 'ilyes'),
-('mm', '2', '2', 'mm');
+INSERT INTO `users` (`userName`, `passWord`, `fullName`, `email`) VALUES
+('aa', 'Ab1', 'aa', '1@gmai.com'),
+('hama', '1', 'mohamed meftah', '1');
 
 --
 -- Indexes for dumped tables
@@ -103,8 +116,9 @@ INSERT INTO `users` (`userName`, `email`, `password`, `fullName`) VALUES
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`name`),
-  ADD KEY `fk_username2` (`userName`);
+  ADD PRIMARY KEY (`name`,`userName`),
+  ADD KEY `userName` (`userName`) USING BTREE,
+  ADD KEY `name` (`name`) USING BTREE;
 
 --
 -- Indexes for table `comments`
@@ -119,8 +133,8 @@ ALTER TABLE `comments`
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `unique_title` (`title`),
-  ADD KEY `categoryName` (`categoryName`),
-  ADD KEY `userName` (`userName`);
+  ADD KEY `fk_userName` (`userName`),
+  ADD KEY `tasks_ibfk_1` (`categoryName`);
 
 --
 -- Indexes for table `users`
@@ -143,7 +157,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
@@ -153,7 +167,7 @@ ALTER TABLE `tasks`
 -- Constraints for table `categories`
 --
 ALTER TABLE `categories`
-  ADD CONSTRAINT `fk_username2` FOREIGN KEY (`userName`) REFERENCES `users` (`userName`);
+  ADD CONSTRAINT `userName` FOREIGN KEY (`userName`) REFERENCES `users` (`userName`);
 
 --
 -- Constraints for table `comments`
@@ -165,18 +179,9 @@ ALTER TABLE `comments`
 -- Constraints for table `tasks`
 --
 ALTER TABLE `tasks`
-  ADD CONSTRAINT `categoryName` FOREIGN KEY (`categoryName`) REFERENCES `categories` (`name`),
-  ADD CONSTRAINT `userName` FOREIGN KEY (`userName`) REFERENCES `users` (`userName`);
+  ADD CONSTRAINT `fk_userName` FOREIGN KEY (`userName`) REFERENCES `users` (`userName`),
+  ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`categoryName`) REFERENCES `categories` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
-
------------- monday dec 9
-ALTER TABLE tasks
-DROP FOREIGN KEY tasks_ibfk_1;
-
-ALTER TABLE tasks
-ADD CONSTRAINT tasks_ibfk_1 FOREIGN KEY (categoryName) REFERENCES categories(name)
-ON DELETE SET NULL ON UPDATE CASCADE;
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
