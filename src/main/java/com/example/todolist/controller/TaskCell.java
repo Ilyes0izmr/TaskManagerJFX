@@ -95,9 +95,31 @@ public class TaskCell extends ListCell<TaskImpl> {
     }
 
     private void handleAddComment(TaskImpl task) {
-        // Implement the logic to add a comment to the task
-        System.out.println("Add comment to task: " + task.getTitle());
+        try {
+            // Load the FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/CommentsView.fxml"));
+            Pane pane = loader.load();
+
+            // Pass the task to the CommentController
+            CommentController controller = loader.getController();
+            controller.initializeTask(task);
+
+            // Set up a new stage for displaying the comment UI
+            Stage commentStage = new Stage();
+            commentStage.setTitle("Add Comment");
+            commentStage.setScene(new Scene(pane));
+            commentStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with the main window
+
+            // Show the stage and wait for it to close
+            commentStage.showAndWait();
+
+            System.out.println("Comment window closed for task: " + task.getTitle());
+        } catch (IOException e) {
+            System.err.println("Error loading CommentsView.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
+
 
     private void handleEditTask(TaskImpl task) {
         try {
@@ -127,8 +149,6 @@ public class TaskCell extends ListCell<TaskImpl> {
             System.out.println("Error loading EditTaskView.");
         }
     }
-
-
 
     private void handleDeleteTask(TaskImpl task) {
         try {

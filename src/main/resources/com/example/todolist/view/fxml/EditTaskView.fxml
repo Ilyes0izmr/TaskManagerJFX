@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="419.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.EditTaskController">
+<AnchorPane prefHeight="435.0" prefWidth="217.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.EditTaskController">
     <children>
         <VBox alignment="CENTER" layoutX="5.0" layoutY="9.0" prefHeight="366.0" prefWidth="330.0" spacing="10.0">
             <!-- Title -->
@@ -21,11 +21,12 @@
 
             <!-- Task Description -->
             <Label prefHeight="18.0" prefWidth="334.0" styleClass="field-label" text="Description :" />
-            <TextField fx:id="taskFieldDescription" prefHeight="94.0" prefWidth="330.0" promptText="Enter your task description" styleClass="field-input" />
+            <TextField fx:id="taskFieldDescription" prefHeight="74.0" prefWidth="345.0" promptText="Enter your task description" styleClass="field-input" />
 
             <!-- Due Date -->
             <Label prefHeight="18.0" prefWidth="439.0" styleClass="field-label" text="Due Date :" />
             <DatePicker fx:id="taskFieldDueDate" prefHeight="36.0" prefWidth="330.0" promptText="Select a date" styleClass="field-input" />
+         <ComboBox fx:id="taskStatusComboBox" layoutX="30.0" layoutY="351.0" prefHeight="35.0" prefWidth="330.0" promptText="Status" styleClass="field-input" />
 
             <!-- Reminder -->
             <ComboBox fx:id="taskReminderComboBox" prefHeight="26.0" prefWidth="330.0" promptText="Reminder" styleClass="field-input" />
@@ -35,6 +36,9 @@
 
             <!-- Category -->
             <ComboBox fx:id="taskCategoryComboBox" prefHeight="35.0" prefWidth="330.0" promptText="Categories" styleClass="field-input" />
+         <padding>
+            <Insets left="20.0" />
+         </padding>
         </VBox>
 
         <!-- Add Button -->
