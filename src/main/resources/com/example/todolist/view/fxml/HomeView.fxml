@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -17,7 +18,7 @@
    <AnchorPane layoutX="387.0" prefHeight="850.0" prefWidth="1166.0" styleClass="anchor-pane" stylesheets="@../css/home.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="386.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <AnchorPane prefHeight="92.0" prefWidth="1161.0" styleClass="anchor-pane" stylesheets="@../css/home.css">
          <HBox alignment="CENTER_LEFT" layoutY="1.0" prefHeight="90.0" prefWidth="1163.0" styleClass="hbox" stylesheets="@../css/home.css">
-            <TextField prefHeight="51.0" prefWidth="300.0" promptText="search" styleClass="text-field" stylesheets="@../css/home.css">
+            <TextField fx:id="taskSearch" prefHeight="51.0" prefWidth="300.0" promptText="search" styleClass="text-field" stylesheets="@../css/home.css">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
                </HBox.margin>
@@ -25,10 +26,10 @@
             <Pane prefHeight="90.0" prefWidth="342.0" styleClass="pane" stylesheets="@../css/home.css" />
             <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="106.0" stylesheets="@../css/home.css" text="Sort">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Farest Date" onAction="#handleSortFarthest" />
-                  <MenuItem mnemonicParsing="false" text="Closest Date" onAction="#handleSortClosest" />
-                  <MenuItem mnemonicParsing="false" text="Highest" onAction="#handleSortHighest" />
-                  <MenuItem mnemonicParsing="false" text="Lowest" onAction="#handleSortLowest" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSortFarthest" text="Farest Date" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSortClosest" text="Closest Date" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSortHighest" text="Highest" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSortLowest" text="Lowest" />
                </items>
                <HBox.margin>
                   <Insets left="20.0" />
@@ -40,18 +41,18 @@
                   <Insets left="20.0" />
                </HBox.margin>
                <items>
-                  <CheckMenuItem fx:id="checkMenuItemCompleted" mnemonicParsing="false" text="Completed" onAction="#handleFilterStatus"/>
-                  <CheckMenuItem fx:id="checkMenuItemInProgress" mnemonicParsing="false" text="IN PROGRESS" onAction="#handleFilterStatus"/>
-                  <CheckMenuItem fx:id="checkMenuItemAbandoned" mnemonicParsing="false" text="ABANDONED" onAction="#handleFilterStatus"/>
-                  <CheckMenuItem fx:id="checkMenuItemPending" mnemonicParsing="false" text="PENDING" onAction="#handleFilterStatus"/>
+                  <CheckMenuItem fx:id="checkMenuItemCompleted" mnemonicParsing="false" onAction="#handleFilterStatus" text="Completed" />
+                  <CheckMenuItem fx:id="checkMenuItemInProgress" mnemonicParsing="false" onAction="#handleFilterStatus" text="IN PROGRESS" />
+                  <CheckMenuItem fx:id="checkMenuItemAbandoned" mnemonicParsing="false" onAction="#handleFilterStatus" text="ABANDONED" />
+                  <CheckMenuItem fx:id="checkMenuItemPending" mnemonicParsing="false" onAction="#handleFilterStatus" text="PENDING" />
                </items>
             </MenuButton>
 
             <MenuButton mnemonicParsing="false" prefHeight="54.0" prefWidth="126.0" stylesheets="@../css/home.css" text="Priority">
                <items>
-                  <CheckMenuItem mnemonicParsing="false" fx:id="checkMenuItemHigh" text="High" onAction="#handleFilterPriority" />
-                  <CheckMenuItem mnemonicParsing="false" fx:id="checkMenuItemMedium" text="Medium"  onAction="#handleFilterPriority"/>
-                  <CheckMenuItem mnemonicParsing="false" fx:id="checkMenuItemLow" text="Low"  onAction="#handleFilterPriority"/>
+                  <CheckMenuItem fx:id="checkMenuItemHigh" mnemonicParsing="false" onAction="#handleFilterPriority" text="High" />
+                  <CheckMenuItem fx:id="checkMenuItemMedium" mnemonicParsing="false" onAction="#handleFilterPriority" text="Medium" />
+                  <CheckMenuItem fx:id="checkMenuItemLow" mnemonicParsing="false" onAction="#handleFilterPriority" text="Low" />
                </items>
                <HBox.margin>
                   <Insets left="20.0" />
@@ -88,14 +89,9 @@
    </AnchorPane>
    <AnchorPane prefHeight="802.0" prefWidth="401.0" styleClass="left-pane" stylesheets="@../css/home.css">
       <HBox alignment="BOTTOM_LEFT" layoutX="2.0" layoutY="3.0" prefHeight="68.0" prefWidth="381.0" styleClass="hbox" stylesheets="@../css/home.css">
-         <Label alignment="CENTER" prefHeight="60.0" prefWidth="60.0" stylesheets="@../css/home.css" text="PFP">
-            <padding>
-               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-            </padding>
-            <HBox.margin>
-               <Insets bottom="5.0" left="10.0" top="5.0" />
-            </HBox.margin>
-         </Label>
+         <Pane prefHeight="74.0" prefWidth="15.0" />
+         <ImageView fitHeight="73.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+         <Pane prefHeight="68.0" prefWidth="50.0" />
          <Label prefHeight="69.0" prefWidth="246.0" stylesheets="@../css/home.css" text="name ">
             <HBox.margin>
                <Insets bottom="5.0" left="5.0" top="5.0" />
@@ -107,7 +103,8 @@
       </HBox>
       <AnchorPane layoutX="6.0" layoutY="63.0" prefHeight="158.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
          <VBox layoutX="6.0" layoutY="41.0" prefHeight="137.0" prefWidth="375.0" styleClass="vbox" stylesheets="@../css/home.css">
-            <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="375.0" stylesheets="@../css/home.css" text="home" onAction="#handleHomeButton">
+            <Button layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="0.0" prefWidth="375.0" stylesheets="@../css/home.css" text="settings" />
+            <Button mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="50.0" prefWidth="375.0" stylesheets="@../css/home.css" text="home">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -117,14 +114,14 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <TextField prefHeight="55.0" prefWidth="375.0" promptText="search" styleClass="text-field" stylesheets="@../css/home.css" />
+            <TextField fx:id="categorySearch" prefHeight="55.0" prefWidth="375.0" promptText="search" styleClass="text-field" stylesheets="@../css/home.css" />
          </VBox>
       </AnchorPane>
       <AnchorPane layoutX="5.0" layoutY="290.0" prefHeight="248.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
          <ListView fx:id="categoryList" layoutX="16.0" layoutY="64.0" prefHeight="182.0" prefWidth="375.0" stylesheets="@../css/home.css" />
       </AnchorPane>
       <AnchorPane layoutX="5.0" layoutY="559.0" prefHeight="243.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
-         <ListView fx:id="collabList" layoutX="6.0" layoutY="38.0" prefHeight="182.0" prefWidth="374.0" stylesheets="@../css/home.css" />
+         <ListView fx:id="collabList" layoutX="6.0" layoutY="38.0" prefHeight="182.0" prefWidth="381.0" stylesheets="@../css/home.css" />
       </AnchorPane>
       <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="544.0" prefHeight="51.0" prefWidth="376.0" styleClass="hbox" stylesheets="@../css/home.css">
          <Label prefHeight="46.0" prefWidth="274.0" stylesheets="@../css/home.css" text="   collaboration categories" />
@@ -135,7 +132,7 @@
          <HBox layoutX="5.0" layoutY="7.0" prefHeight="44.0" prefWidth="372.0" styleClass="hbox" stylesheets="@../css/home.css">
             <Label prefHeight="58.0" prefWidth="211.0" stylesheets="@../css/home.css" text="   my categories" />
             <Pane prefHeight="37.0" prefWidth="100.0" styleClass="pane" stylesheets="@../css/home.css" />
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="217.0" stylesheets="@../css/home.css" text="New Category" onAction="#handleAddCategoryPopup">
+            <Button mnemonicParsing="false" onAction="#handleAddCategoryPopup" prefHeight="46.0" prefWidth="172.0" stylesheets="@../css/home.css" text="New Category">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>

@@ -63,6 +63,41 @@ public class CategoryDAO {
         }
     }
 
+    public ArrayList<Category> searchCategoriesByKeyword(String keyword, String userName) {
+        ArrayList<Category> categories = new ArrayList<>();
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            // SQL query to search categories by keyword (case-insensitive) and userName
+            String sqlQuery = "SELECT * FROM categories WHERE (name LIKE ? OR name LIKE ? OR name LIKE ?) AND userName = ?";
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+
+            // Set parameters for the query
+            statement.setString(1, "%" + keyword + "%"); // Case-sensitive
+            statement.setString(2, "%" + keyword.toUpperCase() + "%"); // Uppercase
+            statement.setString(3, "%" + keyword.toLowerCase() + "%"); // Lowercase
+            statement.setString(4, userName); // Filter by userName
+
+            // Execute the query
+            ResultSet result = statement.executeQuery();
+
+            // Process the results
+            while (result.next()) {
+                // Create a Category object from the result set
+                Category category = new Category(
+                        result.getString("name"),
+                        result.getString("userName")
+                );
+                categories.add(category); // Add the category to the list
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return categories; // Return the list of categories
+    }
+
+
     /**
      * Retrieves all categories for a specific user.
      *
