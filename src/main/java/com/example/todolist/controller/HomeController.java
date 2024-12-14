@@ -1,6 +1,8 @@
 package com.example.todolist.controller;
 
 import com.example.todolist.dao.CategoryDAO;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.CheckMenuItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,17 +12,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import com.example.todolist.dao.TaskDAO;
+
+import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class HomeController {
     @FXML
     private CheckMenuItem checkMenuItemCompleted;
-
     @FXML
     private CheckMenuItem checkMenuItemInProgress;
 
@@ -46,12 +52,18 @@ public class HomeController {
     @FXML
     private ListView<TaskImpl> taskList;
 
+    @FXML
+    private TextField categorySearch ;
+
+    @FXML
+    private TextField taskSearch;
 
 
     private TaskListImpl taskListModel = new TaskListImpl(null, User.getUserName());
     private TaskDAO taskDAO = new TaskDAO();
     private CategoryDAO categoryDAO = new CategoryDAO();
     private String currentCategoryName;
+
 
     // Optional singleton pattern
     private static HomeController instance;
@@ -66,19 +78,27 @@ public class HomeController {
         HomeController.instance = instance; // Set the singleton instance explicitly
     }
 
-    public void refreshCategories() {
-        try {
-            ObservableList<Category> categories = FXCollections.observableArrayList(categoryDAO.getAllCategories(User.getUserName()));
-            categoryList.setItems(categories);
-            categoryList.setCellFactory(param -> new CategoryCell());
-            System.out.println("Category list refreshed successfully.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error refreshing categories: " + e.getMessage());
+    public void initialize() {
+        categoryList.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                handleCategoryDoubleClick();
+            }
+        });
+        if (instance == null) {
+            instance = this;
         }
+        currentCategoryName = null;
+        refresh();
+        refreshCategories(); // Refresh categories as well
+
+        categorySearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            handleSearchCategory(newValue);
+        });
+
+        taskSearch.textProperty().addListener((obs, oldValue, newValue) -> {
+            handleSearch(newValue); // Call handleSearch with the current search text
+        });
     }
-
-
 
     public void refresh() {
         try {
@@ -112,20 +132,16 @@ public class HomeController {
         }
     }
 
-
-
-    public void initialize() {
-        categoryList.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) {
-                handleCategoryDoubleClick();
-            }
-        });
-        if (instance == null) {
-            instance = this;
+    public void refreshCategories() {
+        try {
+            ObservableList<Category> categories = FXCollections.observableArrayList(categoryDAO.getAllCategories(User.getUserName()));
+            categoryList.setItems(categories);
+            categoryList.setCellFactory(param -> new CategoryCell());
+            System.out.println("Category list refreshed successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error refreshing categories: " + e.getMessage());
         }
-        currentCategoryName = null;
-        refresh();
-        refreshCategories(); // Refresh categories as well
     }
 
     private void handleCategoryDoubleClick() {
@@ -188,8 +204,6 @@ public class HomeController {
             System.out.println("Error loading Add Category Popup.");
         }
     }
-
-
 
     @FXML
     private void handleSortFarthest() {
@@ -395,6 +409,34 @@ public class HomeController {
         }
     }
 
+    private void handleSearch(String searchText) {
+        // Call the DAO method to search for tasks by title
+        List<TaskImpl> searchResults = taskDAO.searchTasksByTitle(searchText,User.getUserName());
+
+        // Update the ListView with the search results
+        ObservableList<TaskImpl> observableResults = FXCollections.observableArrayList(searchResults);
+        taskList.setItems(observableResults);
+    }
+
+    private void handleSearchCategory(String searchText) {
+        ArrayList<Category> searchResults = categoryDAO.searchCategoriesByKeyword(searchText,User.getUserName());
+        ObservableList<Category> observableResults = FXCollections.observableArrayList(searchResults);
+        categoryList.setItems(observableResults);
+    }
 
 
+    public void handleSettings(javafx.event.ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/SettingsView.fxml"));
+        Parent root = loader.load();
+
+        // Get the current stage (window)
+        Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        // Create a new scene with the loaded FXML content
+        Scene scene = new Scene(root);
+
+        // Set the new scene to the current stage
+        currentStage.setScene(scene);
+        currentStage.show();
+    }
 }
