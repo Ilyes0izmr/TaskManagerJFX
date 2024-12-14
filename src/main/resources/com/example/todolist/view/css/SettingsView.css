@@ -1,0 +1,72 @@
+/* General styles for the AnchorPane */
+.anchor-pane {
+    -fx-background-color: #121212; /* Dark background color */
+}
+
+/* Sidebar styles */
+.sidebar {
+    -fx-background-color: #1e1e1e; /* Slightly lighter dark background for the sidebar */
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
+/* Settings label styles */
+.settings-label {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff; /* White text color */
+}
+
+/* Separator styles */
+.separator {
+    -fx-background-color: #444444; /* Dark gray separator */
+}
+
+/* Sidebar button styles */
+.sidebar .button {
+    -fx-pref-width: 342;
+    -fx-pref-height: 40;
+    -fx-background-color: #333333; /* Dark gray background for buttons */
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+/* Hover effect for sidebar buttons */
+.sidebar .button:hover {
+    -fx-background-color: #0078d7; /* Blue color on hover */
+}
+
+/* Active (pressed) effect for sidebar buttons */
+.sidebar .button:pressed {
+    -fx-background-color: #005a9e; /* Darker blue on press */
+}
+
+/* Home and Logout button styles */
+.sidebar .button.home-button,
+.sidebar .button.logout-button {
+    -fx-pref-width: 178;
+    -fx-pref-height: 30;
+    -fx-background-color: #444444; /* Slightly lighter gray */
+}
+
+/* Hover effect for Home and Logout buttons */
+.sidebar .button.home-button:hover,
+.sidebar .button.logout-button:hover {
+    -fx-background-color: #0078d7; /* Blue color on hover */
+}
+
+/* Active (pressed) effect for Home and Logout buttons */
+.sidebar .button.home-button:pressed,
+.sidebar .button.logout-button:pressed {
+    -fx-background-color: #005a9e; /* Darker blue on press */
+}
+
+/* Content pane styles */
+.content-pane {
+    -fx-background-color: #1e1e1e; /* Dark background for content area */
+    -fx-padding: 20;
+}
