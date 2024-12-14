@@ -3,10 +3,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane fx:id="settingsPane" prefHeight="800.0" prefWidth="1550.0" styleClass="anchor-pane" stylesheets="@../css/SettingsView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.SettingsController">
@@ -16,13 +16,13 @@
         <Label styleClass="settings-label" text="Settings">
             <VBox.margin>
                 <Insets top="10.0" />
-            </VBox.margin></Label>
+            </VBox.margin>
+        </Label>
         <Separator prefWidth="166.0" stylesheets="@../css/SettingsView.css" />
         <Button fx:id="dashboardButton" onAction="#handleDashboard" prefWidth="342.0" stylesheets="@../css/SettingsView.css" text="Dashboard" />
         <Button fx:id="appearanceButton" onAction="#handleAppearance" prefWidth="343.0" stylesheets="@../css/SettingsView.css" text="Appearance" />
         <Button fx:id="notificationButton" onAction="#handleNotification" prefWidth="349.0" stylesheets="@../css/SettingsView.css" text="Notification" />
         <Separator prefWidth="166.0" stylesheets="@../css/SettingsView.css" />
-        <Pane prefHeight="495.0" prefWidth="351.0" stylesheets="@../css/SettingsView.css" />
         <HBox alignment="CENTER" spacing="10.0">
             <Button fx:id="homeButton" onAction="#handleBackToHome" prefHeight="31.0" prefWidth="178.0" styleClass="home-button" stylesheets="@../css/SettingsView.css" text="Home" />
             <Button fx:id="logoutButton" onAction="#handleLogout" prefHeight="31.0" prefWidth="224.0" styleClass="logout-button" stylesheets="@../css/SettingsView.css" text="Logout" />
@@ -30,6 +30,10 @@
     </VBox>
 
     <!-- Content Pane (Right Side) -->
-    <AnchorPane fx:id="contentPane" layoutX="168.0" prefHeight="800.0" prefWidth="1177.0" styleClass="content-pane" stylesheets="@../css/SettingsView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    <ScrollPane fx:id="scrollPane" layoutX="375.0" layoutY="0.0" prefHeight="800.0" prefWidth="1178.0" styleClass="scroll-pane" stylesheets="@../css/SettingsView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <content>
+            <AnchorPane fx:id="contentPane" prefHeight="2014.0" prefWidth="1178.0" styleClass="content-pane" stylesheets="@../css/SettingsView.css" />
+        </content>
+    </ScrollPane>
 
 </AnchorPane>

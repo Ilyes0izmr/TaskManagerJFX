@@ -4,7 +4,11 @@ import com.example.todolist.model.*;
 import com.example.todolist.util.DatabaseConnection;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Provides Data Access Object (DAO) methods for interacting with tasks in the database.
@@ -14,8 +18,6 @@ import java.util.ArrayList;
  */
 public class TaskDAO {
     private static TaskDAO instance;
-
-
 
     /**
      * Adds a new task to the database.
@@ -61,9 +63,6 @@ public class TaskDAO {
         }
         return instance;
     }
-
-
-
 
     /**
      * Retrieves a list of tasks associated with a specific user by their username.
@@ -148,7 +147,6 @@ public class TaskDAO {
         }
         return tasks;
     }
-
 
     /**
      * Deletes a task from the database by its ID.
@@ -254,4 +252,157 @@ public class TaskDAO {
 
         return matchedTasks;
     }
+
+    public int getNumberOfTasks(String userName) {
+        String sqlQuery = "SELECT COUNT(*) FROM tasks WHERE userName = ?";
+        int numberOfTasks = 0;
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+
+            // Set the user parameter
+            statement.setString(1, userName);
+
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                numberOfTasks = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while getting the number of tasks: " + e.getMessage());
+        }
+        return numberOfTasks;
+    }
+
+    public int getNumberOfCompleted(String userName) {
+        String sqlQuery = "SELECT COUNT(*) FROM tasks WHERE status = 'COMPLETED' AND userName = ?";
+        int numberOfCompletedTasks = 0;
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+
+            // Set the userName parameter
+            statement.setString(1, userName);
+
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                numberOfCompletedTasks = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while getting the number of completed tasks: " + e.getMessage());
+        }
+        return numberOfCompletedTasks;
+    }
+
+    public Map<String, Integer> getTaskCountByCategory(String userName) {
+        Map<String, Integer> taskCountByCategory = new HashMap<>();
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            // SQL query to count tasks by category for the specified user
+            String sqlQuery = "SELECT categoryName, COUNT(*) AS task_count " +
+                    "FROM tasks " +
+                    "WHERE userName = ? " +
+                    "GROUP BY categoryName";
+
+            System.out.println("Executing SQL Query: " + sqlQuery); // Debugging: Print the query
+
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+            statement.setString(1, userName); // Set the userName
+
+            ResultSet result = statement.executeQuery();
+
+            // Process the results
+            while (result.next()) {
+                String category = result.getString("categoryName"); // Use the correct column name
+                int taskCount = result.getInt("task_count");
+
+                // Handle null category names
+                if (category == null) {
+                    category = "Other"; // Treat null categories as "Other"
+                }
+
+                System.out.println("Category: " + category + ", Task Count: " + taskCount); // Debugging: Print the result
+
+                // Add the category and task count to the map
+                taskCountByCategory.put(category, taskCountByCategory.getOrDefault(category, 0) + taskCount);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return taskCountByCategory;
+    }
+
+    public Map<String, Integer> getTaskCountByPriority(String userName) {
+        Map<String, Integer> taskCountByPriority = new HashMap<>();
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            // SQL query to count tasks by priority for the specified user
+            String sqlQuery = "SELECT priority, COUNT(*) AS task_count " +
+                    "FROM tasks " +
+                    "WHERE userName = ? " +
+                    "GROUP BY priority";
+
+            System.out.println("Executing SQL Query: " + sqlQuery); // Debugging: Print the query
+
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+            statement.setString(1, userName); // Set the userName
+
+            ResultSet result = statement.executeQuery();
+
+            // Process the results
+            while (result.next()) {
+                String priority = result.getString("priority"); // Use the correct column name
+                int taskCount = result.getInt("task_count");
+
+                // Handle null priority values
+                if (priority == null) {
+                    priority = "None"; // Treat null priorities as "None"
+                }
+
+                System.out.println("Priority: " + priority + ", Task Count: " + taskCount); // Debugging: Print the result
+
+                // Add the priority and task count to the map
+                taskCountByPriority.put(priority, taskCountByPriority.getOrDefault(priority, 0) + taskCount);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return taskCountByPriority;
+    }
+
+    public List<String> getUpcomingDeadlines(String userName) {
+        List<String> upcomingDeadlines = new ArrayList<>();
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            // SQL query to fetch task titles with due dates within the next 10 days
+            String sqlQuery = "SELECT title FROM tasks " +
+                    "WHERE userName = ? " +
+                    "AND dueDate <= DATE_ADD(CURDATE(), INTERVAL 10 DAY) " +
+                    "AND dueDate >= CURDATE() " +
+                    "ORDER BY dueDate ASC";
+
+            System.out.println("Executing SQL Query: " + sqlQuery); // Debugging: Print the query
+
+            PreparedStatement statement = connection.prepareStatement(sqlQuery);
+            statement.setString(1, userName); // Set the userName
+
+            ResultSet result = statement.executeQuery();
+
+            // Process the results
+            while (result.next()) {
+                String title = result.getString("title"); // Fetch only the title
+
+                // Add the title to the list
+                upcomingDeadlines.add(title);
+
+                // Debugging: Print the title
+                System.out.println("Task Title: " + title);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return upcomingDeadlines;
+    }
+
+
 }
