@@ -204,15 +204,32 @@ public class TaskDAO {
      * @param userName The username of the user to filter tasks by.
      * @return A list of tasks that contain the keyword in their titles and belong to the specified user.
      */
-    public ArrayList<TaskImpl> searchTasksByTitle(String keyword, String userName) {
+    public ArrayList<TaskImpl> searchTasksByTitle(String keyword, String userName, String categoryName) {
         ArrayList<TaskImpl> matchedTasks = new ArrayList<>();
-        String sqlQuery = "SELECT * FROM tasks WHERE title LIKE ? AND userName = ?";
+        String sqlQuery;
+
+        if (categoryName == null) {
+            sqlQuery = "SELECT * FROM tasks " +
+                    "WHERE title LIKE ? " +
+                    "AND userName = ?";
+        } else {
+            sqlQuery = "SELECT * FROM tasks " +
+                    "WHERE title LIKE ? " +
+                    "AND userName = ? " +
+                    "AND categoryName = ?";
+        }
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
 
+            // Bind parameters dynamically based on the chosen query
             statement.setString(1, "%" + keyword + "%"); // Use wildcards for partial matching
             statement.setString(2, userName); // Filter by userName
+
+            if (categoryName != null) {
+                statement.setString(3, categoryName); // Filter by categoryName if provided
+            }
+
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
@@ -226,7 +243,7 @@ public class TaskDAO {
                         Priority.valueOf(result.getString("priority")),
                         new ArrayList<>(), // Initialize comments as an empty list (can be fetched separately if needed)
                         Reminder.valueOf(result.getString("reminder")),
-                        result.getString("categoryName"), // Fetch categoryId
+                        result.getString("categoryName"), // Fetch categoryName
                         result.getString("userName") // Fetch userName
                 );
                 matchedTasks.add(task);
@@ -234,8 +251,7 @@ public class TaskDAO {
         } catch (SQLException e) {
             System.err.println("Error while searching tasks by title and userName: " + e.getMessage());
         }
+
         return matchedTasks;
     }
-
-
 }

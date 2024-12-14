@@ -411,7 +411,7 @@ public class HomeController {
 
     private void handleSearch(String searchText) {
         // Call the DAO method to search for tasks by title
-        List<TaskImpl> searchResults = taskDAO.searchTasksByTitle(searchText,User.getUserName());
+        List<TaskImpl> searchResults = taskDAO.searchTasksByTitle(searchText,User.getUserName(),currentCategoryName);
 
         // Update the ListView with the search results
         ObservableList<TaskImpl> observableResults = FXCollections.observableArrayList(searchResults);
@@ -424,17 +424,13 @@ public class HomeController {
         categoryList.setItems(observableResults);
     }
 
-
     public void handleSettings(javafx.event.ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/SettingsView.fxml"));
         Parent root = loader.load();
-
         // Get the current stage (window)
         Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
         // Create a new scene with the loaded FXML content
         Scene scene = new Scene(root);
-
         // Set the new scene to the current stage
         currentStage.setScene(scene);
         currentStage.show();
