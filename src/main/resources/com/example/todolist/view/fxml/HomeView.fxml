@@ -118,7 +118,7 @@
          </VBox>
       </AnchorPane>
       <AnchorPane layoutX="5.0" layoutY="290.0" prefHeight="248.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
-         <ListView fx:id="categoryList" layoutX="16.0" layoutY="64.0" prefHeight="182.0" prefWidth="375.0" stylesheets="@../css/home.css" />
+         <ListView fx:id="categoryList" layoutX="7.0" layoutY="64.0" prefHeight="182.0" prefWidth="384.0" stylesheets="@../css/home.css" />
       </AnchorPane>
       <AnchorPane layoutX="5.0" layoutY="559.0" prefHeight="243.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
          <ListView fx:id="collabList" layoutX="6.0" layoutY="38.0" prefHeight="182.0" prefWidth="381.0" stylesheets="@../css/home.css" />
@@ -128,11 +128,11 @@
          <Pane prefHeight="31.0" prefWidth="100.0" styleClass="pane" stylesheets="@../css/home.css" />
          <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="169.0" stylesheets="@../css/home.css" text="New Collab" />
       </HBox>
-      <AnchorPane layoutX="11.0" layoutY="274.0" prefHeight="68.0" prefWidth="378.0" styleClass="anchor-pane" stylesheets="@../css/home.css">
+      <AnchorPane layoutX="11.0" layoutY="274.0" prefHeight="68.0" prefWidth="370.0" styleClass="anchor-pane" stylesheets="@../css/home.css">
          <HBox layoutX="5.0" layoutY="7.0" prefHeight="44.0" prefWidth="372.0" styleClass="hbox" stylesheets="@../css/home.css">
-            <Label prefHeight="58.0" prefWidth="211.0" stylesheets="@../css/home.css" text="   my categories" />
+            <TextField fx:id="categorySearch" prefHeight="51.0" prefWidth="300.0" promptText="search for category" />
             <Pane prefHeight="37.0" prefWidth="100.0" styleClass="pane" stylesheets="@../css/home.css" />
-            <Button mnemonicParsing="false" onAction="#handleAddCategoryPopup" prefHeight="46.0" prefWidth="172.0" stylesheets="@../css/home.css" text="New Category">
+            <Button mnemonicParsing="false" onAction="#handleAddCategoryPopup" prefHeight="46.0" prefWidth="229.0" stylesheets="@../css/home.css" text="New Category">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>
