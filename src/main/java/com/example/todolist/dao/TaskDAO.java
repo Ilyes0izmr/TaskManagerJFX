@@ -109,9 +109,8 @@ public class TaskDAO {
         return tasks;
     }
 
-    public ArrayList<TaskImpl> getTasksByCategory(String categoryName) {
+    public ArrayList<TaskImpl> getTasksByCategory(String categoryName, String userName) {
         ArrayList<TaskImpl> tasks = new ArrayList<>();
-        String userName = User.getUserName();
         String sqlQuery = "SELECT * FROM tasks WHERE userName = ? AND categoryName = ?";
 
         try (Connection connection = DatabaseConnection.getConnection();
