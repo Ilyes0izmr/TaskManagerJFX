@@ -103,7 +103,7 @@
       </HBox>
       <AnchorPane layoutX="6.0" layoutY="63.0" prefHeight="158.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
          <VBox layoutX="6.0" layoutY="41.0" prefHeight="137.0" prefWidth="375.0" styleClass="vbox" stylesheets="@../css/home.css">
-            <Button layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="0.0" prefWidth="375.0" stylesheets="@../css/home.css" text="settings" />
+            <Button layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="0.0" prefWidth="375.0" stylesheets="@../css/home.css" text="≡" />
             <Button mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="50.0" prefWidth="375.0" stylesheets="@../css/home.css" text="home">
                <VBox.margin>
                   <Insets top="10.0" />
