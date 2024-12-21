@@ -1,6 +1,7 @@
 package com.example.todolist.controller;
 
 import com.example.todolist.dao.CategoryDAO;
+import com.example.todolist.dao.CollabCategoryDAO;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckMenuItem;
@@ -18,7 +19,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import com.example.todolist.dao.TaskDAO;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -62,7 +62,9 @@ public class HomeController {
     private TaskListImpl taskListModel = new TaskListImpl(null, User.getUserName());
     private TaskDAO taskDAO = new TaskDAO();
     private CategoryDAO categoryDAO = new CategoryDAO();
+    private CollabCategoryDAO collabCategoryDAO = new CollabCategoryDAO();
     private String currentCategoryName;
+    private String collaberatorName;
 
 
     // Optional singleton pattern
@@ -84,12 +86,21 @@ public class HomeController {
                 handleCategoryDoubleClick();
             }
         });
+
+        collabList.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                handleCollabDoubleClick();
+            }
+        });
+
         if (instance == null) {
             instance = this;
         }
         currentCategoryName = null;
+        collaberatorName = null;
         refresh();
-        refreshCategories(); // Refresh categories as well
+        refreshCategories();
+        refreshCollabCategories();
 
         categorySearch.textProperty().addListener((observable, oldValue, newValue) -> {
             handleSearchCategory(newValue);
@@ -107,7 +118,11 @@ public class HomeController {
             if(currentCategoryName == null) {
                 tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
             }else {
-                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                if(collaberatorName == null) {
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, User.getUserName()));
+                }else{
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, collaberatorName));
+                }
             }
             taskListModel.getTasks().setAll(tasks);
             taskListModel.setName(currentCategoryName);
@@ -144,10 +159,35 @@ public class HomeController {
         }
     }
 
+    public void refreshCollabCategories() {
+        try {
+            ObservableList<Category> categories = FXCollections.observableArrayList(collabCategoryDAO.getAllCollabCategories(User.getUserName()));
+            collabList.setItems(categories);
+            collabList.setCellFactory(param -> new CollabCategoryCell());
+            System.out.println("Collab category list refreshed successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error refreshing collab categories: " + e.getMessage());
+        }
+    }
+
     private void handleCategoryDoubleClick() {
         Category selectedCategory = categoryList.getSelectionModel().getSelectedItem();
         if (selectedCategory != null) {
-            currentCategoryName = selectedCategory.getName(); // Assuming Category has a getName() method
+            currentCategoryName = selectedCategory.getName();
+            collaberatorName = null;
+            System.out.println("Current category set to: " + currentCategoryName);
+            refresh();
+        } else {
+            System.out.println("No category selected.");
+        }
+    }
+
+    private void handleCollabDoubleClick() {
+        Category selectedCategory = collabList.getSelectionModel().getSelectedItem();
+        if (selectedCategory != null) {
+            currentCategoryName = selectedCategory.getName();
+            collaberatorName = selectedCategory.getUserName();
             System.out.println("Current category set to: " + currentCategoryName);
             refresh();
         } else {
@@ -158,6 +198,7 @@ public class HomeController {
     @FXML
     private void handleHomeButton(){
         currentCategoryName = null;
+        collaberatorName = null;
         refresh();
     }
 
@@ -183,12 +224,9 @@ public class HomeController {
     public void handleAddCategoryPopup() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/AddCategoryPopUp.fxml"));
-
             AnchorPane popupRoot = loader.load();
-
             // Get the controller to pass data or initialize if necessary
             AddCategoryController controller = loader.getController();
-
             // Create a new stage for the popup
             Stage popupStage = new Stage();
             popupStage.setTitle("Add New Category");
@@ -206,13 +244,52 @@ public class HomeController {
     }
 
     @FXML
+    public void showNewCollabPopUp() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/newCollabPopUp.fxml"));
+            AnchorPane popupRoot = loader.load();
+
+            NewCollabController controller = loader.getController();
+            Stage popupStage = new Stage();
+            popupStage.setTitle("New Collab");
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setResizable(false);
+            popupStage.setScene(new Scene(popupRoot));
+            popupStage.showAndWait();
+            refreshCollabCategories();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteCollabCategory(Category category) {
+        try {
+            // Call DAO to remove the category
+            collabCategoryDAO.deleteCollabCategory(category);
+
+            // Refresh the collab categories list
+            refreshCollabCategories();
+
+            System.out.println("Deleted collab category: " + category.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error deleting collab category: " + e.getMessage());
+        }
+    }
+
+
+    @FXML
     private void handleSortFarthest() {
         try {
             ObservableList<TaskImpl> tasks;
             if(currentCategoryName == null) {
                 tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
             }else {
-                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                if(collaberatorName == null) {
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, User.getUserName()));
+                }else{
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, collaberatorName));
+                }
             }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getDueDate).reversed()); // Sort by farthest date
             taskList.setItems(tasks);
@@ -231,7 +308,11 @@ public class HomeController {
             if(currentCategoryName == null) {
                 tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
             }else {
-                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                if(collaberatorName == null) {
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, User.getUserName()));
+                }else{
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, collaberatorName));
+                }
             }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getDueDate)); // Sort by closest due date
             taskList.setItems(tasks);
@@ -250,7 +331,11 @@ public class HomeController {
             if(currentCategoryName == null) {
                 tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
             }else {
-                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                if(collaberatorName == null) {
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, User.getUserName()));
+                }else{
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, collaberatorName));
+                }
             }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getPriority).reversed()); // Sort by highest priority
             taskList.setItems(tasks);
@@ -269,7 +354,11 @@ public class HomeController {
             if(currentCategoryName == null) {
                 tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
             }else {
-                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                if(collaberatorName == null) {
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, User.getUserName()));
+                }else{
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, collaberatorName));
+                }
             }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getPriority)); // Sort by lowest priority
             taskList.setItems(tasks);
@@ -288,7 +377,11 @@ public class HomeController {
             if(currentCategoryName == null) {
                 tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
             }else {
-                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                if(collaberatorName == null) {
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, User.getUserName()));
+                }else{
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, collaberatorName));
+                }
             }
             // Get selected statuses
             boolean completedSelected = checkMenuItemCompleted.isSelected();
@@ -322,7 +415,11 @@ public class HomeController {
                     if(currentCategoryName == null) {
                         tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
                     }else {
-                        tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                        if(collaberatorName == null) {
+                            tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, User.getUserName()));
+                        }else{
+                            tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, collaberatorName));
+                        }
                     }
                     taskListModel.getTasks().setAll(tasks);
                     taskList.setItems(taskListModel.getTasks());
@@ -354,7 +451,11 @@ public class HomeController {
             if(currentCategoryName == null) {
                 tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
             }else {
-                tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                if(collaberatorName == null) {
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, User.getUserName()));
+                }else{
+                    tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, collaberatorName));
+                }
             }
 
             // Get selected priorities
@@ -385,7 +486,11 @@ public class HomeController {
                     if(currentCategoryName == null) {
                         tasks = FXCollections.observableArrayList(taskDAO.getTasksByUserName(User.getUserName()));
                     }else {
-                        tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName));
+                        if(collaberatorName == null) {
+                            tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, User.getUserName()));
+                        }else{
+                            tasks = FXCollections.observableArrayList(taskDAO.getTasksByCategory(currentCategoryName, collaberatorName));
+                        }
                     }
                     taskListModel.getTasks().setAll(tasks);
                     taskList.setItems(taskListModel.getTasks());
@@ -412,6 +517,11 @@ public class HomeController {
     private void handleSearch(String searchText) {
         // Call the DAO method to search for tasks by title
         List<TaskImpl> searchResults = taskDAO.searchTasksByTitle(searchText,User.getUserName(),currentCategoryName);
+        if(collaberatorName == null) {
+            searchResults = taskDAO.searchTasksByTitle(searchText, User.getUserName(), currentCategoryName);
+        }else{
+            searchResults = taskDAO.searchTasksByTitle(searchText, collaberatorName, currentCategoryName);
+        }
 
         // Update the ListView with the search results
         ObservableList<TaskImpl> observableResults = FXCollections.observableArrayList(searchResults);
