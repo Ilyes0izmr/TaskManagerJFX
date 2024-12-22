@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4138a9b-6d62-4903-87fc-3b154d6e1c51" name="Changes" comment="i added the ourDataBase">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/CollabCategoryCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/NewCollabController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/CollabCategoryDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/NewCollabPopUp.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/TaskDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/TaskDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/HomeView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/HomeView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
