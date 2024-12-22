@@ -1,0 +1,161 @@
+/* General styles for the VBox */
+.vbox {
+    -fx-padding: 20; /* Padding around the VBox */
+    -fx-spacing: 20; /* Spacing between child nodes */
+    -fx-background-color: #2e2e2e; /* Dark gray background */
+}
+
+/* Dashboard title styles */
+.dashboard-title {
+    -fx-font-size: 24; /* Larger font size */
+    -fx-font-weight: bold; /* Bold text */
+    -fx-text-fill: #ffffff; /* White text */
+}
+
+/* Section title styles */
+.section-title {
+    -fx-font-size: 18; /* Medium font size */
+    -fx-font-weight: bold; /* Bold text */
+    -fx-text-fill: #ffffff; /* White text */
+}
+
+/* Key label styles */
+.key-label {
+    -fx-font-size: 14; /* Smaller font size */
+    -fx-text-fill: #ffffff; /* White text */
+}
+
+/* Key title styles */
+.key-title {
+    -fx-font-size: 16; /* Slightly larger font size */
+    -fx-font-weight: bold; /* Bold text */
+    -fx-text-fill: #ffffff; /* White text */
+}
+
+/* Donut chart styles */
+.donut-chart {
+    -fx-pie-label-visible: false; /* Hide labels inside the pie chart */
+    -fx-start-angle: 90; /* Start angle for the pie chart */
+    -fx-legend-visible: false; /* Hide the legend */
+}
+
+/* Bar chart styles */
+.bar-chart {
+    -fx-background-color: #3e3e3e; /* Dark gray background */
+    -fx-padding: 20; /* Padding around the chart */
+    -fx-border-color: #444444; /* Border color */
+    -fx-border-width: 1; /* Border width */
+    -fx-border-radius: 5; /* Rounded corners */
+    -fx-bar-gap: 2; /* Reduced gap between bars */
+    -fx-category-gap: 20; /* Increased gap between categories */
+}
+
+.bar-chart .chart-bar {
+    -fx-bar-fill: #4CAF50; /* Green bars */
+}
+
+.bar-chart .chart-bar:hover {
+    -fx-bar-fill: #66BB6A; /* Lighter green on hover */
+}
+
+.bar-chart .axis {
+    -fx-tick-label-fill: #ffffff; /* White axis labels */
+}
+
+.bar-chart .axis-label {
+    -fx-text-fill: #ffffff; /* White axis titles */
+}
+
+/* Horizontal bar chart styles */
+.horizontal-bar-chart {
+    -fx-background-color: #3e3e3e; /* Dark gray background */
+    -fx-padding: 20; /* Padding around the chart */
+    -fx-border-color: #444444; /* Border color */
+    -fx-border-width: 1; /* Border width */
+    -fx-border-radius: 5; /* Rounded corners */
+    -fx-bar-gap: 5; /* Gap between bars */
+    -fx-category-gap: 10; /* Gap between categories */
+}
+
+.horizontal-bar-chart .chart-bar {
+    -fx-bar-fill: #2196F3; /* Blue bars */
+}
+
+.horizontal-bar-chart .chart-bar:hover {
+    -fx-bar-fill: #42A5F5; /* Lighter blue on hover */
+}
+
+.horizontal-bar-chart .axis {
+    -fx-tick-label-fill: #ffffff; /* White axis labels */
+}
+
+.horizontal-bar-chart .axis-label {
+    -fx-text-fill: #ffffff; /* White axis titles */
+}
+
+/* Horizontal bar chart styles */
+.horizontal-bar-chart {
+    -fx-background-color: #3e3e3e; /* Dark gray background */
+    -fx-padding: 20; /* Padding around the chart */
+    -fx-border-color: #444444; /* Border color */
+    -fx-border-width: 1; /* Border width */
+    -fx-border-radius: 5; /* Rounded corners */
+}
+
+.horizontal-bar-chart .chart-bar {
+    -fx-bar-fill: #2196F3; /* Blue bars */
+}
+
+.horizontal-bar-chart .chart-bar:hover {
+    -fx-bar-fill: #42A5F5; /* Lighter blue on hover */
+}
+
+.horizontal-bar-chart .axis {
+    -fx-tick-label-fill: #ffffff; /* White axis labels */
+}
+
+.horizontal-bar-chart .axis-label {
+    -fx-text-fill: #ffffff; /* White axis titles */
+}
+
+/* Key item styles */
+.key-item {
+    -fx-spacing: 10; /* Spacing between rectangle and label */
+    -fx-alignment: CENTER-LEFT; /* Align items to the left */
+}
+
+.key-item Rectangle {
+    -fx-stroke: #000000; /* Black border for rectangles */
+    -fx-stroke-width: 1; /* Border width */
+}
+
+.key-item Label {
+    -fx-font-size: 14; /* Font size for labels */
+    -fx-text-fill: #ffffff; /* White text */
+}
+
+/* Separator styles */
+.separator {
+    -fx-background-color: #444444; /* Dark gray separator */
+}
+
+/* ListView styles */
+.list-view {
+    -fx-background-color: #3e3e3e; /* Dark gray background */
+    -fx-text-fill: #ffffff; /* White text */
+}
+
+.list-view .list-cell {
+    -fx-background-color: #3e3e3e; /* Dark gray background */
+    -fx-text-fill: #ffffff; /* White text */
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #4e4e4e; /* Lighter gray on hover */
+}
+
+/* Info label styles */
+.info-label {
+    -fx-font-size: 14; /* Smaller font size */
+    -fx-text-fill: #ffffff; /* White text */
+}

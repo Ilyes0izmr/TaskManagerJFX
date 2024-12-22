@@ -4,6 +4,8 @@ import com.example.todolist.util.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Provides Data Access Object (DAO) methods for interacting with categories in the database.
@@ -165,4 +167,6 @@ public class CategoryDAO {
             return false;
         }
     }
+
+
 }

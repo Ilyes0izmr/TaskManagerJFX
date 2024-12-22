@@ -70,3 +70,23 @@
     -fx-background-color: #1e1e1e; /* Dark background for content area */
     -fx-padding: 20;
 }
+
+/* Active button styles */
+.active-button {
+    -fx-background-color: #0078d7; /* Blue color for the active button */
+    -fx-text-fill: white; /* White text */
+}
+
+/* Hover effect for active button */
+.active-button:hover {
+    -fx-background-color: #005a9e; /* Darker blue on hover */
+}
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
