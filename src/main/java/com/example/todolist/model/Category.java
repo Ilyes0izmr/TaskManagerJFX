@@ -3,6 +3,7 @@ package com.example.todolist.model;
 public class Category {
     private String name;
     private String userName;
+    private boolean fullAccess;
 
     // Constructors
     public Category() {
@@ -11,6 +12,13 @@ public class Category {
     public Category(String name, String userName) {
         this.name = name;
         this.userName = userName;
+        this.fullAccess = false;
+    }
+
+    public Category(String name, String userName, boolean fullAccess) {
+        this.name = name;
+        this.userName = userName;
+        this.fullAccess = fullAccess;
     }
 
     // Getter and Setter for Name
@@ -35,5 +43,13 @@ public class Category {
     @Override
     public String toString() {
         return name; // Display the category name in UI components
+    }
+
+    public boolean isFullAccess() {
+        return fullAccess;
+    }
+
+    public void setFullAccess(boolean fullAccess) {
+        this.fullAccess = fullAccess;
     }
 }

@@ -7,6 +7,7 @@ import com.example.todolist.model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
@@ -19,6 +20,8 @@ public class NewCollabController {
     private ComboBox<String> categoryComboBox;
     @FXML
     private TextField usernameField;
+    @FXML
+    private CheckBox fullAccessCheckBox;
 
     public void initialize() {
         // Populate categories for the current user
@@ -30,12 +33,15 @@ public class NewCollabController {
             categories.add(category.getName());
         }
         categoryComboBox.setItems(categories);
+
+        fullAccessCheckBox.setSelected(false);
     }
 
     @FXML
     private void handleAddCollaboration() {
         String selectedCategory = categoryComboBox.getValue();
         String collaborator = usernameField.getText().trim();
+        boolean fullAccess = fullAccessCheckBox.isSelected();
 
         if (selectedCategory == null || collaborator.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Validation Error", "Please fill all fields.");
@@ -49,11 +55,12 @@ public class NewCollabController {
 
         try {
             CollabCategoryDAO dao = new CollabCategoryDAO();
-            boolean success = dao.addCollaboration(selectedCategory, User.getUserName(), collaborator);
+            boolean success = dao.addCollaboration(selectedCategory, User.getUserName(), collaborator, fullAccess);
 
             if (success) {
                 usernameField.clear();
                 categoryComboBox.setValue(null);
+                fullAccessCheckBox.setSelected(false);
             } else {
                 showAlert(Alert.AlertType.ERROR, "Error", "Failed to add collaboration.");
             }

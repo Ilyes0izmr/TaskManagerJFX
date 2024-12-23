@@ -65,6 +65,7 @@ public class HomeController {
     private CollabCategoryDAO collabCategoryDAO = new CollabCategoryDAO();
     private String currentCategoryName;
     private String collaberatorName;
+    private boolean fullAccess;
 
 
     // Optional singleton pattern
@@ -98,6 +99,7 @@ public class HomeController {
         }
         currentCategoryName = null;
         collaberatorName = null;
+        fullAccess = true;
         refresh();
         refreshCategories();
         refreshCollabCategories();
@@ -127,7 +129,7 @@ public class HomeController {
             taskListModel.getTasks().setAll(tasks);
             taskListModel.setName(currentCategoryName);
             taskList.setItems(taskListModel.getTasks());
-            taskList.setCellFactory(param -> new TaskCell());
+            taskList.setCellFactory(param -> new TaskCell(fullAccess));
             System.out.println("Page refreshed successfully.");
 
             // Uncheck all status filter checkboxes
@@ -176,6 +178,7 @@ public class HomeController {
         if (selectedCategory != null) {
             currentCategoryName = selectedCategory.getName();
             collaberatorName = null;
+            fullAccess = true;
             System.out.println("Current category set to: " + currentCategoryName);
             refresh();
         } else {
@@ -188,6 +191,7 @@ public class HomeController {
         if (selectedCategory != null) {
             currentCategoryName = selectedCategory.getName();
             collaberatorName = selectedCategory.getUserName();
+            fullAccess = selectedCategory.isFullAccess();
             System.out.println("Current category set to: " + currentCategoryName);
             refresh();
         } else {
@@ -199,6 +203,7 @@ public class HomeController {
     private void handleHomeButton(){
         currentCategoryName = null;
         collaberatorName = null;
+        fullAccess = true;
         refresh();
     }
 
@@ -293,7 +298,7 @@ public class HomeController {
             }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getDueDate).reversed()); // Sort by farthest date
             taskList.setItems(tasks);
-            taskList.setCellFactory(param -> new TaskCell());
+            taskList.setCellFactory(param -> new TaskCell(fullAccess));
             System.out.println("Tasks sorted by farthest due date.");
         } catch (Exception e) {
             e.printStackTrace();
@@ -316,7 +321,7 @@ public class HomeController {
             }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getDueDate)); // Sort by closest due date
             taskList.setItems(tasks);
-            taskList.setCellFactory(param -> new TaskCell());
+            taskList.setCellFactory(param -> new TaskCell(fullAccess));
             System.out.println("Tasks sorted by closest due date.");
         } catch (Exception e) {
             e.printStackTrace();
@@ -339,7 +344,7 @@ public class HomeController {
             }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getPriority).reversed()); // Sort by highest priority
             taskList.setItems(tasks);
-            taskList.setCellFactory(param -> new TaskCell());
+            taskList.setCellFactory(param -> new TaskCell(fullAccess));
             System.out.println("Tasks sorted by highest priority.");
         } catch (Exception e) {
             e.printStackTrace();
@@ -362,7 +367,7 @@ public class HomeController {
             }
             FXCollections.sort(tasks, Comparator.comparing(TaskImpl::getPriority)); // Sort by lowest priority
             taskList.setItems(tasks);
-            taskList.setCellFactory(param -> new TaskCell());
+            taskList.setCellFactory(param -> new TaskCell(fullAccess));
             System.out.println("Tasks sorted by lowest priority.");
         } catch (Exception e) {
             e.printStackTrace();
@@ -405,7 +410,7 @@ public class HomeController {
 
             // Set the filtered tasks into the task list
             taskList.setItems(tasks);
-            taskList.setCellFactory(param -> new TaskCell());
+            taskList.setCellFactory(param -> new TaskCell(fullAccess));
             System.out.println("Tasks filtered by selected status.");
 
             // If all checkboxes are unchecked, call refresh
@@ -423,7 +428,7 @@ public class HomeController {
                     }
                     taskListModel.getTasks().setAll(tasks);
                     taskList.setItems(taskListModel.getTasks());
-                    taskList.setCellFactory(param -> new TaskCell());
+                    taskList.setCellFactory(param -> new TaskCell(fullAccess));
                     System.out.println("Page refreshed successfully.");
 
                     // Uncheck all status filter checkboxes
@@ -476,7 +481,7 @@ public class HomeController {
 
             // Set the filtered tasks into the task list
             taskList.setItems(tasks);
-            taskList.setCellFactory(param -> new TaskCell());
+            taskList.setCellFactory(param -> new TaskCell(fullAccess));
             System.out.println("Tasks filtered by selected priority.");
 
             // If all checkboxes are unchecked, call refresh
@@ -494,7 +499,7 @@ public class HomeController {
                     }
                     taskListModel.getTasks().setAll(tasks);
                     taskList.setItems(taskListModel.getTasks());
-                    taskList.setCellFactory(param -> new TaskCell());
+                    taskList.setCellFactory(param -> new TaskCell(fullAccess));
                     System.out.println("Page refreshed successfully.");
 
                     // Uncheck all priority filter checkboxes

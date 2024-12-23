@@ -1,6 +1,7 @@
 package com.example.todolist.controller;
 
 import com.example.todolist.dao.CategoryDAO;
+import com.example.todolist.dao.CollabCategoryDAO;
 import com.example.todolist.model.Category;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,6 +17,7 @@ public class DeleteCategoryController {
     private HomeController homeController;
 
     private final CategoryDAO categoryDAO = new CategoryDAO();
+    private final CollabCategoryDAO collabCategoryDAO = new CollabCategoryDAO();
 
     /**
      * Set the category to be deleted.
@@ -33,6 +35,7 @@ public class DeleteCategoryController {
     @FXML
     public void handleConfirm() {
         if (categoryToDelete != null) {
+            collabCategoryDAO.deleteAllCollab(categoryToDelete);
             boolean success = categoryDAO.deleteCategory(categoryToDelete.getName());
             if (success) {
                 System.out.println("Category '" + categoryToDelete.getName() + "' deleted successfully.");
