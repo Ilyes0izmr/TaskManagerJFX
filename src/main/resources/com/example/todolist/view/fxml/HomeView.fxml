@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -63,20 +64,24 @@
          </HBox>
       </AnchorPane>
       <AnchorPane layoutY="707.0" prefHeight="92.0" prefWidth="1163.0">
-         <HBox alignment="CENTER_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="90.0" prefWidth="1163.0" stylesheets="@../css/home.css">
-            <Button mnemonicParsing="false" onAction="#handleAddTaskPopup" prefHeight="46.0" prefWidth="162.0" stylesheets="@../css/home.css" text="ADD TASK">
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-            </Button>
+         <HBox alignment="CENTER_LEFT" layoutX="22.0" layoutY="1.0" prefHeight="90.0" prefWidth="1142.0" stylesheets="@../css/home.css">
+            <ImageView fitHeight="40" fitWidth="40.0" onMouseClicked="#handleAddTaskPopup">
+               <style>
+                  -fx-cursor: hand; /* Changes the cursor to a hand on hover */
+               </style>
+               <image>
+                  <Image url="@../img/add.png" />
+               </image>
+            </ImageView>
+
 
             <Pane prefHeight="90.0" prefWidth="729.0" stylesheets="@../css/home.css" />
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="102.0" text="export">
+            <Button fx:id="exportButton" mnemonicParsing="false" onAction="#handleExport" prefHeight="50.0" prefWidth="102.0" text="export">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="81.0" text="import">
+            <Button fx:id="importButton" mnemonicParsing="false" onAction="#handleImport" prefHeight="50.0" prefWidth="81.0" text="import">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -114,7 +119,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <TextField fx:id="categorySearch" prefHeight="55.0" prefWidth="375.0" promptText="search" styleClass="text-field" stylesheets="@../css/home.css" />
+            <TextField fx:id="categorySearcht" prefHeight="55.0" prefWidth="375.0" promptText="search" styleClass="text-field" stylesheets="@../css/home.css" />
          </VBox>
       </AnchorPane>
       <AnchorPane layoutX="5.0" layoutY="290.0" prefHeight="248.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
@@ -126,7 +131,7 @@
       <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="544.0" prefHeight="51.0" prefWidth="376.0" styleClass="hbox" stylesheets="@../css/home.css">
          <Label prefHeight="46.0" prefWidth="274.0" stylesheets="@../css/home.css" text="   collaboration categories" />
          <Pane prefHeight="31.0" prefWidth="100.0" styleClass="pane" stylesheets="@../css/home.css" />
-         <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="169.0" stylesheets="@../css/home.css" text="New Collab" onAction="#showNewCollabPopUp"/>
+         <Button mnemonicParsing="false" onAction="#showNewCollabPopUp" prefHeight="46.0" prefWidth="169.0" stylesheets="@../css/home.css" text="New Collab" />
       </HBox>
       <AnchorPane layoutX="11.0" layoutY="274.0" prefHeight="68.0" prefWidth="370.0" styleClass="anchor-pane" stylesheets="@../css/home.css">
          <HBox layoutX="5.0" layoutY="7.0" prefHeight="44.0" prefWidth="372.0" styleClass="hbox" stylesheets="@../css/home.css">

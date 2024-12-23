@@ -1,13 +1,13 @@
 package com.example.todolist.controller;
-
 import com.example.todolist.dao.CategoryDAO;
 import com.example.todolist.dao.CollabCategoryDAO;
+import com.example.todolist.util.TaskImplSerializer;
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckMenuItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import com.example.todolist.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +19,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import com.example.todolist.dao.TaskDAO;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.io.*;
+import java.time.LocalDate;
+import java.util.*;
+
+import javafx.stage.FileChooser;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+
 
 public class HomeController {
     @FXML
@@ -545,4 +551,155 @@ public class HomeController {
         currentStage.setScene(scene);
         currentStage.show();
     }
+
+    public void handleExport(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Export Tasks");
+        File file = fileChooser.showSaveDialog(new Stage());
+        if (file != null) {
+            try {
+                ArrayList<TaskImpl> tasks = TaskDAO.getInstance().getTasksByUserName(User.getUserName());
+
+                // Register the custom serializer for TaskImpl
+                Gson gson = new GsonBuilder()
+                        .registerTypeAdapter(TaskImpl.class, new TaskImplSerializer())
+                        .setPrettyPrinting()
+                        .create();
+
+                // Convert tasks to JSON
+                String json = gson.toJson(tasks);
+
+                try (FileWriter fileWriter = new FileWriter(file)) {
+                    fileWriter.write(json);
+                    System.out.println("Tasks exported successfully to: " + file.getAbsolutePath());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Error exporting tasks: " + e.getMessage());
+            }
+        }
+    }
+    //public void handleImport(ActionEvent actionEvent){}
+    public void handleImport(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Import Tasks");
+        File file = fileChooser.showOpenDialog(new Stage());
+        if (file != null) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                // Read the entire file content as a single string
+                StringBuilder jsonContent = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    jsonContent.append(line);
+                }
+
+                // Parse the JSON array into a list of maps
+                Gson gson = new Gson();
+                Type taskListType = new TypeToken<List<Map<String, String>>>() {}.getType();
+                List<Map<String, String>> taskList = gson.fromJson(jsonContent.toString(), taskListType);
+
+                // Iterate over the list of tasks
+                for (Map<String, String> taskData : taskList) {
+                    String title = taskData.get("title");
+                    String description = taskData.get("description");
+                    String statusString = taskData.get("status");
+                    String priorityString = taskData.get("priority");
+                    String reminderString = taskData.get("reminder");
+                    String categoryName = taskData.get("categoryName");
+                    String dueDateString = taskData.get("dueDate");
+                    String creationDateString = taskData.get("creationDate");
+
+
+                    // Validate all fields
+                    if (title == null || title.trim().isEmpty()) {
+                        throw new IllegalArgumentException("Title cannot be null or empty.");
+                    }
+                    if (description == null || description.trim().isEmpty()) {
+                        throw new IllegalArgumentException("Description cannot be null or empty.");
+                    }
+                    if (statusString == null || statusString.trim().isEmpty()) {
+                        throw new IllegalArgumentException("Status cannot be null or empty.");
+                    }
+                    if (priorityString == null || priorityString.trim().isEmpty()) {
+                        throw new IllegalArgumentException("Priority cannot be null or empty.");
+                    }
+                    if (reminderString == null || reminderString.trim().isEmpty()) {
+                        throw new IllegalArgumentException("Reminder cannot be null or empty.");
+                    }
+                    if (categoryName == null || categoryName.trim().isEmpty()) {
+                        throw new IllegalArgumentException("Category name cannot be null or empty.");
+                    }
+                    if (dueDateString == null || dueDateString.trim().isEmpty()) {
+                        throw new IllegalArgumentException("Due date cannot be null or empty.");
+                    }
+                    if (creationDateString == null || creationDateString.trim().isEmpty()) {
+                        throw new IllegalArgumentException("Creation date cannot be null or empty.");
+                    }
+
+                    // Parse fields
+                    int id = 1000; // Assign a default ID or generate one dynamically
+                    Status status = Status.valueOf(statusString);
+                    Priority priority = Priority.valueOf(priorityString);
+                    Reminder reminder = Reminder.valueOf(reminderString);
+                    LocalDate dueDate = parseDate(dueDateString);
+                    LocalDate creationDate = parseDate(creationDateString);
+
+                    // Create TaskImpl object
+                    TaskImpl task = new TaskImpl(
+                            id,
+                            title,
+                            description,
+                            status,
+                            dueDate,
+                            creationDate,
+                            priority,
+                            new ArrayList<>(), // Initialize comments as an empty list
+                            reminder,
+                            categoryName,
+                            User.getUserName()
+                    );
+
+                    // Insert the task into the database
+                    TaskDAO.getInstance().addTask(task);
+                }
+
+                System.out.println("Tasks imported successfully.");
+            } catch (IOException | IllegalArgumentException e) {
+                e.printStackTrace();
+                System.out.println("Error importing tasks: " + e.getMessage());
+            }
+        }
+    }
+
+    // Helper method to parse JSON string into a Map
+    private Map<String, String> parseJsonToMap(String json) {
+        Map<String, String> map = new HashMap<>();
+        try {
+            // Remove curly braces and split by commas
+            String[] keyValuePairs = json.replace("{", "").replace("}", "").split(",");
+            for (String pair : keyValuePairs) {
+                String[] entry = pair.split(":");
+                if (entry.length == 2) {
+                    // Trim quotes and whitespace
+                    String key = entry[0].replaceAll("\"", "").trim();
+                    String value = entry[1].replaceAll("\"", "").trim();
+                    map.put(key, value);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error parsing JSON: " + e.getMessage());
+        }
+        return map;
+    }
+
+    // Helper method to parse date strings
+    private LocalDate parseDate(String dateString) {
+        String[] dateParts = dateString.split("-");
+        int year = Integer.parseInt(dateParts[0]);
+        int month = Integer.parseInt(dateParts[1]);
+        int day = Integer.parseInt(dateParts[2]);
+        return LocalDate.of(year, month, day);
+    }
 }
+

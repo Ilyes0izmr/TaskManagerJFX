@@ -8,12 +8,13 @@ src/
 |   |   |   |   |   |-- model/
 |   |   |   |   |   |   |-- Comment.java
 |   |   |   |   |   |   |-- Priority.java
+|   |   |   |   |   |   |-- Category.java    //category
 |   |   |   |   |   |   |-- Reminder.java
 |   |   |   |   |   |   |-- Status.java
 |   |   |   |   |   |   |-- Task.java           //interface implemented by TaskImpl
 |   |   |   |   |   |   |-- TaskImpl.java       // represent a task
-|   |   |   |   |   |   |-- TaskList.java       // abstract class represents the listOf tasks
-|   |   |   |   |   |   |-- TaskListImpl.java   //inherit the list of tasks
+|   |   |   |   |   |   |-- TaskList.java
+|   |   |   |   |   |   |-- TaskListImpl.java
 |   |   |   |   |   |   |-- User.java
 |   |   |   |   |   |
 |   |   |   |   |   |-- dao/
@@ -21,12 +22,26 @@ src/
 |   |   |   |   |   |   |-- UserDAO.java
 |   |   |   |   |   |   |-- CommentDAO.java
 |   |   |   |   |   |   |-- CategoryDAO.java
+|   |   |   |   |   |   |-- CollabCategoryDAO.java
 |   |   |   |   |   |
 |   |   |   |   |   |-- controller/
+|   |   |   |   |   |   |-- AddCategoryController.java
 |   |   |   |   |   |   |-- addTaskController.java
-|   |   |   |   |   |   |-- LogInController.java
+|   |   |   |   |   |   |-- CategoryCell.java
+|   |   |   |   |   |   |-- CollabCategoryCell.java
+|   |   |   |   |   |   |-- CommentController.java
+|   |   |   |   |   |   |-- DashBoardController.java
+|   |   |   |   |   |   |-- DeleteCategoryController.java
+|   |   |   |   |   |   |-- DeleteTaskController.java
+|   |   |   |   |   |   |-- EditCategoryController.java
+|   |   |   |   |   |   |-- EditTaskController.java
+|   |   |   |   |   |   |-- HomeController.java
+|   |   |   |   |   |   |-- LoginController.java
+|   |   |   |   |   |   |-- NewCollabController.java
+|   |   |   |   |   |   |-- SettingsController.java
 |   |   |   |   |   |   |-- SignUpController.java
-|   |   |   |   |   |   |-- addTaskController.java
+|   |   |   |   |   |   |-- TaskCell.java
+|   |   |   |   |   |   |-- TaskDetailsController.java
 |   |   |   |   |   |
 |   |   |   |   |   |-- util/
 |   |   |   |   |   |   |-- DatabaseConnection.java
@@ -36,10 +51,22 @@ src/
 |   |   |   |   |-- todolist/
 |   |   |   |   |   |-- view/
 |   |   |   |   |   |   |-- fxml/
-|   |   |   |   |   |   |   |-- LoginView.fxml
-|   |   |   |   |   |   |   |-- HomeView.fxml
-|   |   |   |   |   |   |   |-- AddTaskPopUp.fxml
-|   |   |   |   |   |   |   |-- SignUpView.fxml
+    |   |   |   |   |   |   |-- AddCategoryPopUp.fxml
+    |   |   |   |   |   |   |-- AddTaskPopUp.fxml
+    |   |   |   |   |   |   |-- AppearanceView.fxml
+    |   |   |   |   |   |   |-- CommentsView.fxml
+    |   |   |   |   |   |   |-- DashboardView.fxml
+    |   |   |   |   |   |   |-- DeleteCategoryView.fxml
+    |   |   |   |   |   |   |-- DeleteTaskView.fxml
+    |   |   |   |   |   |   |-- EditCategoryView.fxml
+    |   |   |   |   |   |   |-- EditTaskView.fxml
+    |   |   |   |   |   |   |-- HomeView.fxml
+    |   |   |   |   |   |   |-- LoginView.fxml
+    |   |   |   |   |   |   |-- NewCollabPopUp.fxml
+    |   |   |   |   |   |   |-- NotificationView.fxml
+    |   |   |   |   |   |   |-- SettingsView.fxml
+    |   |   |   |   |   |   |-- SignUpView.fxml
+    |   |   |   |   |   |   |-- TaskDetailsView.fxml
 |   |   |   |   |   |   |-- css/
 |   |   |   |   |   |   |   |-- styles.css
 |   |   |   |   |   |   |-- font/

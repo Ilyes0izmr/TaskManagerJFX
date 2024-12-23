@@ -233,6 +233,13 @@ public class TaskImpl implements Task {
         this.userName = userName;
     }
 
+    public String getDueDateAsString() {
+        return dueDate != null ? dueDate.toString() : null;
+    }
+
+    public String getCreationDateAsString() {
+        return creationDate != null ? creationDate.toString() : null;
+    }
 
     public String toString(){
         return "Task: "+title+", Status: "+status+", Due Date: "+dueDate;

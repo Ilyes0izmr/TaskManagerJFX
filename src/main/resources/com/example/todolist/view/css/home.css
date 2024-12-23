@@ -42,6 +42,7 @@
     -fx-background-radius: 6px;
     -fx-border-radius: 6px;
     -fx-transition: all 0.2s ease; /* Smooth Transition */
+    
 }
 
 .button:hover {

@@ -51,7 +51,8 @@
 }
 
 .bar-chart .chart-bar {
-    -fx-bar-fill: #4CAF50; /* Green bars */
+    -fx-bar-fill: #2E5077; /* Green bars */
+    -fx-bar-stroke: #2E5077;
 }
 
 .bar-chart .chart-bar:hover {
