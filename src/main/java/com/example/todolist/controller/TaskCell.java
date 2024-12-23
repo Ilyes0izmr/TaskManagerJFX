@@ -21,9 +21,13 @@ public class TaskCell extends ListCell<TaskImpl> {
     Pane pane = new Pane();
     Label dueDateLabel = new Label();
     MenuButton menuButton = new MenuButton("Options");
+    boolean fullAccess = true;  // Default to true, change as needed
 
-    public TaskCell() {
+    // Constructor modified to take the fullAccess parameter
+    public TaskCell(boolean fullAccess) {
         super();
+        this.fullAccess = fullAccess;  // Set the fullAccess value
+
         hbox.getChildren().addAll(completedCheckBox, taskLabel, pane, dueDateLabel, menuButton);
         HBox.setHgrow(pane, Priority.ALWAYS);
 
@@ -32,7 +36,13 @@ public class TaskCell extends ListCell<TaskImpl> {
         MenuItem addCommentItem = new MenuItem("Add Comment");
         MenuItem deleteItem = new MenuItem("Delete");
         MenuItem viewDetailsItem = new MenuItem("View Details");
-        menuButton.getItems().addAll(editItem, addCommentItem, deleteItem, viewDetailsItem);
+
+        // Conditionally add menu items based on fullAccess
+        if (fullAccess) {
+            menuButton.getItems().addAll(editItem, addCommentItem, deleteItem, viewDetailsItem);
+        } else {
+            menuButton.getItems().addAll(addCommentItem, viewDetailsItem);
+        }
 
         // Add event handlers for the menu items
         editItem.setOnAction(event -> {
@@ -69,15 +79,12 @@ public class TaskCell extends ListCell<TaskImpl> {
             if (task != null && completedCheckBox.isSelected()) {
                 TaskDAO taskDAO = new TaskDAO();
                 task.changeStatus(Status.COMPLETED);
-                System.out.println(task.getTitle() + ": " + task.getStatus());
                 taskDAO.editTask(task);
-            }else if (task != null && !completedCheckBox.isSelected()) {
+            } else if (task != null && !completedCheckBox.isSelected()) {
                 TaskDAO taskDAO = new TaskDAO();
                 task.changeStatus(Status.PENDING);
-                System.out.println(task.getTitle() + ": " + task.getStatus());
                 taskDAO.editTask(task);
             }
-
         });
     }
 

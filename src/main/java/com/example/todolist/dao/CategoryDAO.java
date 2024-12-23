@@ -1,5 +1,6 @@
 package com.example.todolist.dao;
 import com.example.todolist.model.Category;
+import com.example.todolist.model.User;
 import com.example.todolist.util.DatabaseConnection;
 
 import java.sql.*;
@@ -156,9 +157,10 @@ public class CategoryDAO {
 
     public boolean deleteCategory(String name) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String sqlQuery = "DELETE FROM categories WHERE name = ?";
+            String sqlQuery = "DELETE FROM categories WHERE name = ? AND userName = ?";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1, name);
+            statement.setString(2, User.getUserName());
 
             int rowsAffected = statement.executeUpdate();
             return rowsAffected > 0;
