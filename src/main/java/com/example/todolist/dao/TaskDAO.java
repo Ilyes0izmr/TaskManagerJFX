@@ -26,7 +26,7 @@ public class TaskDAO {
      * @return {@code true} if the task was successfully added, {@code false} otherwise.
      */
     public boolean addTask(TaskImpl task) {
-        String reminderName=null;
+
         try (Connection connection = DatabaseConnection.getConnection()) {
             String sqlQuery = "INSERT INTO tasks (title, description, status, dueDate, creationDate, priority, reminder ,userName ,categoryName ) VALUES (?, ?, ?, ?, ?, ?, ? ,? ,?)";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
@@ -402,6 +402,8 @@ public class TaskDAO {
 
         return upcomingDeadlines;
     }
+
+
 
 
 }
