@@ -42,7 +42,7 @@ public class SettingsController {
     public void handleAppearance(ActionEvent actionEvent) {
         clearActiveButtonStyles();
         appearanceButton.getStyleClass().add("active-button"); // Highlight the appearance button
-        loadContent("/com/example/todolist/view/fxml/AppearanceView.fxml");
+        loadContent("/com/example/todolist/view/fxml/InBoxView.fxml");
     }
 
     // Method to handle the "Notification" button click

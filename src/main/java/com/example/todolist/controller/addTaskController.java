@@ -3,6 +3,7 @@ package com.example.todolist.controller;
 import com.example.todolist.dao.CategoryDAO;
 import com.example.todolist.dao.TaskDAO;
 import com.example.todolist.model.*;
+import com.example.todolist.ui.NotificationAlert;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -68,8 +69,10 @@ public class addTaskController {
             insertTask(taskTitle , taskDescription , status , deuDate , creationDate , priority , reminder ,categoryName,userName);
             System.out.println("task added successfully");
             taskFieldTitle.getScene().getWindow().hide();
+            NotificationAlert.showAlert("","Task added successfully");
         }else{
             System.out.println("task title / due date is empty ");
+            NotificationAlert.showAlert("","Task addition failed");
         }
     }
 
