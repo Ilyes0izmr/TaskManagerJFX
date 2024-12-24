@@ -26,6 +26,7 @@ public class MainApp extends Application {
         primaryStage.setMaxWidth(1550);
 
 
+
         // Show the window
         primaryStage.show();
     }

@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4138a9b-6d62-4903-87fc-3b154d6e1c51" name="Changes" comment="i added the ourDataBase" />
+    <list default="true" id="e4138a9b-6d62-4903-87fc-3b154d6e1c51" name="Changes" comment="i added the ourDataBase">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/MainApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/MainApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/DeleteCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/DeleteCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/NewCollabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/NewCollabController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/TaskCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/TaskCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/CategoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/CollabCategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/dao/CollabCategoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/NewCollabPopUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/NewCollabPopUp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/mySQL/todolist.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/mySQL/todolist.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,25 +52,25 @@
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainApp.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;ilyes&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/JAVA2/SceneBuilder.exe&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.MainApp.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Merging ilyes",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/JAVA2/SceneBuilder.exe",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.todolist.controller" />
