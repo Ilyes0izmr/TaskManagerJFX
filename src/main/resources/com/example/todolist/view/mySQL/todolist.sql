@@ -3,7 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2024 at 10:39 PM
+
+-- Generation Time: Dec 23, 2024 at 02:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,17 +54,21 @@ INSERT INTO `categories` (`name`, `userName`) VALUES
 CREATE TABLE `collabcategories` (
   `name` varchar(255) NOT NULL,
   `ownerUserName` varchar(255) NOT NULL,
-  `collabUserName` varchar(255) NOT NULL
+  `collabUserName` varchar(255) NOT NULL,
+  `fullAccess` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `collabcategories`
 --
 
-INSERT INTO `collabcategories` (`name`, `ownerUserName`, `collabUserName`) VALUES
-('job', 'hama', 'aa'),
-('School', 'aa', 'hama'),
-('temp', 'aa', 'hama');
+INSERT INTO `collabcategories` (`name`, `ownerUserName`, `collabUserName`, `fullAccess`) VALUES
+('School', 'aa', 'hama', 0),
+('School', 'hama', 'aa', 0),
+('School', 'hama', 'ui', 0),
+('sdfghjk', 'hama', 'ui', 1),
+('temp', 'aa', 'hama', 0);
+
 
 -- --------------------------------------------------------
 
@@ -112,11 +117,11 @@ INSERT INTO `tasks` (`id`, `title`, `description`, `status`, `dueDate`, `creatio
 (7, 'aaaaa', 'gg', 'COMPLETED', '2024-12-10', '2024-12-07 23:00:00', 'MEDIUM', 'WEEKLY', 'idk fr', 'hama'),
 (9, 'idk', 'asdfghjk', 'COMPLETED', '2024-12-16', '2024-12-07 23:00:00', 'LOW', 'WEEKLY', NULL, 'hama'),
 (10, 'aaaaaaa', 'aaaaaaaaaaaaaaaaaaaa', 'COMPLETED', '2024-12-27', '2024-12-07 23:00:00', 'HIGH', 'WEEKLY', 'sdfghjk', 'hama'),
-(12, 'moatsm', 'asdfghj', 'IN_PROGRESS', '2024-12-26', '2024-12-07 23:00:00', 'MEDIUM', 'WEEKLY', 'School', 'hama'),
+(12, 'moatsm', 'asdfghj', 'IN_PROGRESS', '2024-12-26', '2024-12-07 23:00:00', 'MEDIUM', 'WEEKLY', NULL, 'hama'),
 (13, 'ta', 'fff', 'PENDING', '2024-12-17', '2024-12-07 23:00:00', 'LOW', 'WEEKLY', NULL, 'aa'),
-(14, 'sd', 'ssssssss', 'PENDING', '2024-12-24', '2024-12-07 23:00:00', 'LOW', 'WEEKLY', 'School', 'aa'),
-(15, 'oday', 'asdfgh', 'PENDING', '2024-12-17', '2024-12-08 23:00:00', 'HIGH', 'WEEKLY', 'job', 'hama'),
-(16, 'asdfgh', 'sdfghj', 'COMPLETED', '2024-12-18', '2024-12-08 23:00:00', 'HIGH', 'WEEKLY', 'School', 'hama'),
+(14, 'sd', 'ssssssss', 'PENDING', '2024-12-24', '2024-12-07 23:00:00', 'LOW', 'WEEKLY', NULL, 'aa'),
+(15, 'oday', 'asdfgh', 'PENDING', '2024-12-17', '2024-12-08 23:00:00', 'HIGH', 'WEEKLY', NULL, 'hama'),
+(16, 'asdfgh', 'sdfghj', 'COMPLETED', '2024-12-18', '2024-12-08 23:00:00', 'HIGH', 'WEEKLY', NULL, 'hama'),
 (18, 'tem', 'dfgh', 'PENDING', '2024-12-26', '2024-12-14 23:00:00', 'LOW', 'WEEKLY', 'temp', 'aa');
 
 -- --------------------------------------------------------
@@ -137,8 +142,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userName`, `passWord`, `fullName`, `email`) VALUES
-('aa', 'Ab1', 'aa', '1@gmai.com'),
-('hama', '1', 'mohamed meftah', '1');
+('aa', 'Ab1', 'aa', '1@gmail.com'),
+('hama', '1', 'mohamed meftah', '1'),
+('ui', 'Ui1', 'yes', 'ui.@i.com');
 
 --
 -- Indexes for dumped tables
