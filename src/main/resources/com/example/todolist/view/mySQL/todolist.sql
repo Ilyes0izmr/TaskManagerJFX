@@ -3,8 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-
--- Generation Time: Dec 23, 2024 at 02:26 PM
+-- Generation Time: Dec 24, 2024 at 10:13 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -63,12 +62,9 @@ CREATE TABLE `collabcategories` (
 --
 
 INSERT INTO `collabcategories` (`name`, `ownerUserName`, `collabUserName`, `fullAccess`) VALUES
-('School', 'aa', 'hama', 0),
 ('School', 'hama', 'aa', 0),
 ('School', 'hama', 'ui', 0),
-('sdfghjk', 'hama', 'ui', 1),
-('temp', 'aa', 'hama', 0);
-
+('sdfghjk', 'hama', 'ui', 1);
 
 -- --------------------------------------------------------
 
@@ -89,6 +85,32 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`id`, `taskId`, `text`, `creationDate`) VALUES
 (5, 7, 'qqqqq', '2024-12-14 12:43:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `notificationType` enum('TASK','CATEGORY','SYSTEM') NOT NULL,
+  `userName` varchar(255) NOT NULL,
+  `isRead` tinyint(1) DEFAULT 0,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `title`, `content`, `notificationType`, `userName`, `isRead`, `createdAt`) VALUES
+(1, 'Tasks are exported', 'Tasks exported successfully from the json file', 'TASK', 'hama', 0, '2024-12-24 20:50:15'),
+(2, 'Tasks are exported', 'Tasks exported successfully from the json file', 'TASK', 'hama', 0, '2024-12-24 20:53:03'),
+(3, 'Tasks are exported', 'Tasks exported successfully from the json file', 'TASK', 'hama', 0, '2024-12-24 20:56:37'),
+(4, 'Tasks are exported', 'Tasks exported successfully from the json file', 'TASK', 'hama', 0, '2024-12-24 20:57:20');
 
 -- --------------------------------------------------------
 
@@ -122,7 +144,10 @@ INSERT INTO `tasks` (`id`, `title`, `description`, `status`, `dueDate`, `creatio
 (14, 'sd', 'ssssssss', 'PENDING', '2024-12-24', '2024-12-07 23:00:00', 'LOW', 'WEEKLY', NULL, 'aa'),
 (15, 'oday', 'asdfgh', 'PENDING', '2024-12-17', '2024-12-08 23:00:00', 'HIGH', 'WEEKLY', NULL, 'hama'),
 (16, 'asdfgh', 'sdfghj', 'COMPLETED', '2024-12-18', '2024-12-08 23:00:00', 'HIGH', 'WEEKLY', NULL, 'hama'),
-(18, 'tem', 'dfgh', 'PENDING', '2024-12-26', '2024-12-14 23:00:00', 'LOW', 'WEEKLY', 'temp', 'aa');
+(18, 'tem', 'dfgh', 'PENDING', '2024-12-26', '2024-12-14 23:00:00', 'LOW', 'WEEKLY', 'temp', 'aa'),
+(19, 'ileys', 'ilyesilyesiyeylieh', 'PENDING', '2024-12-26', '2024-12-23 23:00:00', 'LOW', 'WEEKLY', 'School', 'hama'),
+(20, '2', 'Q3EQWER', 'PENDING', '2024-12-13', '2024-12-23 23:00:00', 'MEDIUM', 'WEEKLY', 'job', 'hama'),
+(21, 'wqerf', 'qreqa', 'PENDING', '2024-12-27', '2024-12-23 23:00:00', 'MEDIUM', 'WEEKLY', 'idk fr', 'hama');
 
 -- --------------------------------------------------------
 
@@ -173,6 +198,13 @@ ALTER TABLE `comments`
   ADD KEY `taskId` (`taskId`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userName` (`userName`);
+
+--
 -- Indexes for table `tasks`
 --
 ALTER TABLE `tasks`
@@ -199,10 +231,16 @@ ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
@@ -226,6 +264,12 @@ ALTER TABLE `collabcategories`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`taskId`) REFERENCES `tasks` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `users` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tasks`
