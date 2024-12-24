@@ -6,6 +6,8 @@ import com.example.todolist.model.TaskImpl;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -27,7 +29,6 @@ public class TaskCell extends ListCell<TaskImpl> {
     public TaskCell(boolean fullAccess) {
         super();
         this.fullAccess = fullAccess;  // Set the fullAccess value
-
         hbox.getChildren().addAll(completedCheckBox, taskLabel, pane, dueDateLabel, menuButton);
         HBox.setHgrow(pane, Priority.ALWAYS);
 
@@ -103,21 +104,15 @@ public class TaskCell extends ListCell<TaskImpl> {
 
     private void handleAddComment(TaskImpl task) {
         try {
-            // Load the FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/CommentsView.fxml"));
             Pane pane = loader.load();
-
-            // Pass the task to the CommentController
             CommentController controller = loader.getController();
             controller.initializeTask(task);
 
-            // Set up a new stage for displaying the comment UI
             Stage commentStage = new Stage();
             commentStage.setTitle("Add Comment");
             commentStage.setScene(new Scene(pane));
-            commentStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with the main window
-
-            // Show the stage and wait for it to close
+            commentStage.initModality(Modality.APPLICATION_MODAL);
             commentStage.showAndWait();
 
             System.out.println("Comment window closed for task: " + task.getTitle());
@@ -127,29 +122,19 @@ public class TaskCell extends ListCell<TaskImpl> {
         }
     }
 
-
     private void handleEditTask(TaskImpl task) {
         try {
-            // Load the FXML file for the edit task view
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/EditTaskView.fxml"));
             Pane pane = loader.load();
-
-            // Get the controller for the EditTaskView
             EditTaskController controller = loader.getController();
-            controller.setTask(task); // Pass the task to be edited to the controller
+            controller.setTask(task);
 
-            // Create a new stage for the edit task window
             Stage stage = new Stage();
             stage.setTitle("Edit Task");
             stage.setScene(new Scene(pane));
-
-            // Make the stage modal, so the user must close it to interact with the main window
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
 
-            // Show the window
-            stage.showAndWait();  // Use showAndWait to block interaction until the window is closed
-
-            // Optionally, refresh the main view after closing the edit window
             HomeController.getInstance().refresh();
         } catch (IOException e) {
             e.printStackTrace();
@@ -159,33 +144,25 @@ public class TaskCell extends ListCell<TaskImpl> {
 
     private void handleDeleteTask(TaskImpl task) {
         try {
-            // Load the FXML file for the delete confirmation dialog
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/DeleteTaskView.fxml"));
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/HomeView.fxml"));
             Pane pane = loader.load();
-
-            // Get the controller for the DeleteTaskView
             DeleteTaskController controller = loader.getController();
-            controller.setTask(task); // Pass the task to be deleted to the controller
+            controller.setTask(task);
 
-            // Create a new stage for the delete confirmation dialog
             Stage popupStage = new Stage();
             popupStage.setTitle("Delete Task");
-            popupStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with other windows
+            popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setResizable(false);
             popupStage.setScene(new Scene(pane));
-            // Refresh the task list after deletion
-            // Show the popup and wait for it to close
             popupStage.showAndWait();
-            HomeController.getInstance().refresh();
 
+            HomeController.getInstance().refresh();
             System.out.println("Delete task: " + task.getTitle());
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error loading DeleteTaskView.");
         }
     }
-
 
     private void handleViewDetails(TaskImpl task) {
         try {

@@ -3,6 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+
 -- Generation Time: Dec 23, 2024 at 02:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
@@ -38,6 +39,7 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`name`, `userName`) VALUES
 ('idk fr', 'hama'),
+('job', 'hama'),
 ('School', 'aa'),
 ('School', 'hama'),
 ('sdfghjk', 'hama'),
@@ -66,6 +68,7 @@ INSERT INTO `collabcategories` (`name`, `ownerUserName`, `collabUserName`, `full
 ('School', 'hama', 'ui', 0),
 ('sdfghjk', 'hama', 'ui', 1),
 ('temp', 'aa', 'hama', 0);
+
 
 -- --------------------------------------------------------
 
