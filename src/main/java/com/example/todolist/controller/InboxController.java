@@ -1,8 +1,8 @@
 package com.example.todolist.controller;
 
 import com.example.todolist.dao.NotificationDAO;
-import com.example.todolist.model.Notification;
-import com.example.todolist.model.User;
+import com.example.todolist.dao.TaskDAO;
+import com.example.todolist.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -18,6 +18,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InboxController {
@@ -31,17 +33,21 @@ public class InboxController {
     @FXML
     private TextField searchTextField;
 
+    private TaskDAO taskDAO;
     private NotificationDAO notificationDAO;
     private ObservableList<Notification> allNotifications;
     private FilteredList<Notification> filteredNotifications;
 
+
     public InboxController() {
-        // Initialize the DAO
+        taskDAO = new TaskDAO();
         notificationDAO = new NotificationDAO();
+
     }
 
     @FXML
     public void initialize() {
+        hundlReminder();
         // Load notifications from the database
         try {
             List<Notification> notifications = notificationDAO.getNotificationsByUser(User.getUserName()); // Replace with actual username
@@ -101,7 +107,89 @@ public class InboxController {
         });
     }
 
-    //TODO:add the logic to add in the inbox notification about remuinders nad the collaborations
+    private void hundlReminder() {
+        try {
+            // Get all tasks for the current user
+            ArrayList<TaskImpl> tasks = taskDAO.getTasksByUserName(User.getUserName());
+            LocalDate today = LocalDate.now();
+
+            for (TaskImpl task : tasks) {
+                // Regular Reminders
+                if (isReminderDay(task.getCreationDate(), task.getReminder(), today) &&
+                        !notificationDAO.notificationExists(task.getReminder() + " Reminder", today)) {
+                    Notification notification = new Notification(
+                            task.getReminder() + " Reminder", // e.g., "WEEKLY Reminder"
+                            "You have a " + task.getReminder().toString().toLowerCase() + " reminder for: " + task.getTitle() + ".",
+                            NotifType.TASK,
+                            LocalDate.now()
+                    );
+                    notificationDAO.addNotification(notification, User.getUserName());
+                }
+
+                // Due Date Reminders (3 Days Before)
+                if (today.equals(task.getDueDate().minusDays(3)) &&
+                        !notificationDAO.notificationExists("Due Date Approaching", today)) {
+                    Notification notification = new Notification(
+                            "Due Date Approaching",
+                            "The task '" + task.getTitle() + "' is due in 3 days. Make sure to finish it before then.",
+                            NotifType.TASK,
+                            LocalDate.now()
+                    );
+                    notificationDAO.addNotification(notification, User.getUserName());
+                }
+
+                // Due Date Reminders (1 Day Before)
+                if (today.equals(task.getDueDate().minusDays(1)) &&
+                        !notificationDAO.notificationExists("Due Date Approaching", today)) {
+                    Notification notification = new Notification(
+                            "Due Date Approaching",
+                            "The task '" + task.getTitle() + "' is due tomorrow. Make sure to finish it before then.",
+                            NotifType.TASK,
+                            LocalDate.now()
+                    );
+                    notificationDAO.addNotification(notification, User.getUserName());
+                }
+
+                // Overdue Reminders
+                if (today.isAfter(task.getDueDate()) &&
+                        !notificationDAO.notificationExists("Task Overdue", today)) {
+                    Notification notification = new Notification(
+                            "Task Overdue",
+                            "The task '" + task.getTitle() + "' is overdue. I hope there is no parchment for you :(",
+                            NotifType.TASK,
+                            LocalDate.now()
+                    );
+                    notificationDAO.addNotification(notification, User.getUserName());
+
+                    // Update task status to OVERDUE
+                    task.setStatus(Status.OVERDUE);
+                    taskDAO.editTask(task); // Save the updated task to the database
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Error handling reminders: " + e.getMessage());
+        }
+    }
+
+    private boolean isReminderDay(LocalDate creationDate, Reminder reminder, LocalDate today) {
+        if (creationDate == null || reminder == null) {
+            return false;
+        }
+
+        return switch (reminder) {
+            case DAILY ->
+                // Send a reminder every day
+                    true;
+            case WEEKLY ->
+                // Send a reminder every week on the same day as the creation date
+                    today.getDayOfWeek() == creationDate.getDayOfWeek();
+            case MONTHLY ->
+                // Send a reminder every month on the same day of the month as the creation date
+                    today.getDayOfMonth() == creationDate.getDayOfMonth();
+            default -> false; // Unknown reminder interval
+        };
+    }
 
 
     // Inner private class for custom ListCell

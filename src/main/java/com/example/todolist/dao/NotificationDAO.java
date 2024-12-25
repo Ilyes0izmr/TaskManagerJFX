@@ -33,12 +33,11 @@ public class NotificationDAO {
             statement.setString(1, userName);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
                     String title = resultSet.getString("title");
                     String content = resultSet.getString("content");
                     NotifType type = NotifType.valueOf(resultSet.getString("notificationType")); // Map string to enum
                     boolean isRead = resultSet.getBoolean("isRead");
-                    Notification notification = new Notification(id, title, content, type, LocalDate.now());
+                    Notification notification = new Notification(title, content, type, LocalDate.now());
                     notification.setRead(isRead);
                     notifications.add(notification);
                 }
@@ -46,14 +45,24 @@ public class NotificationDAO {
         }
         return notifications;
     }
-
-    // Method to mark a notification as read
-    public void markNotificationAsRead(int notificationId) throws SQLException {
-        String query = "UPDATE notifications SET isRead = TRUE WHERE id = ?";
+    public boolean notificationExists(String title, LocalDate creationDate) throws SQLException {
+        String query = "SELECT COUNT(*) FROM notifications WHERE title = ? AND creationDate = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, notificationId);
-            statement.executeUpdate();
+            statement.setString(1, title);
+            statement.setDate(2, Date.valueOf(creationDate));
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0; // If count > 0, the notification already exists
+                }
+            }
         }
+        return false;
+    }
+
+    // Method to mark a notification as read
+    public void markNotificationAsRead() throws SQLException {
+
     }
 }

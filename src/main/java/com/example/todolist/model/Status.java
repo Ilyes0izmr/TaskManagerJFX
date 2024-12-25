@@ -17,5 +17,6 @@ public enum Status {
     COMPLETED,
     IN_PROGRESS,
     PENDING,
-    ABANDONED
+    ABANDONED,
+    OVERDUE
 }
