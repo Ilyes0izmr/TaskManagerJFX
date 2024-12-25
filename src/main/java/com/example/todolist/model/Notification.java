@@ -3,17 +3,15 @@ package com.example.todolist.model;
 import java.time.LocalDate;
 
 public class Notification {
-    private int id ;
     private String title ;
     private String content ;
     private NotifType notificationType ;
     private LocalDate creationDate ;
     private boolean read ;
     // Constructors
-    public Notification(int id , String title, String content , NotifType notificationType , LocalDate creationDate) {
+    public Notification(String title, String content , NotifType notificationType , LocalDate creationDate) {
         this.title = title;
         this.content = content;
-        this.id = id ;
         this.notificationType = notificationType;
         this.creationDate = creationDate;
     }
@@ -34,14 +32,6 @@ public class Notification {
 
     public void setContent(String content) {
         this.content = content;
-    }
-    //setters and getters for the id
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     // Getter and Setter for NotifType
