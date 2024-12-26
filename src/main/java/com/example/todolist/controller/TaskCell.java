@@ -6,8 +6,6 @@ import com.example.todolist.model.TaskImpl;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -21,6 +19,7 @@ public class TaskCell extends ListCell<TaskImpl> {
     CheckBox completedCheckBox = new CheckBox();
     Label taskLabel = new Label();
     Pane pane = new Pane();
+    Label priorityLabel = new Label();
     Label dueDateLabel = new Label();
     MenuButton menuButton = new MenuButton("Options");
     boolean fullAccess = true;  // Default to true, change as needed
@@ -29,8 +28,9 @@ public class TaskCell extends ListCell<TaskImpl> {
     public TaskCell(boolean fullAccess) {
         super();
         this.fullAccess = fullAccess;  // Set the fullAccess value
-        hbox.getChildren().addAll(completedCheckBox, taskLabel, pane, dueDateLabel, menuButton);
+        hbox.getChildren().addAll(completedCheckBox, taskLabel, pane,priorityLabel,dueDateLabel, menuButton);
         HBox.setHgrow(pane, Priority.ALWAYS);
+        priorityLabel.setStyle("-fx-padding: 0 10 0 0;");
 
         // Add menu items to the MenuButton
         MenuItem editItem = new MenuItem("Edit");
@@ -96,12 +96,12 @@ public class TaskCell extends ListCell<TaskImpl> {
             setGraphic(null);
         } else {
             taskLabel.setText(task.getTitle());
+            priorityLabel.setText(task.getPriority().name());
             dueDateLabel.setText("Due: " + task.getDueDate());
             completedCheckBox.setSelected(task.getStatus() == Status.COMPLETED);
             setGraphic(hbox);
         }
     }
-
     private void handleAddComment(TaskImpl task) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/CommentsView.fxml"));
@@ -121,7 +121,6 @@ public class TaskCell extends ListCell<TaskImpl> {
             e.printStackTrace();
         }
     }
-
     private void handleEditTask(TaskImpl task) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/EditTaskView.fxml"));
@@ -141,7 +140,6 @@ public class TaskCell extends ListCell<TaskImpl> {
             System.out.println("Error loading EditTaskView.");
         }
     }
-
     private void handleDeleteTask(TaskImpl task) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/DeleteTaskView.fxml"));
@@ -163,7 +161,6 @@ public class TaskCell extends ListCell<TaskImpl> {
             System.out.println("Error loading DeleteTaskView.");
         }
     }
-
     private void handleViewDetails(TaskImpl task) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/TaskDetailsView.fxml"));

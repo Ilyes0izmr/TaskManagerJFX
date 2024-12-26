@@ -1,108 +1,141 @@
-/* General Styles */
 .root {
-    -fx-background-color: #1E2024; /* Dark Gray-Blue Background */
-    -fx-font-family: "JetBrains Mono Regular"; /* Font Style */
-    -fx-text-fill: #E0E5EC; /* Soft White Text */
+    -fx-font-family: "ubuntu";
+    -fx-color-purple: #07002D;
+    -fx-color-white: #FDFCFC;
+    -fx-color-green: #15F5BA;
+    -fx-color-light-purple: #836FFF;
+    -fx-color-pink: #EB3678;
+    -fx-color-grey: #C6C6C6;
 }
 
-/* Labels */
-.label {
-    -fx-text-fill: #E0E5EC; /* Soft White Text */
-    -fx-font-size: 16px; /* Default Font Size */
+.backgroundContainer {
+    -fx-background-color: -fx-color-purple;
 }
 
-.left-pane {
-    -fx-background-color: #2A303A; /* Slightly Lighter Gray-Blue */
-    -fx-background-radius: 8px; /* Rounded Corners */
+.tasksContainer{
+    -fx-background-color: -fx-color-white;
+    -fx-background-radius: 8px;
+
 }
 
-/* Input Fields */
-.text-field {
-    -fx-background-color: #3A404A; /* Muted Gray-Blue */
-    -fx-text-fill: #E0E5EC; /* Soft White Text */
-    -fx-font-size: 14px;
-    -fx-padding: 10px;
-    -fx-border-color: transparent;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
+
+.welcome-label {
+    -fx-font-size: 36px;           /* Font size */
+    -fx-font-weight: bold;         /* Font weight */
+    -fx-text-fill: #333333;        /* Text color */
+    -fx-background-color: transparent; /* Background color (transparent here) */
+    -fx-padding: 10px;             /* Padding around the text */
+    -fx-border-color: -fx-color-white;    /* Border color */
+    -fx-border-width: 2px;        /* Border width */
+    -fx-border-radius: 5px;       /* Border radius (rounded corners) */
+    -fx-alignment: center;        /* Center align text */
 }
 
-.text-field:focused {
-    -fx-background-color: #4A5A6E; /* Slightly Lighter Gray-Blue on Focus */
-    -fx-border-color: #5A6A80; /* Soft Blue-Gray Border */
-    -fx-border-width: 2px;
+.welcome-user-label {
+    -fx-font-size: 32px;           /* Font size */
+    -fx-text-fill: -fx-color-light-purple;        /* Text color */
+    -fx-background-color: transparent; /* Background color (transparent here) */
+    -fx-padding: 10px;             /* Padding around the text */
+    -fx-border-color: -fx-color-white;    /* Border color */
+    -fx-border-width: 2px;        /* Border width */
+    -fx-border-radius: 5px;       /* Border radius (rounded corners) */
 }
 
-/* Buttons */
-.button {
-    -fx-background-color: #5A6A80; /* Soft Blue-Gray */
-    -fx-text-fill: #E0E5EC; /* Soft White Text */
-    -fx-font-size: 16px;
-    -fx-padding: 10px;
-    -fx-background-radius: 6px;
-    -fx-border-radius: 6px;
-    -fx-transition: all 0.2s ease; /* Smooth Transition */
-    
+.time-user-label {
+    -fx-font-size: 18px;           /* Font size */
+    -fx-text-fill: #6B6868;        /* Text color */
+    -fx-background-color: transparent; /* Background color (transparent here) */
+    -fx-padding: 10px;             /* Padding around the text */
+    -fx-border-width: 2px;        /* Border width */
+    -fx-border-radius: 5px;       /* Border radius (rounded corners) */
 }
 
-.button:hover {
-    -fx-background-color: #4A5A6E; /* Slightly Lighter Gray-Blue on Hover */
-    -fx-scale-x: 1.02;
-    -fx-scale-y: 1.02;
+.category-name-label {
+   -fx-font-size: 15px;           /* Font size */
+   -fx-text-fill: -fx-color-white;        /* Text color */
+   -fx-background-color: -fx-color-light-purple; /* Background color (transparent here) */
+   -fx-background-radius: 12px;
+   -fx-padding: 5px;             /* Padding around the text */
+   -fx-border-color: -fx-color-light-purple;    /* Border color */
+   -fx-border-width: 2px;        /* Border width */
+   -fx-border-radius: 32px;       /* Border radius (rounded corners) */
+}
+/*******************************************************************************/
+.menu-button-label {
+    -fx-font-size: 16px;           /* Font size */
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-color-purple;       /* Text color */
+    -fx-background-color: transparent; /* Background color (transparent here) */
+    -fx-padding: 10px;             /* Padding around the text */
+    -fx-border-width: 2px;        /* Border width */
+    -fx-border-radius: 5px;       /* Border radius (rounded corners) */
 }
 
-.button:pressed {
-    -fx-background-color: #2A303A; /* Darker Gray-Blue on Press */
-    -fx-scale-x: 0.98;
-    -fx-scale-y: 0.98;
+.menu-button-button-style{
+    -fx-background-color: -fx-color-white; /* Background color */
+    -fx-background-radius: 15px;    /* Rounded corners */
+    -fx-border-color: -fx-color-white;      /* Border color */
+    -fx-border-width: 2px;          /* Border width */
+    -fx-border-radius: 15px;        /* Border rounded corners */
+    -fx-text-fill: white;           /* Text color */
 }
 
-/* Menu Buttons */
-.menu-button {
-    -fx-background-color: #3A404A; /* Muted Gray-Blue */
-    -fx-text-fill: #E0E5EC; /* Soft White Text */
-    -fx-font-size: 14px;
-    -fx-padding: 8px 12px;
-    -fx-border-color: transparent;
-    -fx-background-radius: 6px;
-    -fx-border-radius: 6px;
+.menu-button-green-border-background{
+    -fx-background-color:-fx-color-white; /* Background color (transparent here) */
+    -fx-background-radius: 11px;       /* Border radius (rounded corners) */
+    -fx-border-color: -fx-color-green;    /* Border color */
+    -fx-border-width: 1px;        /* Border width */
+    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
 }
 
-.menu-button:hover {
-    -fx-background-color: #4A5A6E; /* Slightly Lighter Gray-Blue on Hover */
+.menu-button-green-effect{
+    -fx-background-color: -fx-color-green; /* Background color (transparent here) */
+    -fx-background-radius: 10px;       /* Border radius (rounded corners) */
+    -fx-border-color: -fx-color-green;    /* Border color */
+    -fx-border-width: 7px;        /* Border width */
+    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
 }
 
-/* CheckMenu Items */
-.check-menu-item, .menu-item {
-    -fx-text-fill: #E0E5EC; /* Soft White Text */
-    -fx-font-size: 14px;
+.menu-button-pink-border-background{
+    -fx-background-color:-fx-color-white; /* Background color (transparent here) */
+    -fx-background-radius: 11px;       /* Border radius (rounded corners) */
+    -fx-border-color: -fx-color-pink;    /* Border color */
+    -fx-border-width: 1px;        /* Border width */
+    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
 }
 
-/* ListView */
+.menu-button-pink-effect{
+    -fx-background-color: -fx-color-pink; /* Background color (transparent here) */
+    -fx-background-radius: 10px;       /* Border radius (rounded corners) */
+    -fx-border-color: -fx-color-pink;    /* Border color */
+    -fx-border-width: 7px;        /* Border width */
+    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
+}
+
+.menu-button-purple-border-background{
+    -fx-background-color:-fx-color-white; /* Background color (transparent here) */
+    -fx-background-radius: 11px;       /* Border radius (rounded corners) */
+    -fx-border-color: -fx-color-light-purple;    /* Border color */
+    -fx-border-width: 1px;        /* Border width */
+    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
+}
+
+.menu-button-purple-effect{
+    -fx-background-color: -fx-color-light-purple; /* Background color (transparent here) */
+    -fx-background-radius: 10px;       /* Border radius (rounded corners) */
+    -fx-border-color: -fx-color-light-purple;    /* Border color */
+    -fx-border-width: 7px;        /* Border width */
+    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
+}
+/*******************************************************************************/
+/*TASKS STYLES */
+
+/* General styling for the ListView */
 .list-view {
-    -fx-control-inner-background: #2A303A; /* Slightly Lighter Gray-Blue */
-    -fx-text-fill: #E0E5EC; /* Soft White Text */
-    -fx-border-color: transparent;
-    -fx-background-radius: 8px; /* Rounded Corners */
+    -fx-background-color: -fx-color-white; /* Background color */
+    -fx-border-color: -fx-color-white;   /* Border color */
+    -fx-border-width: 2px;                /* Border width */
+    -fx-border-radius: 32px;              /* Rounded corners */
+    -fx-padding: 5px;                     /* Padding inside the ListView */
 }
 
-/* HBox and VBox */
-.hbox, .vbox {
-    -fx-spacing: 10px; /* Space Between Items */
-    -fx-background-color: transparent; /* Transparent Background */
-}
-
-.hbox > .label, .vbox > .label {
-    -fx-font-size: 18px;
-}
-
-/* AnchorPane */
-.anchor-pane {
-    -fx-background-color: #2A303A; /* Slightly Lighter Gray-Blue */
-    -fx-background-radius: 8px; /* Rounded Corners */
-}
-
-/* Pane */
-.pane {
-    -fx-background-color: transparent; /* Transparent for Placeholder Panes */
-}
