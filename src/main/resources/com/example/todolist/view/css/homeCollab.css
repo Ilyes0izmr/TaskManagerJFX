@@ -1,0 +1,73 @@
+/* Style for the ListCell */
+.list-cell {
+    -fx-background-color: #07002D; /* Dark purple background */
+    -fx-padding: 0; /* Remove default padding */
+    -fx-border-color: transparent; /* Remove borders */
+}
+
+/* Hover effect for the ListCell */
+.list-cell:hover {
+    -fx-background-color: #836FFF !important; /* Light purple on hover */
+}
+
+/* Selected state for the ListCell */
+.list-cell:selected {
+    -fx-background-color: #836FFF !important; /* Light purple when selected */
+}
+
+/* Style for the HBox */
+.collab-hbox {
+    -fx-alignment: center-left;
+    -fx-spacing: 2; /* Reduced spacing between elements */
+    -fx-padding: 0 5 0 5; /* Smaller padding */
+    -fx-min-height: 30px;
+    -fx-background-color: #07002D; /* Dark purple background */
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for the HBox */
+.collab-hbox:hover {
+    -fx-background-color: #836FFF !important; /* Light purple on hover */
+}
+
+/* Style for the name Label */
+.collab-name {
+    -fx-font-size: 12px;
+    -fx-text-fill: #FDFCFC !important; /* White text */
+    -fx-min-width: 150px;
+    -fx-max-width: 200px;
+    -fx-wrap-text: true;
+    -fx-alignment: center-left;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Style for the ownerName Label */
+.collab-owner {
+    -fx-font-size: 12px;
+    -fx-text-fill: #FDFCFC !important; /* White text */
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Style for the spacer Pane */
+.collab-spacer {
+    -fx-background-color: transparent;
+    -fx-hgrow: always; /* Makes the spacer fill available space */
+}
+
+/* Style for the delete Button */
+.collab-delete-button {
+    -fx-background-color: #EB3678; /* Pink background */
+    -fx-text-fill: #fdfcfc; /* White text */
+    -fx-font-size: 10px;
+    -fx-background-radius: 3px;
+    -fx-padding: 3px 8px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for the delete Button */
+.collab-delete-button:hover {
+    -fx-background-color: #ff6b8b; /* Lighter pink on hover */
+}

@@ -6,6 +6,7 @@
     -fx-color-light-purple: #836FFF;
     -fx-color-pink: #EB3678;
     -fx-color-grey: #C6C6C6;
+    -fx-color-white2: f2f3f5;
 }
 
 .backgroundContainer {
@@ -13,11 +14,10 @@
 }
 
 .tasksContainer{
-    -fx-background-color: -fx-color-white;
+    -fx-background-color: #f7f7f7;
     -fx-background-radius: 1px;
 
 }
-
 
 .welcome-label {
     -fx-font-size: 36px;           /* Font size */
@@ -25,7 +25,7 @@
     -fx-text-fill: -fx-color-purple;        /* Text color */
     -fx-background-color: transparent; /* Background color (transparent here) */
     -fx-padding: 10px;             /* Padding around the text */
-    -fx-border-color: -fx-color-white;    /* Border color */
+    -fx-border-color: #f7f7f7;    /* Border color */
     -fx-border-width: 2px;        /* Border width */
     -fx-border-radius: 5px;       /* Border radius (rounded corners) */
     -fx-alignment: center;        /* Center align text */
@@ -36,7 +36,7 @@
     -fx-text-fill: -fx-color-light-purple;        /* Text color */
     -fx-background-color: transparent; /* Background color (transparent here) */
     -fx-padding: 10px;             /* Padding around the text */
-    -fx-border-color: -fx-color-white;    /* Border color */
+    -fx-border-color: #f7f7f7;    /* Border color */
     -fx-border-width: 2px;        /* Border width */
     -fx-border-radius: 5px;       /* Border radius (rounded corners) */
 }
@@ -72,9 +72,9 @@
 
 /* Button Style */
 .menu-item {
-    -fx-background-color: -fx-color-white; /* White background */
+    -fx-background-color: #FDFCFC; /* White background */
     -fx-background-radius: 15px;    /* Rounded corners */
-    -fx-border-color: -fx-color-white;      /* White border */
+    -fx-border-color: #FDFCFC;      /* White border */
     -fx-border-width: 2px;          /* Border width */
     -fx-border-radius: 15px;        /* Rounded corners */
     -fx-text-fill: white;           /* White text color */
@@ -90,7 +90,7 @@
 
 /* Green Border Background Style */
 .menu-button-green-border-background {
-    -fx-background-color: -fx-color-white; /* White background */
+    -fx-background-color: #FDFCFC; /* White background */
     -fx-background-radius: 11px;       /* Rounded corners */
     -fx-border-color: -fx-color-green;  /* Green border */
     -fx-border-width: 1px;        /* Border width */
@@ -109,7 +109,7 @@
 
 /* Pink Border Background Style */
 .menu-button-pink-border-background {
-    -fx-background-color: -fx-color-white; /* White background */
+    -fx-background-color: #FDFCFC; /* White background */
     -fx-background-radius: 11px;       /* Rounded corners */
     -fx-border-color: -fx-color-pink;  /* Pink border */
     -fx-border-width: 1px;             /* Border width */
@@ -128,7 +128,7 @@
 
 /* Purple Border Background Style */
 .menu-button-purple-border-background {
-    -fx-background-color: -fx-color-white; /* White background */
+    -fx-background-color: #FDFCFC; /* White background */
     -fx-background-radius: 11px;       /* Rounded corners */
     -fx-border-color: -fx-color-light-purple;  /* Light purple border */
     -fx-border-width: 1px;        /* Border width */
@@ -207,5 +207,19 @@
     -fx-background-color: #1D0F3B; /* Darker background on hover */
 }
 
-/*SECOND PART OF THE DESIGN : THE NAVIGATION PART BRUUUUUUUUUUUUUUUUUUUUUH * /
+/*SECOND PART OF THE DESIGN : THE NAVIGATION PART BRUUUUUUUUUUUUUUUUUUUUUH */
+
+.leftNavbar {
+    -fx-background-color: #fcfcfc; /* Background color */
+    -fx-padding: 10px 20px; /* Padding: 10px top/bottom, 20px left/right */
+    -fx-border-color: #C0C0C0; /* Border color */
+    -fx-border-width: 0 0 2px 0; /* Border only at the bottom */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2); /* Optional: Add a subtle shadow */
+}
+
+.userName{
+    -fx-text-fill: #07002D; /* Dark blue text color */
+    -fx-font-size: 20px; /* Font size */
+    -fx-font-weight: bold; /* Bold font weight */
+}
 

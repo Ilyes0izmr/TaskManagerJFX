@@ -1,0 +1,84 @@
+/* Navbar Container */
+.leftNavbar {
+    -fx-background-color: #07002D; /* Dark purple background */
+    -fx-padding: 10px;
+    -fx-border-width: 0 2px 0 0; /* Border on the right side */
+}
+
+/* HBox Styling */
+.hbox {
+    -fx-spacing: 10px; /* Spacing between elements */
+    -fx-alignment: CENTER_LEFT; /* Align items to the left */
+}
+
+/* VBox Styling */
+.vbox {
+    -fx-spacing: 10px; /* Spacing between buttons */
+    -fx-padding: 10px;
+}
+
+/* Button Styling */
+.button {
+    -fx-background-color: #07002D; /* Light purple background */
+    -fx-text-fill: #836FFF;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #15F5BA; /* Green hover color */
+    -fx-text-fill: #836FFF; /* White text color */
+}
+
+/* Label Styling */
+.label1 {
+    -fx-text-fill: #836FFF; /* White text color */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.label2 {
+    -fx-text-fill: #ececec; /* White text color */
+    -fx-font-size: 16px;
+}
+
+/* TextField Styling */
+.text-field {
+    -fx-background-color: #ececec; /* White background */
+    -fx-text-fill: #07002D; /* Dark purple text color */
+    -fx-background-radius: 32px;
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+    -fx-border-radius: 32px;
+    -fx-border-color: #ececec; /* Light purple border */
+    -fx-border-width: 1px;
+}
+
+/* ListView Styling */
+.list-view {
+    -fx-background-color: #07002D; /* Dark purple background */
+    -fx-text-fill: #ececec; /* White text color */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* ScrollBar styling */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #cbd5e0;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+

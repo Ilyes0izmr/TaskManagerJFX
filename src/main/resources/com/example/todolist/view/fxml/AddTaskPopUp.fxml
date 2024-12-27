@@ -9,59 +9,59 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="419.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.addTaskController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="652.0" prefWidth="408.0" styleClass="anchor-pane" stylesheets="@../css/AddTaskPopUp.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.addTaskController">
    <children>
-      <VBox alignment="CENTER" layoutX="5.0" layoutY="9.0" prefHeight="366.0" prefWidth="330.0">
+      <VBox alignment="CENTER" layoutX="5.0" layoutY="9.0" prefHeight="594.0" prefWidth="393.0" styleClass="vbox">
          <children>
             <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="347.0" stylesheets="@../css/AddTaskPopUp.css" text="ENTER YOUR TASK" />
-            <Label prefHeight="18.0" prefWidth="358.0" stylesheets="@../css/AddTaskPopUp.css" text=" Title :">
+            <Label prefHeight="25.0" prefWidth="368.0" stylesheets="@../css/AddTaskPopUp.css" text=" Title :">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField id="title" fx:id="taskFieldTitle" prefHeight="45.0" prefWidth="330.0" promptText="enter a title" stylesheets="@../css/AddTaskPopUp.css">
+            <TextField id="title" fx:id="taskFieldTitle" prefHeight="26.0" prefWidth="329.0" promptText="enter a title" styleClass="text-field" stylesheets="@../css/AddTaskPopUp.css">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
-            <Label prefHeight="18.0" prefWidth="334.0" text=" Desciption : ">
+            <Label prefHeight="25.0" prefWidth="354.0" text=" Desciption : ">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField id="description" fx:id="taskFieldDescription" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="94.0" prefWidth="330.0" promptText="enter your task" stylesheets="@../css/AddTaskPopUp.css">
+            <TextField id="description" fx:id="taskFieldDescription" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" minHeight="10.0" minWidth="10.0" prefHeight="90.0" prefWidth="380.0" promptText="enter your task" styleClass="text-field" stylesheets="@../css/AddTaskPopUp.css">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
-            <Label prefHeight="18.0" prefWidth="439.0" stylesheets="@../css/AddTaskPopUp.css" text="Due date :">
+            <Label prefHeight="25.0" prefWidth="351.0" stylesheets="@../css/AddTaskPopUp.css" text="Due date :">
                <VBox.margin>
                   <Insets left="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <DatePicker fx:id="taskFieldDueDate" prefHeight="36.0" prefWidth="330.0" promptText="select a date" stylesheets="@../css/AddTaskPopUp.css">
+            <DatePicker fx:id="taskFieldDueDate" prefHeight="49.0" prefWidth="344.0" promptText="select a date" styleClass="date-picker" stylesheets="@../css/AddTaskPopUp.css">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </DatePicker>
-            <ComboBox fx:id="taskReminderComboBox" prefHeight="26.0" prefWidth="362.0" promptText="Reminder" stylesheets="@../css/AddTaskPopUp.css">
+            <ComboBox fx:id="taskReminderComboBox" prefHeight="50.0" prefWidth="346.0" promptText="Reminder" styleClass="combo-box" stylesheets="@../css/AddTaskPopUp.css">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox fx:id="taskPriorityComboBox" prefHeight="36.0" prefWidth="330.0" promptText="priority" stylesheets="@../css/AddTaskPopUp.css">
+            <ComboBox fx:id="taskPriorityComboBox" prefHeight="50.0" prefWidth="347.0" promptText="priority" styleClass="combo-box" stylesheets="@../css/AddTaskPopUp.css">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox fx:id="taskCategoryComboBox" prefHeight="35.0" prefWidth="330.0" promptText="categories" stylesheets="@../css/AddTaskPopUp.css">
+            <ComboBox fx:id="taskCategoryComboBox" prefHeight="50.0" prefWidth="351.0" promptText="categories" styleClass="combo-box" stylesheets="@../css/AddTaskPopUp.css">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </ComboBox>
          </children>
       </VBox>
-      <Button layoutX="120.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleAddTask" text="add" />
+      <Button layoutX="32.0" layoutY="602.0" mnemonicParsing="false" onAction="#handleAddTask" prefHeight="38.0" prefWidth="347.0" styleClass="button2" text="add" />
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
