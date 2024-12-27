@@ -2,6 +2,8 @@ package com.example.todolist.controller;
 
 import com.example.todolist.model.Category;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -16,12 +18,20 @@ public class CategoryCell extends ListCell<Category> {
     HBox hbox = new HBox();
     Label categoryLabel = new Label();
     Pane pane = new Pane();
-    MenuButton menuButton = new MenuButton("Options");
+    MenuButton menuButton = new MenuButton("");
 
     public CategoryCell() {
         super();
         hbox.getChildren().addAll(categoryLabel, pane, menuButton);
         HBox.setHgrow(pane, Priority.ALWAYS);
+        hbox.setAlignment(Pos.CENTER_LEFT);
+        hbox.setSpacing(10);
+        categoryLabel.setAlignment(Pos.CENTER_LEFT);
+        HBox.setMargin(categoryLabel, new Insets(0, 0, 0, 10));
+
+        hbox.getStyleClass().add("nav-hbox"); // New style for navigation bar
+        categoryLabel.getStyleClass().add("nav-label"); // New style for navigation label
+        menuButton.getStyleClass().add("nav-menu-button");
 
         MenuItem editItem = new MenuItem("Edit");
         MenuItem deleteItem = new MenuItem("Delete");

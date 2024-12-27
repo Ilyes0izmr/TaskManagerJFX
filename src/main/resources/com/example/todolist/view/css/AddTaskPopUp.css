@@ -1,0 +1,126 @@
+/* Define root colors */
+.root {
+    -fx-font-family: "ubuntu";
+    -fx-color-purple: #07002D;
+    -fx-color-white: #FDFCFC;
+    -fx-color-green: #15F5BA;
+    -fx-color-light-purple: #836FFF;
+    -fx-color-pink: #EB3678;
+    -fx-color-grey: #C6C6C6;
+    -fx-color-white2: f2f3f5;
+    -fx-font-size : 18px;
+}
+
+/* Style for labels */
+.label {
+    -fx-text-fill: -fx-color-purple;
+    -fx-font-weight: bold;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+}
+
+/* Style for TextField */
+.text-field {
+    -fx-background-color: -fx-color-white;
+    -fx-background-radius: 5px;
+    -fx-padding: 8px;
+    -fx-text-fill: -fx-color-purple;
+}
+
+.text-field:focused {
+    -fx-background-color: -fx-color-white;
+    -fx-border-color: -fx-color-green;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 5px;
+}
+
+/* Enhanced Style for DatePicker */
+.date-picker {
+    -fx-background-color: -fx-color-white;
+    -fx-background-radius: 10px;
+    -fx-padding: 8px;
+    -fx-text-fill: -fx-color-purple;
+    -fx-font-size: 13px;
+    -fx-border-color: -fx-color-grey;
+    -fx-border-width: 1px;
+}
+
+.
+
+.date-picker .text {
+    -fx-text-fill: -fx-color-purple;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.date-picker-popup {
+    -fx-background-color: -fx-color-light-purple;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, -fx-color-grey, 15, 0.5, 0, 0);
+}
+
+.date-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-color-purple;
+    -fx-font-size: 16px;
+}
+
+.date-cell:hover {
+    -fx-background-color: -fx-color-green;
+    -fx-text-fill: -fx-color-white;
+    -fx-background-radius: 5px;
+}
+
+.date-cell:selected {
+    -fx-background-color: -fx-color-pink;
+    -fx-text-fill: -fx-color-white;
+    -fx-background-radius: 5px;
+}
+
+/* Style for ComboBox */
+.combo-box {
+    -fx-background-color: -fx-color-white;
+    -fx-background-radius: 5px;
+    -fx-padding: 8px;
+    -fx-text-fill: -fx-color-purple;
+}
+
+.combo-box:focused {
+    -fx-background-color: -fx-color-white;
+    -fx-border-color: -fx-color-green;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 5px;
+}
+
+/* Style for the Button */
+.button2 {
+    -fx-background-color: -fx-color-green;
+    -fx-text-fill: -fx-color-white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: -fx-color-light-purple;
+}
+
+.button:pressed {
+    -fx-background-color: -fx-color-pink;
+}
+
+/* VBox padding and alignment */
+.vbox {
+    -fx-spacing: 15px;
+    -fx-alignment: center;
+    -fx-padding: 20px;
+}
+
+/* General background and layout adjustments */
+.anchor-pane {
+    -fx-padding: 20px;
+    -fx-background-color: -fx-color-white2;
+}
+

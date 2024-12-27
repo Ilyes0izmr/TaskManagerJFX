@@ -3,6 +3,7 @@ import com.example.todolist.dao.CategoryDAO;
 import com.example.todolist.dao.CollabCategoryDAO;
 import com.example.todolist.dao.NotificationDAO;
 import com.example.todolist.ui.NotificationAlert;
+import com.example.todolist.ui.RandomColor;
 import com.example.todolist.util.TaskImplSerializer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -86,6 +87,12 @@ public class HomeController {
     @FXML
     private TextField taskSearch;
 
+    @FXML
+    private Label userNameName;
+
+    @FXML
+    private Label firstLetters;
+
 
     private TaskListImpl taskListModel = new TaskListImpl(null, User.getUserName());
     private TaskDAO taskDAO = new TaskDAO();
@@ -110,6 +117,10 @@ public class HomeController {
     }
     public void initialize() {
         usernameLabel.setText(User.getUserName()+" !");
+        userNameName.setText(User.getUserName());
+        firstLetters.setText(User.getUserName().substring(0, 2).toUpperCase());
+        String randomColor = RandomColor.getRandomColor();
+        firstLetters.setStyle("-fx-text-fill: " + randomColor + ";");
         categoryNameLabel.setText("  >> Home");
         updateTime();
         setGreetingMessage();
@@ -151,6 +162,7 @@ public class HomeController {
             handleSearch(newValue); // Call handleSearch with the current search text
         });
     }
+
 
     public void refresh() {
         try {

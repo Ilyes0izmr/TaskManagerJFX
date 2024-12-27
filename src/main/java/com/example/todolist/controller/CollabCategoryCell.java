@@ -2,39 +2,43 @@ package com.example.todolist.controller;
 
 import com.example.todolist.model.Category;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.text.Text;
 
 public class CollabCategoryCell extends ListCell<Category> {
-    private HBox content;
-    private Text name;
-    private Text ownerName;
-    private Pane spacer;
-    private Button deleteButton;
+    HBox hbox = new HBox();
+    Label name = new Label();
+    Label ownerName = new Label();
+    Button deleteButton;
 
     public CollabCategoryCell() {
         super();
 
-        name = new Text();
-        ownerName = new Text();
-        spacer = new Pane();
+        // Apply CSS classes
+        name.getStyleClass().add("collab-name");
+        ownerName.getStyleClass().add("collab-owner");
+
         deleteButton = new Button("Delete");
+        deleteButton.getStyleClass().add("collab-delete-button");
 
+        // Set up the HBox
 
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-        spacer.setMinSize(10, 1);
+        HBox.setMargin(deleteButton, new Insets(0, 0, 0, 5)); // Smaller margin
 
-        HBox.setMargin(deleteButton, new Insets(0, 0, 0, 10));
+        // Add elements to the HBox
+        hbox.getChildren().addAll(name, ownerName, deleteButton);
+        hbox.setAlignment(Pos.CENTER_LEFT);
+        hbox.setSpacing(5); // Reduced spacing between elements
+        hbox.getStyleClass().add("collab-hbox");
 
-        content = new HBox(name, ownerName, spacer, deleteButton);
-        content.setSpacing(10);
-
+        // Apply ListCell styling
+        this.getStyleClass().add("list-cell");
     }
-
 
     @Override
     protected void updateItem(Category category, boolean empty) {
@@ -52,7 +56,7 @@ public class CollabCategoryCell extends ListCell<Category> {
                 HomeController.getInstance().deleteCollabCategory(category);
             });
 
-            setGraphic(content);
+            setGraphic(hbox);
         }
     }
 }

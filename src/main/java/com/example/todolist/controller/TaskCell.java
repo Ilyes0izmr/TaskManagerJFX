@@ -56,9 +56,6 @@ public class TaskCell extends ListCell<TaskImpl> {
         priorityLabel.getStyleClass().add("priority-label");
 
 
-
-
-
         MenuItem editItem = new MenuItem("Edit");
         MenuItem addCommentItem = new MenuItem("Add Comment");
         MenuItem deleteItem = new MenuItem("Delete");

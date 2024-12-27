@@ -2,9 +2,8 @@
 * {
     -fx-font-family: "ubuntu";
     -fx-primary: #4a90e2;
-    -fx-secondary: #f8f9fa;
+    -fx-secondary: #FDFCFC;
     -fx-text-color: #2d3436;
-    -fx-background: #FDFCFC;
     -fx-color-purple: #07002D;
     -fx-color-white: #FDFCFC;
     -fx-color-green: #15F5BA;
@@ -16,7 +15,7 @@
 
 /* ListView styling */
 .list-view {
-    -fx-background-color: -fx-background;
+    -fx-background-color: #f7f7f7;
     -fx-padding: 10px;
 
 }

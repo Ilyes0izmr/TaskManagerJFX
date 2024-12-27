@@ -5,13 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4138a9b-6d62-4903-87fc-3b154d6e1c51" name="Changes" comment="i added the ourDataBase">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/home2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/ui/RandomColor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/home3.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/home4.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/homeCollab.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/CategoryCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/CategoryCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/CollabCategoryCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/CollabCategoryCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/TaskCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/todolist/controller/TaskCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/AddTaskPopUp.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/AddTaskPopUp.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/home2.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/home2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/taskDetails.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/css/taskDetails.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/AddTaskPopUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/AddTaskPopUp.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/HomeView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/HomeView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/img/add.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/img/add.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/TaskDetailsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/fxml/TaskDetailsView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/img/settings.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/todolist/view/img/settings.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

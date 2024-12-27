@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,11 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane fx:id="backgroundContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1550.0" styleClass="backgroundContainer" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.HomeController">
-   <AnchorPane fx:id="taskContainer" layoutX="311.2" prefHeight="801.0" prefWidth="1239.0" styleClass="tasksContainer" stylesheets="@../css/home.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="311.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+   <AnchorPane fx:id="taskContainer" layoutX="299.2" prefHeight="801.0" prefWidth="1251.0" styleClass="tasksContainer" stylesheets="@../css/home.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="299.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
 
       <!-- WELCOME MESSAGE -->
-      <AnchorPane layoutX="56.0" prefHeight="184.0" prefWidth="1101.0" styleClass="anchor-pane" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+      <AnchorPane layoutX="45.0" prefHeight="184.0" prefWidth="1101.0" styleClass="anchor-pane" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
          <Label fx:id="welcomeLabel" layoutX="25.0" layoutY="35.0" prefHeight="79.0" prefWidth="282.0" styleClass="welcome-label" stylesheets="@../css/home.css" text="Good Morning" />
          <Label fx:id="usernameLabel" layoutX="286.0" layoutY="41.0" prefHeight="72.0" prefWidth="239.0" styleClass="welcome-user-label" stylesheets="@../css/home.css" text="USERNAME" />
 
@@ -37,47 +36,45 @@
       </AnchorPane>
 
       <AnchorPane layoutX="49.0" layoutY="707.0" prefHeight="57.0" prefWidth="1117.0">
-         <HBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="1.0" prefHeight="55.0" prefWidth="1117.0" stylesheets="@../css/home.css">
+         <HBox alignment="CENTER_LEFT" layoutX="37.0" layoutY="1.0" prefHeight="55.0" prefWidth="1117.0" stylesheets="@../css/home.css">
             <!-- Task Search -->
             <TextField fx:id="taskSearch" prefHeight="51.0" prefWidth="556.0" promptText="search" styleClass="searchFieldTask" stylesheets="@../css/home.css" />
             <Pane prefHeight="55.0" prefWidth="345.0" />
          </HBox>
       </AnchorPane>
 
-      <AnchorPane layoutX="96.0" layoutY="170.0" prefHeight="493.0" prefWidth="1070.0" stylesheets="@../css/home2.css">
-         <ListView fx:id="taskList" layoutX="4.0" layoutY="12.0" prefHeight="477.0" prefWidth="1058.0" stylesheets="@../css/home.css" />
+      <AnchorPane layoutX="71.0" layoutY="170.0" prefHeight="494.0" prefWidth="1095.0" stylesheets="@../css/home2.css">
+         <ListView fx:id="taskList" layoutX="-1.0" layoutY="12.0" prefHeight="478.0" prefWidth="1073.0" stylesheets="@../css/home.css" />
       </AnchorPane>
-      <Label fx:id="categoryNameLabel" layoutX="91.0" layoutY="18.0" prefHeight="19.0" prefWidth="239.0" styleClass="category-name-label" stylesheets="@../css/home.css" text="&gt;&gt;Home" />
-      <HBox fx:id="buttonEffect11" layoutX="1034.0" layoutY="66.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-purple-effect" stylesheets="@../css/home.css" />
-      <HBox fx:id="buttonEffect" layoutX="775.0" layoutY="65.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
-      <HBox fx:id="buttonEffect1" layoutX="905.0" layoutY="66.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-pink-effect" stylesheets="@../css/home.css" />
-      <HBox layoutX="907.0" layoutY="60.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-pink-border-background" stylesheets="@../css/home.css">
-         <children>
-            <MenuButton fx:id="sortMenuButton" minHeight="10.0" minWidth="10.0" prefHeight="34.0" prefWidth="37.0" styleClass="menu-item" stylesheets="@../css/home.css">
-               <items>
-                  <MenuItem onAction="#handleSortFarthest" text="Farthest Date" />
-                  <MenuItem onAction="#handleSortClosest" text="Closest Date" />
-                  <MenuItem onAction="#handleSortHighest" text="Highest" />
-                  <MenuItem onAction="#handleSortLowest" text="Lowest" />
-               </items>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" top="6.0" />
-               </HBox.margin>
-            </MenuButton>
-            <Label prefHeight="38.0" prefWidth="63.0" styleClass="menu-button-label" stylesheets="@../css/home.css" text="Sort">
-               <HBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </HBox.margin>
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-            </Label>
-         </children>
+      <Label fx:id="categoryNameLabel" layoutX="85.0" layoutY="18.0" prefHeight="19.0" prefWidth="239.0" styleClass="category-name-label" stylesheets="@../css/home.css" text="&gt;&gt;Home" />
+      <HBox fx:id="buttonEffect11" layoutX="1025.0" layoutY="66.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-purple-effect" stylesheets="@../css/home.css" />
+      <HBox fx:id="buttonEffect" layoutX="766.0" layoutY="65.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
+      <HBox fx:id="buttonEffect1" layoutX="896.0" layoutY="66.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-pink-effect" stylesheets="@../css/home.css" />
+      <HBox layoutX="898.0" layoutY="60.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-pink-border-background" stylesheets="@../css/home.css">
+         <MenuButton fx:id="sortMenuButton" minHeight="10.0" minWidth="10.0" prefHeight="34.0" prefWidth="37.0" styleClass="menu-item" stylesheets="@../css/home.css">
+            <items>
+               <MenuItem onAction="#handleSortFarthest" text="Farthest Date" />
+               <MenuItem onAction="#handleSortClosest" text="Closest Date" />
+               <MenuItem onAction="#handleSortHighest" text="Highest" />
+               <MenuItem onAction="#handleSortLowest" text="Lowest" />
+            </items>
+            <padding>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <HBox.margin>
+               <Insets bottom="5.0" left="5.0" top="6.0" />
+            </HBox.margin>
+         </MenuButton>
+         <Label prefHeight="38.0" prefWidth="63.0" styleClass="menu-button-label" stylesheets="@../css/home.css" text="Sort">
+            <HBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </HBox.margin>
+            <padding>
+               <Insets left="5.0" />
+            </padding>
+         </Label>
       </HBox>
-      <HBox layoutX="1036.0" layoutY="60.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-purple-border-background" stylesheets="@../css/home.css">
+      <HBox layoutX="1027.0" layoutY="60.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-purple-border-background" stylesheets="@../css/home.css">
          <children>
                <MenuButton minHeight="10.0" minWidth="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" styleClass="menu-item" stylesheets="@../css/home.css">
                <items>
@@ -103,7 +100,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox layoutX="777.0" layoutY="59.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-green-border-background" stylesheets="@../css/home.css">
+      <HBox layoutX="768.0" layoutY="59.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-green-border-background" stylesheets="@../css/home.css">
          <children>
             <!-- ############################### -->
    
@@ -147,7 +144,7 @@
       </ImageView>
       <!-- ============== -->
    
-      <ImageView fx:id="addImage" fitHeight="35.0" fitWidth="36.0" layoutX="607.0" layoutY="718.0" onMouseClicked="#handleAddTaskPopup">
+      <ImageView fx:id="addImage" fitHeight="35.0" fitWidth="36.0" layoutX="599.0" layoutY="718.0" onMouseClicked="#handleAddTaskPopup">
          <style>
             -fx-cursor: hand; /* Changes the cursor to a hand on hover */
          </style>
@@ -157,67 +154,90 @@
       </ImageView>
    </AnchorPane>
 
-   
-   <AnchorPane prefHeight="822.0" prefWidth="304.0" styleClass="left-pane" stylesheets="@../css/home.css">
-      <HBox alignment="BOTTOM_LEFT" layoutX="8.0" layoutY="24.0" prefHeight="29.0" prefWidth="282.0" styleClass="hbox" stylesheets="@../css/home.css">
-         <ImageView fitHeight="30.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
-            <HBox.margin>
-               <Insets bottom="5.0" left="30.0" />
-            </HBox.margin></ImageView>
-         <Label prefHeight="29.0" prefWidth="159.0" stylesheets="@../css/home.css" text="name ">
-            <HBox.margin>
-               <Insets bottom="5.0" left="25.0" top="5.0" />
-            </HBox.margin>
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-         </Label>
-      </HBox>
-      <AnchorPane layoutX="6.0" layoutY="69.0" prefHeight="150.0" prefWidth="290.0" styleClass="left-pane" stylesheets="@../css/home.css">
-         <VBox layoutX="2.0" layoutY="4.0" prefHeight="142.0" prefWidth="282.0" styleClass="vbox" stylesheets="@../css/home.css">
-            <Button layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="40.0" prefWidth="248.0" stylesheets="@../css/home.css" text="≡">
+
+   <AnchorPane layoutX="1.0" minHeight="200.0" minWidth="200.0" prefHeight="802.0" prefWidth="300.0" styleClass="leftNavbar" stylesheets="@../css/home4.css">
+      <AnchorPane layoutX="6.0" layoutY="57.0" prefHeight="150.0" prefWidth="273.0" styleClass="left-pane" stylesheets="@../css/home.css">
+         <VBox layoutX="-1.0" layoutY="-8.0" prefHeight="142.0" prefWidth="267.0" styleClass="vbox" stylesheets="@../css/home.css">
+            <Button layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="40.0" prefWidth="236.0" stylesheets="@../css/home.css">
                <VBox.margin>
                   <Insets left="20.0" top="5.0" />
-               </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="42.0" prefWidth="248.0" stylesheets="@../css/home.css" text="home">
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="42.0" prefWidth="236.0" stylesheets="@../css/home.css">
                <VBox.margin>
                   <Insets left="20.0" top="2.0" />
                </VBox.margin>
             </Button>
-            <HBox prefHeight="50.0" prefWidth="282.0" styleClass="hbox" stylesheets="@../css/home.css">
-               <TextField fx:id="categorySearch" prefHeight="42.0" prefWidth="205.0" promptText="search for category">
+            <HBox prefHeight="34.0" prefWidth="261.0" styleClass="hbox" stylesheets="@../css/home.css">
+               <TextField fx:id="categorySearch" prefHeight="29.0" prefWidth="233.0" promptText="search for category">
                   <HBox.margin>
                      <Insets left="20.0" top="5.0" />
                   </HBox.margin>
                </TextField>
-               <Button mnemonicParsing="false" onAction="#handleAddCategoryPopup" prefHeight="41.0" prefWidth="42.0" stylesheets="@../css/home.css" text="+">
-                  <HBox.margin>
-                     <Insets top="5.0" />
-                  </HBox.margin>
-               </Button>
-   
+
             </HBox>
          </VBox>
       </AnchorPane>
-      <AnchorPane layoutX="26.0" layoutY="251.0" prefHeight="299.0" prefWidth="254.0" styleClass="left-pane" stylesheets="@../css/home.css">
-         <ListView fx:id="categoryList" layoutX="1.0" layoutY="2.0" prefHeight="307.0" prefWidth="250.0" stylesheets="@../css/home.css" />
+      <AnchorPane layoutX="10.0" layoutY="256.0" prefHeight="291.0" prefWidth="270.0" stylesheets="@../css/home3.css">
+         <ListView fx:id="categoryList" layoutX="12.0" layoutY="8.0" prefHeight="297.0" prefWidth="258.0" stylesheets="@../css/home3.css" />
       </AnchorPane>
-      <AnchorPane layoutX="23.0" layoutY="559.0" prefHeight="246.0" prefWidth="266.0" styleClass="left-pane" stylesheets="@../css/home.css">
-         <ListView fx:id="collabList" layoutX="3.2" layoutY="38.0" prefHeight="170.0" prefWidth="250.0" stylesheets="@../css/home.css" AnchorPane.leftAnchor="3.0" />
+      <AnchorPane layoutX="23.0" layoutY="559.0" prefHeight="178.0" prefWidth="255.0" stylesheets="@../css/homeCollab.css">
+         <ListView fx:id="collabList" layoutX="6.4" layoutY="16.0" prefHeight="158.0" prefWidth="246.0" stylesheets="@../css/homeCollab.css" AnchorPane.leftAnchor="6.0" />
       </AnchorPane>
-      <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="549.0" prefHeight="53.0" prefWidth="271.0" styleClass="hbox" stylesheets="@../css/home.css">
-         <Label prefHeight="32.0" prefWidth="166.0" stylesheets="@../css/home.css" text="   Collaborations">
-            <HBox.margin>
-               <Insets left="15.0" />
-            </HBox.margin></Label>
-         <Button mnemonicParsing="false" onAction="#showNewCollabPopUp" prefHeight="23.0" prefWidth="84.0" stylesheets="@../css/home.css" text="Invite">
-            <HBox.margin>
-               <Insets top="5.0" />
-            </HBox.margin>
-         </Button>
-      </HBox>
-      <Separator layoutX="27.0" layoutY="218.0" prefHeight="4.0" prefWidth="250.0" />
-      <Separator layoutX="26.0" layoutY="63.0" prefHeight="6.0" prefWidth="250.0" />
-      <Label layoutX="27.0" layoutY="227.0" prefHeight="15.0" prefWidth="252.0" text="Categories" />
+      <Label layoutX="36.0" layoutY="231.0" prefHeight="19.0" prefWidth="89.0" styleClass="label2" text="Categories" />
+
+      <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="45.0" layoutY="75.0">
+         <style>
+                     -fx-cursor: hand;
+                  </style>
+         <image>
+            <Image url="@../img/settings.png" />
+         </image>
+      </ImageView>
+
+      <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="46.0" layoutY="129.0">
+         <style>
+            -fx-cursor: hand;
+         </style>
+         <image>
+            <Image url="@../img/home.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="42.0" layoutY="18.0">
+         <style>
+            -fx-cursor: hand;
+         </style>
+         <image>
+            <Image url="@../img/circle.png" />
+         </image>
+      </ImageView>
+      <!-- Replaced + Button with ImageView inside a Button -->
+      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="236.0" layoutY="175.0" onMouseClicked="#handleAddCategoryPopup">
+         <style>
+                     -fx-cursor: hand;
+                  </style>
+         <image>
+            <Image url="@../img/add2.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="38.0" layoutY="733.0" mnemonicParsing="false" onAction="#showNewCollabPopUp" prefHeight="51.0" prefWidth="229.0" stylesheets="@../css/home.css" text="Invite members" />
+      <Label layoutX="22.0" layoutY="539.0" prefHeight="11.0" prefWidth="140.0" styleClass="label2" stylesheets="@../css/home.css" text="   Collaborations" />
+      <Label layoutX="78.0" layoutY="73.0" prefHeight="22.0" prefWidth="74.0" style="-fx-text-fill: #ececec; -fx-font-size: 16px;" styleClass="label1" text="settings" />
+      <Label layoutX="81.0" layoutY="128.0" prefHeight="22.0" prefWidth="52.0" style="-fx-text-fill: #ececec; -fx-font-size: 16px;" styleClass="label1" text="Home" />
+
+            <ImageView fitHeight="22.0" fitWidth="21.0" layoutX="56.0" layoutY="746.0">
+         <style>
+            -fx-cursor: hand;
+         </style>
+         <image>
+            <Image url="@../img/person.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="firstLetters" layoutX="43.0" layoutY="20.0" prefHeight="22.0" prefWidth="30.0" styleClass="label1" text="AL" />
+      <Label fx:id="userNameName" layoutX="82.0" layoutY="18.0" prefHeight="26.0" prefWidth="74.0" styleClass="label1" stylesheets="@../css/home.css" text="7ama77">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
    </AnchorPane>
 </AnchorPane>
