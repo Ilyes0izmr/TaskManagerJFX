@@ -1,26 +1,77 @@
-.anchor-pane {
-    -fx-background-color: #f4f4f4; /* Light background */
+/* Root Styles */
+.root {
+    -fx-font-family: "Ubuntu";
+    -fx-background-color: #FDFCFC; /* Soft white background */
+    -fx-color-purple: #07002D;
+    -fx-color-white: #FDFCFC;
+    -fx-color-green: #15F5BA;
+    -fx-color-light-purple: #836FFF;
+    -fx-color-pink: #EB3678;
+    -fx-color-grey: #C6C6C6;
+    -fx-color-white2: #f2f3f5;
 }
 
+/* Anchor Pane */
+.anchor-pane {
+    -fx-background-color: #FDFCFC; /* Soft white background */
+    -fx-padding: 25px;
+}
+
+/* VBox Card */
 .vbox-card {
     -fx-background-color: #ffffff; /* White card */
-    -fx-background-radius: 10; /* Rounded corners */
-    -fx-border-color: #dddddd; /* Light border */
-    -fx-border-radius: 10;
+    -fx-background-radius: 20; /* More rounded corners */
+    -fx-border-width: 2px;
+    -fx-border-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 0, 15); /* Stronger shadow */
+    -fx-padding: 25px;
+}
+
+/* VBox Layout */
+.vbox-card > VBox {
+    -fx-spacing: 20px; /* More spacing between the sections */
+}
+
+/* HBox for each label/value pair */
+.hbox {
+    -fx-alignment: center-left;
+    -fx-spacing: 10px; /* Space between label and value */
+}
+
+/* Field Label */
+.field-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #07002D; /* Dark purple for labels */
+    -fx-opacity: 0.8; /* Slightly faded for the labels */
+}
+
+/* Field Value */
+.field-value {
+    -fx-font-size: 15px;
+    -fx-text-fill: #333333; /* Dark text for values */
+    -fx-opacity: 0.85; /* Slightly faded */
+    -fx-font-style: italic; /* Subtle styling for value text */
+}
+
+/* Hover Effect on Labels */
+.field-value:hover {
+    -fx-text-fill: #15F5BA; /* Change to green when hovered */
+    -fx-cursor: hand;
+}
+
+/* Button Style */
+.button {
+    -fx-background-color: #15F5BA; /* Green button */
+    -fx-text-fill: #07002D; /* Dark purple text */
+    -fx-border-radius: 8px;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
 }
 
-.grid-pane {
-    -fx-padding: 10;
-}
-
-.field-label {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #333333; /* Darker text for labels */
-}
-
-.field-value {
-    -fx-font-size: 14px;
-    -fx-text-fill: #666666; /* Subtle gray for values */
+.button:hover {
+    -fx-background-color: #836FFF; /* Light purple on hover */
+    -fx-text-fill: #FFFFFF; /* White text on hover */
 }

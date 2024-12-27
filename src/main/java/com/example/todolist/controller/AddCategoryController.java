@@ -23,6 +23,8 @@ public class AddCategoryController {
                 // Close the popup after successful addition
                 Stage stage = (Stage) categoryNameField.getScene().getWindow();
                 stage.close();
+
+
             } else {
                 // Show error message (optional)
                 System.out.println("Failed to add category. Please try again.");

@@ -4,6 +4,8 @@ import com.example.todolist.dao.TaskDAO;
 import com.example.todolist.model.Status;
 import com.example.todolist.model.TaskImpl;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -13,38 +15,58 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class TaskCell extends ListCell<TaskImpl> {
     HBox hbox = new HBox();
     CheckBox completedCheckBox = new CheckBox();
     Label taskLabel = new Label();
     Pane pane = new Pane();
+    Label priorityLabel = new Label();
     Label dueDateLabel = new Label();
     MenuButton menuButton = new MenuButton("Options");
     boolean fullAccess = true;  // Default to true, change as needed
 
-    // Constructor modified to take the fullAccess parameter
     public TaskCell(boolean fullAccess) {
         super();
-        this.fullAccess = fullAccess;  // Set the fullAccess value
+        this.fullAccess = fullAccess;
+        hbox.setAlignment(Pos.CENTER_LEFT);
+        hbox.setSpacing(10);
 
-        hbox.getChildren().addAll(completedCheckBox, taskLabel, pane, dueDateLabel, menuButton);
+        // Set alignment for individual elements
+        taskLabel.setAlignment(Pos.CENTER_LEFT);
+        priorityLabel.setAlignment(Pos.CENTER);
+        dueDateLabel.setAlignment(Pos.CENTER);
+
+        // Add all elements to HBox
+        hbox.getChildren().addAll(completedCheckBox, taskLabel, pane, priorityLabel, dueDateLabel, menuButton);
         HBox.setHgrow(pane, Priority.ALWAYS);
 
-        // Add menu items to the MenuButton
+        // Set consistent vertical margins
+        HBox.setMargin(taskLabel, new Insets(0, 0, 0, 10));
+        HBox.setMargin(priorityLabel, new Insets(0, 5, 0, 5));
+        HBox.setMargin(dueDateLabel, new Insets(0, 5, 0, 5));
+
+        // Apply style classes
+        hbox.getStyleClass().add("task-hbox");
+        completedCheckBox.getStyleClass().add("task-checkbox");
+        taskLabel.getStyleClass().add("task-label");
+        dueDateLabel.getStyleClass().add("due-date-label");
+        menuButton.getStyleClass().add("menu-button");
+        priorityLabel.getStyleClass().add("priority-label");
+
+
         MenuItem editItem = new MenuItem("Edit");
         MenuItem addCommentItem = new MenuItem("Add Comment");
         MenuItem deleteItem = new MenuItem("Delete");
         MenuItem viewDetailsItem = new MenuItem("View Details");
 
-        // Conditionally add menu items based on fullAccess
         if (fullAccess) {
             menuButton.getItems().addAll(editItem, addCommentItem, deleteItem, viewDetailsItem);
         } else {
             menuButton.getItems().addAll(addCommentItem, viewDetailsItem);
         }
 
-        // Add event handlers for the menu items
         editItem.setOnAction(event -> {
             TaskImpl task = getItem();
             if (task != null) {
@@ -73,17 +95,17 @@ public class TaskCell extends ListCell<TaskImpl> {
             }
         });
 
-        // Add event handler for the CheckBox
         completedCheckBox.setOnAction(event -> {
             TaskImpl task = getItem();
-            if (task != null && completedCheckBox.isSelected()) {
+            if (task != null) {
                 TaskDAO taskDAO = new TaskDAO();
-                task.changeStatus(Status.COMPLETED);
+                if (completedCheckBox.isSelected()) {
+                    task.changeStatus(Status.COMPLETED);
+                } else {
+                    task.changeStatus(Status.PENDING);
+                }
                 taskDAO.editTask(task);
-            } else if (task != null && !completedCheckBox.isSelected()) {
-                TaskDAO taskDAO = new TaskDAO();
-                task.changeStatus(Status.PENDING);
-                taskDAO.editTask(task);
+                updateItem(task, false); // Refresh the cell to apply styling
             }
         });
     }
@@ -91,33 +113,55 @@ public class TaskCell extends ListCell<TaskImpl> {
     @Override
     protected void updateItem(TaskImpl task, boolean empty) {
         super.updateItem(task, empty);
+
         if (empty || task == null) {
+            setText(null);
             setGraphic(null);
+            setStyle(""); // Reset styling for empty cells
         } else {
             taskLabel.setText(task.getTitle());
-            dueDateLabel.setText("Due: " + task.getDueDate());
+
+            // Apply priority styling
+            priorityLabel.getStyleClass().removeAll("priority-label-HIGH", "priority-label-MEDIUM", "priority-label-LOW");
+            priorityLabel.getStyleClass().add("priority-label-" + task.getPriority());
+            priorityLabel.setText(String.valueOf(task.getPriority()));
+
+            // Set due date
+            if (task.getDueDate() != null) {
+                dueDateLabel.setText("      "+task.getDueDate().toString()+"      ");
+            } else {
+                dueDateLabel.setText("");
+            }
+
+            // Set checkbox state
             completedCheckBox.setSelected(task.getStatus() == Status.COMPLETED);
+
+            // Apply styling based on task status and due date
+            if (task.getStatus() == Status.COMPLETED) {
+                // style for completed tasks
+                setStyle("-fx-background-color: #e0f7fa;"); // Light blue background
+            } else if (task.getDueDate() != null && task.getDueDate().isBefore(LocalDate.now())) {
+                // style for overdue tasks
+                setStyle("-fx-background-color: #ffebee;"); // Light red background
+            } else {
+                // default style for pending tasks
+                setStyle(""); // Reset to default
+            }
+
             setGraphic(hbox);
         }
     }
-
     private void handleAddComment(TaskImpl task) {
         try {
-            // Load the FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/CommentsView.fxml"));
             Pane pane = loader.load();
-
-            // Pass the task to the CommentController
             CommentController controller = loader.getController();
             controller.initializeTask(task);
 
-            // Set up a new stage for displaying the comment UI
             Stage commentStage = new Stage();
             commentStage.setTitle("Add Comment");
             commentStage.setScene(new Scene(pane));
-            commentStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with the main window
-
-            // Show the stage and wait for it to close
+            commentStage.initModality(Modality.APPLICATION_MODAL);
             commentStage.showAndWait();
 
             System.out.println("Comment window closed for task: " + task.getTitle());
@@ -126,67 +170,46 @@ public class TaskCell extends ListCell<TaskImpl> {
             e.printStackTrace();
         }
     }
-
-
     private void handleEditTask(TaskImpl task) {
         try {
-            // Load the FXML file for the edit task view
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/EditTaskView.fxml"));
             Pane pane = loader.load();
-
-            // Get the controller for the EditTaskView
             EditTaskController controller = loader.getController();
-            controller.setTask(task); // Pass the task to be edited to the controller
+            controller.setTask(task);
 
-            // Create a new stage for the edit task window
             Stage stage = new Stage();
             stage.setTitle("Edit Task");
             stage.setScene(new Scene(pane));
-
-            // Make the stage modal, so the user must close it to interact with the main window
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
 
-            // Show the window
-            stage.showAndWait();  // Use showAndWait to block interaction until the window is closed
-
-            // Optionally, refresh the main view after closing the edit window
             HomeController.getInstance().refresh();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error loading EditTaskView.");
         }
     }
-
     private void handleDeleteTask(TaskImpl task) {
         try {
-            // Load the FXML file for the delete confirmation dialog
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/DeleteTaskView.fxml"));
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/HomeView.fxml"));
             Pane pane = loader.load();
-
-            // Get the controller for the DeleteTaskView
             DeleteTaskController controller = loader.getController();
-            controller.setTask(task); // Pass the task to be deleted to the controller
+            controller.setTask(task);
 
-            // Create a new stage for the delete confirmation dialog
             Stage popupStage = new Stage();
             popupStage.setTitle("Delete Task");
-            popupStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with other windows
+            popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setResizable(false);
             popupStage.setScene(new Scene(pane));
-            // Refresh the task list after deletion
-            // Show the popup and wait for it to close
             popupStage.showAndWait();
-            HomeController.getInstance().refresh();
 
+            HomeController.getInstance().refresh();
             System.out.println("Delete task: " + task.getTitle());
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error loading DeleteTaskView.");
         }
     }
-
-
     private void handleViewDetails(TaskImpl task) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/todolist/view/fxml/TaskDetailsView.fxml"));

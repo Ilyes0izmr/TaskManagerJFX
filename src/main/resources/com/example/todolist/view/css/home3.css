@@ -1,0 +1,111 @@
+/* Global Styles */
+* {
+    -fx-font-family: "ubuntu";
+    -fx-primary: #4a90e2;
+    -fx-secondary: #f8f9fa;
+    -fx-text-color: #FDFCFC; /* White text */
+    -fx-background: #07002D; /* Purple background */
+    -fx-color-purple: #07002D;
+    -fx-color-white: #FDFCFC;
+    -fx-color-green: #15F5BA;
+    -fx-color-light-purple: #836FFF;
+    -fx-color-pink: #EB3678;
+    -fx-color-grey: #C6C6C6;
+    -fx-transition: all 0.5s ease-in-out; /* Smoother and faster animations */
+}
+
+/* ListView styling */
+.list-view {
+    -fx-background-color: #07002D; /* Purple background */
+    -fx-padding: 5px; /* Smaller padding */
+}
+
+.list-cell {
+    -fx-background-color: #07002D; /* Purple background */
+    -fx-alignment: center;
+    -fx-text-fill: -fx-text-color; /* White text */
+    -fx-font-size: 14px; /* Smaller font size */
+    -fx-padding: 8px; /* Smaller padding */
+    -fx-background-insets: 3 0 3 0; /* Smaller insets */
+    -fx-border-radius: 5px; /* Smaller radius */
+    -fx-background-radius: 5px; /* Smaller radius */
+    -fx-transition: all 0.2s ease-in-out; /* Faster transition */
+}
+
+.list-cell:hover {
+    -fx-background-color: #836FFF; /* Light purple on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0.3, 0, 1); /* Smaller shadow */
+}
+
+.list-cell:selected {
+    -fx-background-color: #836FFF; /* Light purple when selected */
+    -fx-text-fill: #07002D; /* Dark purple text */
+}
+
+/* Task HBox container styling */
+.task-hbox {
+    -fx-alignment: center-left;
+    -fx-spacing: 5; /* Smaller spacing */
+    -fx-padding: 0 5 0 5; /* Smaller padding */
+    -fx-min-height: 30px; /* Smaller height */
+    -fx-transition: all 0.2s ease-in-out; /* Faster transition */
+    -fx-background-color: -fx-background; /* Purple background */
+}
+
+.task-label {
+    -fx-font-size: 12px; /* Smaller font size */
+    -fx-text-fill: -fx-text-color; /* White text */
+    -fx-min-width: 150px; /* Smaller width */
+    -fx-max-width: 300px; /* Smaller max width */
+    -fx-wrap-text: true;
+    -fx-alignment: center-left;
+    -fx-transition: all 0.2s ease-in-out; /* Faster transition */
+    -fx-cursor: hand;
+}
+
+/* Label Click Effect */
+.task-label:pressed {
+    -fx-effect: innershadow(gaussian, rgba(255, 255, 255, 0.3), 5, 0.3, 0, 0); /* Smaller click effect */
+    -fx-background-color: linear-gradient(to right, transparent 50%, rgba(255, 255, 255, 0.2) 50%); /* Gradient animation */
+    -fx-background-size: 200% 100%; /* Double width for animation */
+    -fx-background-position: right center; /* Start animation from the middle */
+    -fx-transition: all 0.3s ease-in-out; /* Faster transition */
+}
+
+.task-label:hover {
+    -fx-text-fill: derive(#07002D, 20%); /* Slightly lighter text on hover */
+}
+
+/* Menu Button Styling */
+.menu-button {
+    -fx-background-color: transparent; /* Transparent background */
+    -fx-background-radius: 5px; /* Smaller radius */
+    -fx-min-width: 16px; /* Smaller width */
+    -fx-min-height: 16px; /* Smaller height */
+    -fx-padding: 0; /* Remove padding */
+    -fx-content-display: center; /* Center the arrow */
+    -fx-cursor: hand;
+}
+
+/* Hover State for Menu Button */
+.menu-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Slight white overlay on hover */
+}
+
+/* Pressed State for Menu Button */
+.menu-button:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.2); /* Slightly darker white overlay */
+}
+
+/* Menu Item Styling */
+.menu-item {
+    -fx-padding: 3px 8px; /* Smaller padding */
+    -fx-font-size: 10px; /* Smaller font size */
+    -fx-text-fill: #07002D; /* Default text color */
+}
+
+/* Hover State for Menu Items */
+.menu-item:hover {
+    -fx-background-color: #07002D; /* Highlight background */
+    -fx-text-fill: #FDFCFC; /* White text */
+}

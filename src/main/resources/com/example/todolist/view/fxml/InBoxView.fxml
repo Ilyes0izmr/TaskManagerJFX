@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!-- Ensure the controller is correctly specified -->
+<VBox alignment="CENTER" spacing="20.0" styleClass="vbox" stylesheets="@../css/InboxView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.InboxController">
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <!-- Inbox Title -->
+    <Label fx:id="titleLabel" styleClass="inbox-title" text="Inbox">
+        <font>
+            <Font name="Arial" size="24" />
+        </font>
+    </Label>
+
+    <!-- Divider Separator -->
+    <Separator prefWidth="200.0" styleClass="separator" />
+
+    <!-- Search Bar -->
+    <HBox alignment="CENTER" spacing="10.0">
+        <Label text="Search: " />
+        <TextField fx:id="searchTextField" prefWidth="300" promptText="Search notifications by title or content..." />
+    </HBox>
+
+    <!-- Notification ListView -->
+    <ListView fx:id="notificationListView" prefHeight="400" prefWidth="600" styleClass="notification-list">
+        <!-- Notifications will be dynamically added here -->
+    </ListView>
+
+    <!-- Divider Separator -->
+    <Separator prefWidth="200.0" styleClass="separator" />
+
+    <!-- Footer Label -->
+    <Label fx:id="footerLabel" styleClass="footer-label" text="You have 0 unread notifications.">
+        <font>
+            <Font name="Arial" size="14" />
+        </font>
+    </Label>
+</VBox>
