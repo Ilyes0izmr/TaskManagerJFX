@@ -1,0 +1,197 @@
+/* Global Styles */
+* {
+    -fx-font-family: "ubuntu";
+    -fx-primary: #4a90e2;
+    -fx-secondary: #f8f9fa;
+    -fx-text-color: #2d3436;
+    -fx-background: #FDFCFC;
+    -fx-color-purple: #07002D;
+    -fx-color-white: #FDFCFC;
+    -fx-color-green: #15F5BA;
+    -fx-color-light-purple: #836FFF;
+    -fx-color-pink: #EB3678;
+    -fx-color-grey: #C6C6C6;
+    -fx-transition: all 0.3s ease-in-out; /* Smooth animations for all elements */
+}
+
+/* ListView styling */
+.list-view {
+    -fx-background-color: -fx-background;
+    -fx-padding: 10px;
+
+}
+
+.list-cell {
+    -fx-background-color: -fx-secondary;
+    -fx-alignment: center;
+    -fx-text-fill: #2d3436;
+    -fx-font-size: 14px;
+    -fx-padding: 15px;
+    -fx-background-insets: 5 0 5 0;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+.list-cell:hover {
+    -fx-background-color: derive(-fx-secondary, 10%);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 6, 0.5, 0, 1); /* Shadow on hover */
+}
+
+/* Task HBox container styling */
+.task-hbox {
+    -fx-alignment: center-left;
+    -fx-spacing: 10;
+    -fx-padding: 0 10 0 10;
+    -fx-min-height: 40px;
+    -fx-transition: all 0.3s ease-in-out;
+
+}
+
+/* Task text styling */
+.task-label {
+    -fx-font-size: 17px;
+    -fx-text-fill: -fx-color-purple;
+    -fx-min-width: 200px;
+    -fx-max-width: 400px;
+    -fx-wrap-text: true;
+    -fx-alignment: center-left;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Due date styling */
+.due-date-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-color-purple;
+    -fx-padding: 4px 4px 4px 4px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(112, 39, 195, 0.2), 4, 0.5, 0, 1); /* Slight glow */
+}
+
+/* Checkbox styling */
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: #cbd5e0;
+    -fx-border-radius: 4px;
+    -fx-border-width: 2px;
+    -fx-padding: 3px;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.check-box:selected .box {
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-primary;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+/* Completed task styling */
+.completed {
+    -fx-opacity: 0.6;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0.5, 0, 1);
+}
+
+.completed .task-label {
+    -fx-strikethrough: true;
+}
+
+/* Empty list placeholder */
+.list-view .placeholder {
+    -fx-background-color: -fx-background;
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+    -fx-text-fill: #a0aec0;
+    -fx-padding: 20px;
+    -fx-opacity: 0.8;
+}
+
+/* ScrollBar styling */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #cbd5e0;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+/* Priority Label Base Styling */
+.priority-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-min-width: 65px;
+    -fx-alignment: center;
+    -fx-padding: 4px 8px;
+    -fx-min-height: 25px;
+    -fx-max-height: 25px;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Priority Colors */
+.priority-label-HIGH {
+    -fx-background-color: #EB3678;
+    -fx-effect: dropshadow(gaussian, rgba(235, 54, 120, 0.3), 6, 0.5, 0, 2);
+}
+.priority-label-MEDIUM {
+    -fx-background-color: #836FFF;
+    -fx-effect: dropshadow(gaussian, rgba(131, 111, 255, 0.3), 6, 0.5, 0, 2);
+}
+.priority-label-LOW {
+    -fx-background-color: #15F5BA;
+    -fx-text-fill: #000000;
+    -fx-effect: dropshadow(gaussian, rgba(21, 245, 186, 0.3), 6, 0.5, 0, 2);
+}
+
+/* Menu Button Styling */
+/* Menu Button Base Styling */
+.menu-button {
+    -fx-background-color: linear-gradient(to bottom, #34d6f5, #34d6f5);
+    -fx-background-radius: 15px;
+    -fx-min-width: 120px;
+    -fx-font-size: 16px;
+    -fx-text-fill: #fff; /* White text for contrast */
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0.5, 0, 2);
+    -fx-transition: all 0.8s ease-in-out;
+    -fx-cursor: hand;
+}
+
+/* Hover State for Menu Button */
+.menu-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #5AA3F2, #3B82D1);
+    -fx-text-fill: #ffffff; /* Ensure text remains white */
+    -fx-effect: dropshadow(gaussian, rgba(74, 144, 226, 0.5), 10, 0.5, 0, 2);
+    -fx-transform: scale(1.05); /* Slight enlargement */
+}
+
+/* Pressed State for Menu Button */
+.menu-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #316AB3, #274F8C);
+    -fx-text-fill: #ffffff; /* Ensure text remains white */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0.5, 0, 1);
+    -fx-transform: scale(0.95); /* Shrink slightly */
+}
+
+/* Menu Item Styling */
+.menu-item {
+    -fx-padding: 8px 16px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #212529; /* Default text color */
+}
+
+/* Hover State for Menu Items */
+.menu-item:hover {
+    -fx-background-color: #5AA3F2; /* Highlight background */
+    -fx-text-fill: #ffffff; /* Ensure text remains visible */
+}
+

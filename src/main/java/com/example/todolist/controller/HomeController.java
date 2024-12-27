@@ -6,7 +6,6 @@ import com.example.todolist.ui.NotificationAlert;
 import com.example.todolist.util.TaskImplSerializer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckMenuItem;
@@ -19,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -110,20 +110,20 @@ public class HomeController {
     }
     public void initialize() {
         usernameLabel.setText(User.getUserName()+" !");
-        categoryNameLabel.setText("  Home");
+        categoryNameLabel.setText("  >> Home");
         updateTime();
         setGreetingMessage();
         updateTime();
         // Create a Timeline that updates the time every second
         Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateTime()));
-        clock.setCycleCount(Timeline.INDEFINITE); // Keeps the timeline running indefinitely
+        clock.setCycleCount(Timeline.INDEFINITE);
         clock.play();
 
 
         categoryList.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 String name = handleCategoryDoubleClick();
-                categoryNameLabel.setText("  "+name+" page");
+                categoryNameLabel.setText("  >> "+name+" page");
             }
         });
 
@@ -151,7 +151,7 @@ public class HomeController {
             handleSearch(newValue); // Call handleSearch with the current search text
         });
     }
-    
+
     public void refresh() {
         try {
             taskList.getItems().clear();
@@ -205,7 +205,7 @@ public class HomeController {
         timeLabel.setText(LocalDateTime.now().format(formatter));
         clockLabel.setText(LocalDateTime.now().format(formatter2));
     }
-    
+
     public void refreshCategories() {
         try {
             ObservableList<Category> categories = FXCollections.observableArrayList(categoryDAO.getAllCategories(User.getUserName()));
@@ -263,7 +263,7 @@ public class HomeController {
         currentCategoryName = null;
         collaberatorName = null;
         fullAccess = true;
-        categoryNameLabel.setText("  Home");
+        categoryNameLabel.setText("  >> Home");
         refresh();
 
     }
@@ -594,7 +594,8 @@ public class HomeController {
 
     private void handleSearch(String searchText) {
         // Call the DAO method to search for tasks by title
-        List<TaskImpl> searchResults = taskDAO.searchTasksByTitle(searchText,User.getUserName(),currentCategoryName);
+        taskDAO.searchTasksByTitle(searchText, User.getUserName(), currentCategoryName);
+        List<TaskImpl> searchResults;
         if(collaberatorName == null) {
             searchResults = taskDAO.searchTasksByTitle(searchText, User.getUserName(), currentCategoryName);
         }else{
@@ -625,7 +626,7 @@ public class HomeController {
     }
 
     /// /////////////////////////////////////// import export .///////////////////////////////
-    public void handleExport(ActionEvent actionEvent) {
+    public void handleExport(MouseEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Export Tasks");
         File file = fileChooser.showSaveDialog(new Stage());
@@ -667,7 +668,7 @@ public class HomeController {
         }
     }
     //public void handleImport(ActionEvent actionEvent){}
-    public void handleImport(ActionEvent actionEvent) {
+    public void handleImport(MouseEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Import Tasks");
         File file = fileChooser.showOpenDialog(new Stage());

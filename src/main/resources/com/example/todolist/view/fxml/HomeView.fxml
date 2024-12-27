@@ -25,61 +25,35 @@
          <Label fx:id="welcomeLabel" layoutX="25.0" layoutY="35.0" prefHeight="79.0" prefWidth="282.0" styleClass="welcome-label" stylesheets="@../css/home.css" text="Good Morning" />
          <Label fx:id="usernameLabel" layoutX="286.0" layoutY="41.0" prefHeight="72.0" prefWidth="239.0" styleClass="welcome-user-label" stylesheets="@../css/home.css" text="USERNAME" />
 
-         <Label fx:id="clockLabel" layoutX="262.0" layoutY="101.0" prefHeight="42.0" prefWidth="93.0" styleClass="time-user-label" stylesheets="@../css/home.css" text="12:15:34" />
-         <Label fx:id="timeLabel" layoutX="78.0" layoutY="102.0" prefHeight="42.0" prefWidth="169.0" styleClass="time-user-label" stylesheets="@../css/home.css" text="thu,12/12/2024" />
+         <Label fx:id="clockLabel" layoutX="261.0" layoutY="103.0" prefHeight="42.0" prefWidth="93.0" styleClass="time-user-label" stylesheets="@../css/home.css" text="12:15:34" />
+         <Label fx:id="timeLabel" layoutX="73.0" layoutY="103.0" prefHeight="42.0" prefWidth="169.0" styleClass="time-user-label" stylesheets="@../css/home.css" text="thu,12/12/2024" />
 
-         <ImageView fx:id="clockImageView" fitHeight="23.0" fitWidth="24.0" layoutX="47.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fx:id="clockImageView" fitHeight="23.0" fitWidth="24.0" layoutX="48.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../img/calendar.png" />
          </ImageView>
-         <ImageView fx:id="userImageView" fitHeight="26.0" fitWidth="23.0" layoutX="240.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fx:id="userImageView" fitHeight="26.0" fitWidth="23.0" layoutX="240.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../img/clock.png" />
          </ImageView>
       </AnchorPane>
-      <!-- ============== -->
 
-
-
-      <AnchorPane layoutY="707.0" prefHeight="55.0" prefWidth="1166.0">
+      <AnchorPane layoutX="49.0" layoutY="707.0" prefHeight="57.0" prefWidth="1117.0">
          <HBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="1.0" prefHeight="55.0" prefWidth="1117.0" stylesheets="@../css/home.css">
-            <ImageView fitHeight="35.0" fitWidth="36.0" onMouseClicked="#handleAddTaskPopup">
-               <style>
-                  -fx-cursor: hand; /* Changes the cursor to a hand on hover */
-               </style>
-               <image>
-                  <Image url="@../img/add.png" />
-               </image>
-            </ImageView>
-
-
-            <Pane prefHeight="55.0" prefWidth="45.0" stylesheets="@../css/home.css" />
-            <Button fx:id="exportButton" mnemonicParsing="false" onAction="#handleExport" prefHeight="50.0" prefWidth="102.0" text="export">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="importButton" mnemonicParsing="false" onAction="#handleImport" prefHeight="50.0" prefWidth="81.0" text="import">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-      
-                                                   <!-- Task Search -->
-            <TextField fx:id="taskSearch" prefHeight="51.0" prefWidth="566.0" promptText="search" styleClass="text-field" stylesheets="@../css/home.css" />
+            <!-- Task Search -->
+            <TextField fx:id="taskSearch" prefHeight="51.0" prefWidth="556.0" promptText="search" styleClass="searchFieldTask" stylesheets="@../css/home.css" />
+            <Pane prefHeight="55.0" prefWidth="345.0" />
          </HBox>
       </AnchorPane>
-      <AnchorPane layoutX="104.0" layoutY="236.0" prefHeight="457.0" prefWidth="1058.0">
-         <ListView fx:id="taskList" layoutX="1.0" layoutY="37.0" prefHeight="383.0" prefWidth="1055.0" stylesheets="@../css/home.css" />
+
+      <AnchorPane layoutX="96.0" layoutY="170.0" prefHeight="493.0" prefWidth="1070.0" stylesheets="@../css/home2.css">
+         <ListView fx:id="taskList" layoutX="4.0" layoutY="12.0" prefHeight="477.0" prefWidth="1058.0" stylesheets="@../css/home.css" />
       </AnchorPane>
-      <Label fx:id="categoryNameLabel1" layoutX="102.0" layoutY="173.0" prefHeight="32.0" prefWidth="239.0" style="-fx-background-color: #07002D; -fx-border-color: #07002D;" styleClass="category-name-label" stylesheets="@../css/home.css" />
-      <Label fx:id="categoryNameLabel" layoutX="102.0" layoutY="167.0" prefHeight="19.0" prefWidth="239.0" styleClass="category-name-label" stylesheets="@../css/home.css" text="category name" />
-      <HBox fx:id="buttonEffect11" layoutX="1046.0" layoutY="66.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-purple-effect" stylesheets="@../css/home.css" />
-      <HBox fx:id="buttonEffect" layoutX="787.0" layoutY="66.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
-      <HBox fx:id="buttonEffect1" layoutX="917.0" layoutY="66.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-pink-effect" stylesheets="@../css/home.css" />
-      <HBox layoutX="917.0" layoutY="60.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-pink-border-background" stylesheets="@../css/home.css">
+      <Label fx:id="categoryNameLabel" layoutX="91.0" layoutY="18.0" prefHeight="19.0" prefWidth="239.0" styleClass="category-name-label" stylesheets="@../css/home.css" text="&gt;&gt;Home" />
+      <HBox fx:id="buttonEffect11" layoutX="1034.0" layoutY="66.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-purple-effect" stylesheets="@../css/home.css" />
+      <HBox fx:id="buttonEffect" layoutX="775.0" layoutY="65.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
+      <HBox fx:id="buttonEffect1" layoutX="905.0" layoutY="66.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-pink-effect" stylesheets="@../css/home.css" />
+      <HBox layoutX="907.0" layoutY="60.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-pink-border-background" stylesheets="@../css/home.css">
          <children>
-   
-            
-            <MenuButton fx:id="sortMenuButton" minHeight="10.0" minWidth="10.0" prefHeight="34.0" prefWidth="37.0" styleClass="menu-button-button-style" stylesheets="@../css/home.css">
+            <MenuButton fx:id="sortMenuButton" minHeight="10.0" minWidth="10.0" prefHeight="34.0" prefWidth="37.0" styleClass="menu-item" stylesheets="@../css/home.css">
                <items>
                   <MenuItem onAction="#handleSortFarthest" text="Farthest Date" />
                   <MenuItem onAction="#handleSortClosest" text="Closest Date" />
@@ -103,11 +77,9 @@
             </Label>
          </children>
       </HBox>
-      <HBox layoutX="1046.0" layoutY="60.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-purple-border-background" stylesheets="@../css/home.css">
+      <HBox layoutX="1036.0" layoutY="60.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-purple-border-background" stylesheets="@../css/home.css">
          <children>
-
-
-               <MenuButton minHeight="10.0" minWidth="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" styleClass="menu-button-button-style" stylesheets="@../css/home.css">
+               <MenuButton minHeight="10.0" minWidth="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" styleClass="menu-item" stylesheets="@../css/home.css">
                <items>
                   <CheckMenuItem fx:id="checkMenuItemCompleted" mnemonicParsing="false" onAction="#handleFilterStatus" text="Completed" />
                   <CheckMenuItem fx:id="checkMenuItemInProgress" mnemonicParsing="false" onAction="#handleFilterStatus" text="IN PROGRESS" />
@@ -131,11 +103,11 @@
             </Label>
          </children>
       </HBox>
-      <HBox layoutX="787.0" layoutY="59.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-green-border-background" stylesheets="@../css/home.css">
+      <HBox layoutX="777.0" layoutY="59.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-green-border-background" stylesheets="@../css/home.css">
          <children>
             <!-- ############################### -->
    
-                              <MenuButton minHeight="10.0" minWidth="10.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="28.0" styleClass="menu-button-button-style" stylesheets="@../css/home.css">
+            <MenuButton minHeight="10.0" minWidth="10.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="28.0" styleClass="menu-item" stylesheets="@../css/home.css">
                <items>
                   <CheckMenuItem fx:id="checkMenuItemHigh" mnemonicParsing="false" onAction="#handleFilterPriority" text="High" />
                   <CheckMenuItem fx:id="checkMenuItemMedium" mnemonicParsing="false" onAction="#handleFilterPriority" text="Medium" />
@@ -155,6 +127,34 @@
             </Label>
          </children>
       </HBox>
+      <HBox fx:id="buttonEffect2" layoutX="1041.0" layoutY="732.0" prefHeight="30.0" prefWidth="48.0" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
+      <HBox fx:id="buttonEffect21" layoutX="1107.0" layoutY="732.0" prefHeight="30.0" prefWidth="48.0" styleClass="menu-button-pink-effect" stylesheets="@../css/home.css" />
+
+            <!-- Export Button replaced with ImageView -->
+      <ImageView fx:id="exportImage" fitHeight="47.0" fitWidth="58.0" layoutX="1102.0" layoutY="710.0" onMouseClicked="#handleExport" styleClass="image-button">
+         <style>-fx-cursor: hand;</style>
+         <image>
+            <Image url="@../img/export.png" />
+         </image>
+      </ImageView>
+
+               <!-- Import Button replaced with ImageView -->
+      <ImageView fx:id="importImage" fitHeight="47.0" fitWidth="58.0" layoutX="1036.0" layoutY="710.0" onMouseClicked="#handleImport" styleClass="image-button">
+         <style>-fx-cursor: hand;</style>
+         <image>
+            <Image url="@../img/import.png" />
+         </image>
+      </ImageView>
+      <!-- ============== -->
+   
+      <ImageView fx:id="addImage" fitHeight="35.0" fitWidth="36.0" layoutX="607.0" layoutY="718.0" onMouseClicked="#handleAddTaskPopup">
+         <style>
+            -fx-cursor: hand; /* Changes the cursor to a hand on hover */
+         </style>
+         <image>
+            <Image url="@../img/add.png" />
+         </image>
+      </ImageView>
    </AnchorPane>
 
    

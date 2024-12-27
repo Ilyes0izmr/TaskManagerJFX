@@ -14,7 +14,7 @@
 
 .tasksContainer{
     -fx-background-color: -fx-color-white;
-    -fx-background-radius: 8px;
+    -fx-background-radius: 1px;
 
 }
 
@@ -22,7 +22,7 @@
 .welcome-label {
     -fx-font-size: 36px;           /* Font size */
     -fx-font-weight: bold;         /* Font weight */
-    -fx-text-fill: #333333;        /* Text color */
+    -fx-text-fill: -fx-color-purple;        /* Text color */
     -fx-background-color: transparent; /* Background color (transparent here) */
     -fx-padding: 10px;             /* Padding around the text */
     -fx-border-color: -fx-color-white;    /* Border color */
@@ -51,91 +51,161 @@
 }
 
 .category-name-label {
-   -fx-font-size: 15px;           /* Font size */
-   -fx-text-fill: -fx-color-white;        /* Text color */
-   -fx-background-color: -fx-color-light-purple; /* Background color (transparent here) */
+   -fx-font-size: 20px;           /* Font size */
+   -fx-text-fill: -fx-color-grey;        /* Text color */
    -fx-background-radius: 12px;
    -fx-padding: 5px;             /* Padding around the text */
-   -fx-border-color: -fx-color-light-purple;    /* Border color */
    -fx-border-width: 2px;        /* Border width */
    -fx-border-radius: 32px;       /* Border radius (rounded corners) */
 }
 /*******************************************************************************/
+/* General Label Style */
 .menu-button-label {
     -fx-font-size: 16px;           /* Font size */
     -fx-font-weight: bold;
-    -fx-text-fill: -fx-color-purple;       /* Text color */
-    -fx-background-color: transparent; /* Background color (transparent here) */
+    -fx-text-fill: -fx-color-purple; /* Text color */
+    -fx-background-color: transparent; /* Transparent background */
     -fx-padding: 10px;             /* Padding around the text */
     -fx-border-width: 2px;        /* Border width */
     -fx-border-radius: 5px;       /* Border radius (rounded corners) */
 }
 
-.menu-button-button-style{
-    -fx-background-color: -fx-color-white; /* Background color */
+/* Button Style */
+.menu-item {
+    -fx-background-color: -fx-color-white; /* White background */
     -fx-background-radius: 15px;    /* Rounded corners */
-    -fx-border-color: -fx-color-white;      /* Border color */
+    -fx-border-color: -fx-color-white;      /* White border */
     -fx-border-width: 2px;          /* Border width */
-    -fx-border-radius: 15px;        /* Border rounded corners */
-    -fx-text-fill: white;           /* Text color */
+    -fx-border-radius: 15px;        /* Rounded corners */
+    -fx-text-fill: white;           /* White text color */
 }
 
-.menu-button-green-border-background{
-    -fx-background-color:-fx-color-white; /* Background color (transparent here) */
-    -fx-background-radius: 11px;       /* Border radius (rounded corners) */
-    -fx-border-color: -fx-color-green;    /* Border color */
+.menu-item:hover {
+    -fx-background-color: #07002D; /* Highlight background on hover */
+    -fx-text-fill: #ffffff; /* White text color on hover */
+    -fx-border-radius: 8px; /* Rounded corners for hover state */
+}
+
+
+
+/* Green Border Background Style */
+.menu-button-green-border-background {
+    -fx-background-color: -fx-color-white; /* White background */
+    -fx-background-radius: 11px;       /* Rounded corners */
+    -fx-border-color: -fx-color-green;  /* Green border */
     -fx-border-width: 1px;        /* Border width */
-    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
+    -fx-border-radius: 10px;       /* Rounded corners */
 }
 
-.menu-button-green-effect{
-    -fx-background-color: -fx-color-green; /* Background color (transparent here) */
-    -fx-background-radius: 10px;       /* Border radius (rounded corners) */
-    -fx-border-color: -fx-color-green;    /* Border color */
-    -fx-border-width: 7px;        /* Border width */
-    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
+/* Green Glowing Button */
+.menu-button-green-effect {
+    -fx-background-color: -fx-color-green; /* Green background */
+    -fx-background-radius: 10px;       /* Rounded corners */
+    -fx-border-color: -fx-color-green;  /* Green border */
+    -fx-border-width: 7px;              /* Border width */
+    -fx-border-radius: 10px;            /* Rounded corners */
+
 }
 
-.menu-button-pink-border-background{
-    -fx-background-color:-fx-color-white; /* Background color (transparent here) */
-    -fx-background-radius: 11px;       /* Border radius (rounded corners) */
-    -fx-border-color: -fx-color-pink;    /* Border color */
+/* Pink Border Background Style */
+.menu-button-pink-border-background {
+    -fx-background-color: -fx-color-white; /* White background */
+    -fx-background-radius: 11px;       /* Rounded corners */
+    -fx-border-color: -fx-color-pink;  /* Pink border */
+    -fx-border-width: 1px;             /* Border width */
+    -fx-border-radius: 10px;           /* Rounded corners */
+}
+
+/* Pink Glowing Button */
+.menu-button-pink-effect {
+    -fx-background-color: -fx-color-pink; /* Pink background */
+    -fx-background-radius: 10px;       /* Rounded corners */
+    -fx-border-color: -fx-color-pink;  /* Pink border */
+    -fx-border-width: 7px;             /* Border width */
+    -fx-border-radius: 10px;           /* Rounded corners */
+
+}
+
+/* Purple Border Background Style */
+.menu-button-purple-border-background {
+    -fx-background-color: -fx-color-white; /* White background */
+    -fx-background-radius: 11px;       /* Rounded corners */
+    -fx-border-color: -fx-color-light-purple;  /* Light purple border */
     -fx-border-width: 1px;        /* Border width */
-    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
+    -fx-border-radius: 10px;       /* Rounded corners */
 }
 
-.menu-button-pink-effect{
-    -fx-background-color: -fx-color-pink; /* Background color (transparent here) */
-    -fx-background-radius: 10px;       /* Border radius (rounded corners) */
-    -fx-border-color: -fx-color-pink;    /* Border color */
-    -fx-border-width: 7px;        /* Border width */
-    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
+/* Purple Glowing Button */
+.menu-button-purple-effect {
+    -fx-background-color: -fx-color-light-purple; /* Light purple background */
+    -fx-background-radius: 10px;       /* Rounded corners */
+    -fx-border-color: -fx-color-light-purple;  /* Light purple border */
+    -fx-border-width: 7px;              /* Border width */
+    -fx-border-radius: 10px;            /* Rounded corners */
+
 }
 
-.menu-button-purple-border-background{
-    -fx-background-color:-fx-color-white; /* Background color (transparent here) */
-    -fx-background-radius: 11px;       /* Border radius (rounded corners) */
-    -fx-border-color: -fx-color-light-purple;    /* Border color */
-    -fx-border-width: 1px;        /* Border width */
-    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
-}
 
-.menu-button-purple-effect{
-    -fx-background-color: -fx-color-light-purple; /* Background color (transparent here) */
-    -fx-background-radius: 10px;       /* Border radius (rounded corners) */
-    -fx-border-color: -fx-color-light-purple;    /* Border color */
-    -fx-border-width: 7px;        /* Border width */
-    -fx-border-radius: 10px;       /* Border radius (rounded corners) */
-}
 /*******************************************************************************/
-/*TASKS STYLES */
+/*******************************************************************************/
 
-/* General styling for the ListView */
-.list-view {
-    -fx-background-color: -fx-color-white; /* Background color */
-    -fx-border-color: -fx-color-white;   /* Border color */
-    -fx-border-width: 2px;                /* Border width */
-    -fx-border-radius: 32px;              /* Rounded corners */
-    -fx-padding: 5px;                     /* Padding inside the ListView */
+/* General Style for Image Views */
+.image-button {
+    -fx-cursor: hand; /* Changes the cursor to a hand on hover */
+    -fx-background-color: transparent; /* Transparent background */
+
+    -fx-padding: 10px; /* Padding around the image */
+    -fx-alignment: center; /* Center the image inside */
+    -fx-border-radius: 8px; /* Rounded corners */
 }
+
+/* Hover effect for Image View (Enlarge and shadow effect) */
+.image-button:hover {
+
+    -fx-scale-x: 1.05; /* Slightly enlarge the image on hover */
+    -fx-scale-y: 1.05; /* Slightly enlarge the image on hover */
+}
+/*8888888888888888888888888888888888888888888888888888888888888888888*/
+
+.searchFieldTask {
+    -fx-background-color: #07002D; /* Dark background color */
+    -fx-background-radius: 30px; /* Rounded corners */
+    -fx-padding: 10px; /* Padding inside the text field */
+    -fx-font-size: 16px; /* Font size */
+    -fx-text-fill: #FDFCFC; /* White text color */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0.5, 0, 2);
+}
+
+.searchFieldTask:hover {
+    -fx-border-color: #15F5BA; /* Shine border effect in green */
+    -fx-border-radius: 30px; /* Increased border radius on hover */
+    -fx-border-width: 2px;
+}
+
+/* Focus Effect for the Search Area (searchFieldTask) */
+.searchFieldTask:focused {
+    -fx-border-color: #15F5BA; /* Shine border effect in green */
+    -fx-background-color: #1D0F3B; /* Slightly darker background when focused */
+    -fx-border-radius: 30px; /* Increased border radius when focused */
+    -fx-border-width: 2px;
+}
+
+/* Placeholder Text Styling for searchFieldTask */
+.searchFieldTask .text {
+    -fx-text-fill: #FDFCFC; /* White text color */
+}
+
+/* Style for the Clear Button in the TextField */
+.searchFieldTask .clear-button {
+    -fx-background-color: transparent; /* Transparent background */
+    -fx-cursor: hand; /* Hand cursor on hover */
+
+}
+
+/* Style for the Clear Button Hover Effect */
+.searchFieldTask .clear-button:hover {
+    -fx-background-color: #1D0F3B; /* Darker background on hover */
+}
+
+/*SECOND PART OF THE DESIGN : THE NAVIGATION PART BRUUUUUUUUUUUUUUUUUUUUUH * /
 
