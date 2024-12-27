@@ -4,7 +4,8 @@ import com.example.todolist.dao.CollabCategoryDAO;
 import com.example.todolist.dao.NotificationDAO;
 import com.example.todolist.ui.NotificationAlert;
 import com.example.todolist.util.TaskImplSerializer;
-import javafx.event.ActionEvent;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckMenuItem;
@@ -14,8 +15,10 @@ import com.example.todolist.model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,16 +27,32 @@ import com.example.todolist.dao.TaskDAO;
 import java.io.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import javafx.stage.FileChooser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import javafx.util.Duration;
+
 import java.lang.reflect.Type;
 
 
 public class HomeController {
+    @FXML
+    private Label timeLabel;
+    @FXML
+    private Label usernameLabel;
+    @FXML
+    private Label welcomeLabel;
+    @FXML
+    private Label clockLabel;
+    @FXML
+    private Label categoryNameLabel;
+
+
     @FXML
     private CheckMenuItem checkMenuItemCompleted;
     @FXML
@@ -89,11 +108,22 @@ public class HomeController {
     public void setInstance(HomeController instance) {
         HomeController.instance = instance; // Set the singleton instance explicitly
     }
-
     public void initialize() {
+        usernameLabel.setText(User.getUserName()+" !");
+        categoryNameLabel.setText("  >> Home");
+        updateTime();
+        setGreetingMessage();
+        updateTime();
+        // Create a Timeline that updates the time every second
+        Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateTime()));
+        clock.setCycleCount(Timeline.INDEFINITE);
+        clock.play();
+
+
         categoryList.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-                handleCategoryDoubleClick();
+                String name = handleCategoryDoubleClick();
+                categoryNameLabel.setText("  >> "+name+" page");
             }
         });
 
@@ -158,6 +188,24 @@ public class HomeController {
         }
     }
 
+    private void setGreetingMessage() {
+        int hour = LocalDateTime.now().getHour();
+        if (hour < 12) {
+            welcomeLabel.setText("Good Morning");
+        } else if (hour < 18) {
+            welcomeLabel.setText("Good Afternoon");
+        } else {
+            welcomeLabel.setText("Good Evening");
+        }
+    }
+    private void updateTime() {
+        // Format to include the day and the time (without seconds)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EE, MM/dd/yyyy");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH:mm:ss");
+        timeLabel.setText(LocalDateTime.now().format(formatter));
+        clockLabel.setText(LocalDateTime.now().format(formatter2));
+    }
+
     public void refreshCategories() {
         try {
             ObservableList<Category> categories = FXCollections.observableArrayList(categoryDAO.getAllCategories(User.getUserName()));
@@ -182,7 +230,7 @@ public class HomeController {
         }
     }
 
-    private void handleCategoryDoubleClick() {
+    private String handleCategoryDoubleClick() {
         Category selectedCategory = categoryList.getSelectionModel().getSelectedItem();
         if (selectedCategory != null) {
             currentCategoryName = selectedCategory.getName();
@@ -190,8 +238,10 @@ public class HomeController {
             fullAccess = true;
             System.out.println("Current category set to: " + currentCategoryName);
             refresh();
+            return currentCategoryName ;
         } else {
             System.out.println("No category selected.");
+            return "Home" ;
         }
     }
 
@@ -213,7 +263,9 @@ public class HomeController {
         currentCategoryName = null;
         collaberatorName = null;
         fullAccess = true;
+        categoryNameLabel.setText("  >> Home");
         refresh();
+
     }
 
     public void handleAddTaskPopup() {
@@ -542,7 +594,8 @@ public class HomeController {
 
     private void handleSearch(String searchText) {
         // Call the DAO method to search for tasks by title
-        List<TaskImpl> searchResults = taskDAO.searchTasksByTitle(searchText,User.getUserName(),currentCategoryName);
+        taskDAO.searchTasksByTitle(searchText, User.getUserName(), currentCategoryName);
+        List<TaskImpl> searchResults;
         if(collaberatorName == null) {
             searchResults = taskDAO.searchTasksByTitle(searchText, User.getUserName(), currentCategoryName);
         }else{
@@ -573,7 +626,7 @@ public class HomeController {
     }
 
     /// /////////////////////////////////////// import export .///////////////////////////////
-    public void handleExport(ActionEvent actionEvent) {
+    public void handleExport(MouseEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Export Tasks");
         File file = fileChooser.showSaveDialog(new Stage());
@@ -615,7 +668,7 @@ public class HomeController {
         }
     }
     //public void handleImport(ActionEvent actionEvent){}
-    public void handleImport(ActionEvent actionEvent) {
+    public void handleImport(MouseEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Import Tasks");
         File file = fileChooser.showOpenDialog(new Stage());

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,135 +16,208 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1550.0" styleClass="anchor-pane" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.HomeController">
-   <AnchorPane layoutX="387.0" prefHeight="850.0" prefWidth="1166.0" styleClass="anchor-pane" stylesheets="@../css/home.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="386.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <AnchorPane prefHeight="92.0" prefWidth="1161.0" styleClass="anchor-pane" stylesheets="@../css/home.css">
-         <HBox alignment="CENTER_LEFT" layoutY="1.0" prefHeight="90.0" prefWidth="1163.0" styleClass="hbox" stylesheets="@../css/home.css">
-            <TextField fx:id="taskSearch" prefHeight="51.0" prefWidth="300.0" promptText="search" styleClass="text-field" stylesheets="@../css/home.css">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-            </TextField>
-            <Pane prefHeight="90.0" prefWidth="342.0" styleClass="pane" stylesheets="@../css/home.css" />
-            <MenuButton mnemonicParsing="false" prefHeight="33.0" prefWidth="106.0" stylesheets="@../css/home.css" text="Sort">
+<AnchorPane fx:id="backgroundContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1550.0" styleClass="backgroundContainer" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.HomeController">
+   <AnchorPane fx:id="taskContainer" layoutX="311.2" prefHeight="801.0" prefWidth="1239.0" styleClass="tasksContainer" stylesheets="@../css/home.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="311.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+
+      <!-- WELCOME MESSAGE -->
+      <AnchorPane layoutX="56.0" prefHeight="184.0" prefWidth="1101.0" styleClass="anchor-pane" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+         <Label fx:id="welcomeLabel" layoutX="25.0" layoutY="35.0" prefHeight="79.0" prefWidth="282.0" styleClass="welcome-label" stylesheets="@../css/home.css" text="Good Morning" />
+         <Label fx:id="usernameLabel" layoutX="286.0" layoutY="41.0" prefHeight="72.0" prefWidth="239.0" styleClass="welcome-user-label" stylesheets="@../css/home.css" text="USERNAME" />
+
+         <Label fx:id="clockLabel" layoutX="261.0" layoutY="103.0" prefHeight="42.0" prefWidth="93.0" styleClass="time-user-label" stylesheets="@../css/home.css" text="12:15:34" />
+         <Label fx:id="timeLabel" layoutX="73.0" layoutY="103.0" prefHeight="42.0" prefWidth="169.0" styleClass="time-user-label" stylesheets="@../css/home.css" text="thu,12/12/2024" />
+
+         <ImageView fx:id="clockImageView" fitHeight="23.0" fitWidth="24.0" layoutX="48.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../img/calendar.png" />
+         </ImageView>
+         <ImageView fx:id="userImageView" fitHeight="26.0" fitWidth="23.0" layoutX="240.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../img/clock.png" />
+         </ImageView>
+      </AnchorPane>
+
+      <AnchorPane layoutX="49.0" layoutY="707.0" prefHeight="57.0" prefWidth="1117.0">
+         <HBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="1.0" prefHeight="55.0" prefWidth="1117.0" stylesheets="@../css/home.css">
+            <!-- Task Search -->
+            <TextField fx:id="taskSearch" prefHeight="51.0" prefWidth="556.0" promptText="search" styleClass="searchFieldTask" stylesheets="@../css/home.css" />
+            <Pane prefHeight="55.0" prefWidth="345.0" />
+         </HBox>
+      </AnchorPane>
+
+      <AnchorPane layoutX="96.0" layoutY="170.0" prefHeight="493.0" prefWidth="1070.0" stylesheets="@../css/home2.css">
+         <ListView fx:id="taskList" layoutX="4.0" layoutY="12.0" prefHeight="477.0" prefWidth="1058.0" stylesheets="@../css/home.css" />
+      </AnchorPane>
+      <Label fx:id="categoryNameLabel" layoutX="91.0" layoutY="18.0" prefHeight="19.0" prefWidth="239.0" styleClass="category-name-label" stylesheets="@../css/home.css" text="&gt;&gt;Home" />
+      <HBox fx:id="buttonEffect11" layoutX="1034.0" layoutY="66.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-purple-effect" stylesheets="@../css/home.css" />
+      <HBox fx:id="buttonEffect" layoutX="775.0" layoutY="65.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
+      <HBox fx:id="buttonEffect1" layoutX="905.0" layoutY="66.0" prefHeight="51.0" prefWidth="114.0" styleClass="menu-button-pink-effect" stylesheets="@../css/home.css" />
+      <HBox layoutX="907.0" layoutY="60.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-pink-border-background" stylesheets="@../css/home.css">
+         <children>
+            <MenuButton fx:id="sortMenuButton" minHeight="10.0" minWidth="10.0" prefHeight="34.0" prefWidth="37.0" styleClass="menu-item" stylesheets="@../css/home.css">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleSortFarthest" text="Farest Date" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleSortClosest" text="Closest Date" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleSortHighest" text="Highest" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleSortLowest" text="Lowest" />
+                  <MenuItem onAction="#handleSortFarthest" text="Farthest Date" />
+                  <MenuItem onAction="#handleSortClosest" text="Closest Date" />
+                  <MenuItem onAction="#handleSortHighest" text="Highest" />
+                  <MenuItem onAction="#handleSortLowest" text="Lowest" />
                </items>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
                <HBox.margin>
-                  <Insets left="20.0" />
+                  <Insets bottom="5.0" left="5.0" top="6.0" />
                </HBox.margin>
             </MenuButton>
-
-            <MenuButton mnemonicParsing="false" prefHeight="29.0" prefWidth="118.0" stylesheets="@../css/home.css" text="Status">
+            <Label prefHeight="38.0" prefWidth="63.0" styleClass="menu-button-label" stylesheets="@../css/home.css" text="Sort">
                <HBox.margin>
-                  <Insets left="20.0" />
+                  <Insets bottom="5.0" top="5.0" />
                </HBox.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="1036.0" layoutY="60.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-purple-border-background" stylesheets="@../css/home.css">
+         <children>
+               <MenuButton minHeight="10.0" minWidth="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="37.0" styleClass="menu-item" stylesheets="@../css/home.css">
                <items>
                   <CheckMenuItem fx:id="checkMenuItemCompleted" mnemonicParsing="false" onAction="#handleFilterStatus" text="Completed" />
                   <CheckMenuItem fx:id="checkMenuItemInProgress" mnemonicParsing="false" onAction="#handleFilterStatus" text="IN PROGRESS" />
                   <CheckMenuItem fx:id="checkMenuItemAbandoned" mnemonicParsing="false" onAction="#handleFilterStatus" text="ABANDONED" />
                   <CheckMenuItem fx:id="checkMenuItemPending" mnemonicParsing="false" onAction="#handleFilterStatus" text="PENDING" />
                </items>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" top="6.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </MenuButton>
-
-            <MenuButton mnemonicParsing="false" prefHeight="54.0" prefWidth="126.0" stylesheets="@../css/home.css" text="Priority">
+            <Label prefHeight="40.0" prefWidth="72.0" styleClass="menu-button-label" stylesheets="@../css/home.css" text="Status">
+               <HBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="777.0" layoutY="59.0" prefHeight="48.0" prefWidth="114.0" styleClass="menu-button-green-border-background" stylesheets="@../css/home.css">
+         <children>
+            <!-- ############################### -->
+   
+            <MenuButton minHeight="10.0" minWidth="10.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="28.0" styleClass="menu-item" stylesheets="@../css/home.css">
                <items>
                   <CheckMenuItem fx:id="checkMenuItemHigh" mnemonicParsing="false" onAction="#handleFilterPriority" text="High" />
                   <CheckMenuItem fx:id="checkMenuItemMedium" mnemonicParsing="false" onAction="#handleFilterPriority" text="Medium" />
                   <CheckMenuItem fx:id="checkMenuItemLow" mnemonicParsing="false" onAction="#handleFilterPriority" text="Low" />
                </items>
                <HBox.margin>
-                  <Insets left="20.0" />
+                  <Insets bottom="5.0" left="5.0" top="6.0" />
                </HBox.margin>
             </MenuButton>
-
-
-         </HBox>
-      </AnchorPane>
-      <AnchorPane layoutY="707.0" prefHeight="92.0" prefWidth="1163.0">
-         <HBox alignment="CENTER_LEFT" layoutX="22.0" layoutY="1.0" prefHeight="90.0" prefWidth="1142.0" stylesheets="@../css/home.css">
-            <ImageView fitHeight="40" fitWidth="40.0" onMouseClicked="#handleAddTaskPopup">
-               <style>
-                  -fx-cursor: hand; /* Changes the cursor to a hand on hover */
-               </style>
-               <image>
-                  <Image url="@../img/add.png" />
-               </image>
-            </ImageView>
-
-
-            <Pane prefHeight="90.0" prefWidth="729.0" stylesheets="@../css/home.css" />
-            <Button fx:id="exportButton" mnemonicParsing="false" onAction="#handleExport" prefHeight="50.0" prefWidth="102.0" text="export">
+            <Label prefHeight="40.0" prefWidth="80.0" styleClass="menu-button-label" stylesheets="@../css/home.css" text="Priority">
                <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
+                  <Insets bottom="5.0" top="5.0" />
                </HBox.margin>
-            </Button>
-            <Button fx:id="importButton" mnemonicParsing="false" onAction="#handleImport" prefHeight="50.0" prefWidth="81.0" text="import">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-         </HBox>
-      </AnchorPane>
-      <AnchorPane layoutX="8.0" layoutY="90.0" prefHeight="618.0" prefWidth="1133.0">
-         <ListView fx:id="taskList" layoutX="10.0" prefHeight="618.0" prefWidth="1117.0" stylesheets="@../css/home.css" />
-      </AnchorPane>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+      <HBox fx:id="buttonEffect2" layoutX="1041.0" layoutY="732.0" prefHeight="30.0" prefWidth="48.0" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
+      <HBox fx:id="buttonEffect21" layoutX="1107.0" layoutY="732.0" prefHeight="30.0" prefWidth="48.0" styleClass="menu-button-pink-effect" stylesheets="@../css/home.css" />
+
+            <!-- Export Button replaced with ImageView -->
+      <ImageView fx:id="exportImage" fitHeight="47.0" fitWidth="58.0" layoutX="1102.0" layoutY="710.0" onMouseClicked="#handleExport" styleClass="image-button">
+         <style>-fx-cursor: hand;</style>
+         <image>
+            <Image url="@../img/export.png" />
+         </image>
+      </ImageView>
+
+               <!-- Import Button replaced with ImageView -->
+      <ImageView fx:id="importImage" fitHeight="47.0" fitWidth="58.0" layoutX="1036.0" layoutY="710.0" onMouseClicked="#handleImport" styleClass="image-button">
+         <style>-fx-cursor: hand;</style>
+         <image>
+            <Image url="@../img/import.png" />
+         </image>
+      </ImageView>
+      <!-- ============== -->
+   
+      <ImageView fx:id="addImage" fitHeight="35.0" fitWidth="36.0" layoutX="607.0" layoutY="718.0" onMouseClicked="#handleAddTaskPopup">
+         <style>
+            -fx-cursor: hand; /* Changes the cursor to a hand on hover */
+         </style>
+         <image>
+            <Image url="@../img/add.png" />
+         </image>
+      </ImageView>
    </AnchorPane>
-   <AnchorPane prefHeight="802.0" prefWidth="401.0" styleClass="left-pane" stylesheets="@../css/home.css">
-      <HBox alignment="BOTTOM_LEFT" layoutX="2.0" layoutY="3.0" prefHeight="68.0" prefWidth="381.0" styleClass="hbox" stylesheets="@../css/home.css">
-         <Pane prefHeight="74.0" prefWidth="15.0" />
-         <ImageView fitHeight="73.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
-         <Pane prefHeight="68.0" prefWidth="50.0" />
-         <Label prefHeight="69.0" prefWidth="246.0" stylesheets="@../css/home.css" text="name ">
+
+   
+   <AnchorPane prefHeight="822.0" prefWidth="304.0" styleClass="left-pane" stylesheets="@../css/home.css">
+      <HBox alignment="BOTTOM_LEFT" layoutX="8.0" layoutY="24.0" prefHeight="29.0" prefWidth="282.0" styleClass="hbox" stylesheets="@../css/home.css">
+         <ImageView fitHeight="30.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
             <HBox.margin>
-               <Insets bottom="5.0" left="5.0" top="5.0" />
+               <Insets bottom="5.0" left="30.0" />
+            </HBox.margin></ImageView>
+         <Label prefHeight="29.0" prefWidth="159.0" stylesheets="@../css/home.css" text="name ">
+            <HBox.margin>
+               <Insets bottom="5.0" left="25.0" top="5.0" />
             </HBox.margin>
             <opaqueInsets>
                <Insets />
             </opaqueInsets>
          </Label>
       </HBox>
-      <AnchorPane layoutX="6.0" layoutY="63.0" prefHeight="158.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
-         <VBox layoutX="6.0" layoutY="41.0" prefHeight="137.0" prefWidth="375.0" styleClass="vbox" stylesheets="@../css/home.css">
-            <Button layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="0.0" prefWidth="375.0" stylesheets="@../css/home.css" text="≡" />
-            <Button mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="50.0" prefWidth="375.0" stylesheets="@../css/home.css" text="home">
+      <AnchorPane layoutX="6.0" layoutY="69.0" prefHeight="150.0" prefWidth="290.0" styleClass="left-pane" stylesheets="@../css/home.css">
+         <VBox layoutX="2.0" layoutY="4.0" prefHeight="142.0" prefWidth="282.0" styleClass="vbox" stylesheets="@../css/home.css">
+            <Button layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="40.0" prefWidth="248.0" stylesheets="@../css/home.css" text="≡">
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets left="20.0" top="5.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="42.0" prefWidth="248.0" stylesheets="@../css/home.css" text="home">
+               <VBox.margin>
+                  <Insets left="20.0" top="2.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="375.0" stylesheets="@../css/home.css" text="box">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <TextField fx:id="categorySearcht" prefHeight="55.0" prefWidth="375.0" promptText="search" styleClass="text-field" stylesheets="@../css/home.css" />
+            <HBox prefHeight="50.0" prefWidth="282.0" styleClass="hbox" stylesheets="@../css/home.css">
+               <TextField fx:id="categorySearch" prefHeight="42.0" prefWidth="205.0" promptText="search for category">
+                  <HBox.margin>
+                     <Insets left="20.0" top="5.0" />
+                  </HBox.margin>
+               </TextField>
+               <Button mnemonicParsing="false" onAction="#handleAddCategoryPopup" prefHeight="41.0" prefWidth="42.0" stylesheets="@../css/home.css" text="+">
+                  <HBox.margin>
+                     <Insets top="5.0" />
+                  </HBox.margin>
+               </Button>
+   
+            </HBox>
          </VBox>
       </AnchorPane>
-      <AnchorPane layoutX="5.0" layoutY="290.0" prefHeight="248.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
-         <ListView fx:id="categoryList" layoutX="7.0" layoutY="64.0" prefHeight="182.0" prefWidth="384.0" stylesheets="@../css/home.css" />
+      <AnchorPane layoutX="26.0" layoutY="251.0" prefHeight="299.0" prefWidth="254.0" styleClass="left-pane" stylesheets="@../css/home.css">
+         <ListView fx:id="categoryList" layoutX="1.0" layoutY="2.0" prefHeight="307.0" prefWidth="250.0" stylesheets="@../css/home.css" />
       </AnchorPane>
-      <AnchorPane layoutX="5.0" layoutY="559.0" prefHeight="243.0" prefWidth="382.0" styleClass="left-pane" stylesheets="@../css/home.css">
-         <ListView fx:id="collabList" layoutX="6.0" layoutY="38.0" prefHeight="182.0" prefWidth="381.0" stylesheets="@../css/home.css" />
+      <AnchorPane layoutX="23.0" layoutY="559.0" prefHeight="246.0" prefWidth="266.0" styleClass="left-pane" stylesheets="@../css/home.css">
+         <ListView fx:id="collabList" layoutX="3.2" layoutY="38.0" prefHeight="170.0" prefWidth="250.0" stylesheets="@../css/home.css" AnchorPane.leftAnchor="3.0" />
       </AnchorPane>
-      <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="544.0" prefHeight="51.0" prefWidth="376.0" styleClass="hbox" stylesheets="@../css/home.css">
-         <Label prefHeight="46.0" prefWidth="274.0" stylesheets="@../css/home.css" text="   collaboration categories" />
-         <Pane prefHeight="31.0" prefWidth="100.0" styleClass="pane" stylesheets="@../css/home.css" />
-         <Button mnemonicParsing="false" onAction="#showNewCollabPopUp" prefHeight="46.0" prefWidth="169.0" stylesheets="@../css/home.css" text="New Collab" />
+      <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="549.0" prefHeight="53.0" prefWidth="271.0" styleClass="hbox" stylesheets="@../css/home.css">
+         <Label prefHeight="32.0" prefWidth="166.0" stylesheets="@../css/home.css" text="   Collaborations">
+            <HBox.margin>
+               <Insets left="15.0" />
+            </HBox.margin></Label>
+         <Button mnemonicParsing="false" onAction="#showNewCollabPopUp" prefHeight="23.0" prefWidth="84.0" stylesheets="@../css/home.css" text="Invite">
+            <HBox.margin>
+               <Insets top="5.0" />
+            </HBox.margin>
+         </Button>
       </HBox>
-      <AnchorPane layoutX="11.0" layoutY="274.0" prefHeight="68.0" prefWidth="370.0" styleClass="anchor-pane" stylesheets="@../css/home.css">
-         <HBox layoutX="5.0" layoutY="7.0" prefHeight="44.0" prefWidth="372.0" styleClass="hbox" stylesheets="@../css/home.css">
-            <TextField fx:id="categorySearch" prefHeight="51.0" prefWidth="300.0" promptText="search for category" />
-            <Pane prefHeight="37.0" prefWidth="100.0" styleClass="pane" stylesheets="@../css/home.css" />
-            <Button mnemonicParsing="false" onAction="#handleAddCategoryPopup" prefHeight="46.0" prefWidth="229.0" stylesheets="@../css/home.css" text="New Category">
-               <HBox.margin>
-                  <Insets top="5.0" />
-               </HBox.margin>
-            </Button>
-
-         </HBox>
-      </AnchorPane>
+      <Separator layoutX="27.0" layoutY="218.0" prefHeight="4.0" prefWidth="250.0" />
+      <Separator layoutX="26.0" layoutY="63.0" prefHeight="6.0" prefWidth="250.0" />
+      <Label layoutX="27.0" layoutY="227.0" prefHeight="15.0" prefWidth="252.0" text="Categories" />
    </AnchorPane>
 </AnchorPane>
