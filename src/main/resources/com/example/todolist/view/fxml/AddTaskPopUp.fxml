@@ -6,62 +6,56 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="652.0" prefWidth="408.0" styleClass="anchor-pane" stylesheets="@../css/AddTaskPopUp.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.addTaskController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="715.0" prefWidth="426.0" styleClass="anchor-pane" stylesheets="@../css/AddTaskPopUp.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.addTaskController">
    <children>
-      <VBox alignment="CENTER" layoutX="5.0" layoutY="9.0" prefHeight="594.0" prefWidth="393.0" styleClass="vbox">
-         <children>
-            <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="347.0" stylesheets="@../css/AddTaskPopUp.css" text="ENTER YOUR TASK" />
-            <Label prefHeight="25.0" prefWidth="368.0" stylesheets="@../css/AddTaskPopUp.css" text=" Title :">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Label>
-            <TextField id="title" fx:id="taskFieldTitle" prefHeight="26.0" prefWidth="329.0" promptText="enter a title" styleClass="text-field" stylesheets="@../css/AddTaskPopUp.css">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </TextField>
-            <Label prefHeight="25.0" prefWidth="354.0" text=" Desciption : ">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Label>
-            <TextField id="description" fx:id="taskFieldDescription" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" minHeight="10.0" minWidth="10.0" prefHeight="90.0" prefWidth="380.0" promptText="enter your task" styleClass="text-field" stylesheets="@../css/AddTaskPopUp.css">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </TextField>
-            <Label prefHeight="25.0" prefWidth="351.0" stylesheets="@../css/AddTaskPopUp.css" text="Due date :">
-               <VBox.margin>
-                  <Insets left="5.0" top="5.0" />
-               </VBox.margin>
-            </Label>
-            <DatePicker fx:id="taskFieldDueDate" prefHeight="49.0" prefWidth="344.0" promptText="select a date" styleClass="date-picker" stylesheets="@../css/AddTaskPopUp.css">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </DatePicker>
-            <ComboBox fx:id="taskReminderComboBox" prefHeight="50.0" prefWidth="346.0" promptText="Reminder" styleClass="combo-box" stylesheets="@../css/AddTaskPopUp.css">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </ComboBox>
-            <ComboBox fx:id="taskPriorityComboBox" prefHeight="50.0" prefWidth="347.0" promptText="priority" styleClass="combo-box" stylesheets="@../css/AddTaskPopUp.css">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </ComboBox>
-            <ComboBox fx:id="taskCategoryComboBox" prefHeight="50.0" prefWidth="351.0" promptText="categories" styleClass="combo-box" stylesheets="@../css/AddTaskPopUp.css">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </ComboBox>
-         </children>
-      </VBox>
-      <Button layoutX="32.0" layoutY="602.0" mnemonicParsing="false" onAction="#handleAddTask" prefHeight="38.0" prefWidth="347.0" styleClass="button2" text="add" />
+      <!-- Illustration Image -->
+      <ImageView fitHeight="279.0" fitWidth="306.0" layoutX="72.0" layoutY="-26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/addTask.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER_LEFT" layoutX="155.0" layoutY="601.0" prefHeight="33.0" prefWidth="118.0" spacing="5" style="-fx-background-color: #836FFF; -fx-background-radius: 10px;" />
+      <Button layoutX="29.0" layoutY="653.0" mnemonicParsing="false" onAction="#handleAddTask" prefHeight="38.0" prefWidth="370.0" style="-fx-background-color: #07002D;" styleClass="button2" />
+      <HBox alignment="CENTER_LEFT" layoutX="280.0" layoutY="601.0" prefHeight="33.0" prefWidth="118.0" spacing="5" style="-fx-background-color: #836FFF; -fx-background-radius: 10px;" />
+      <HBox alignment="CENTER_LEFT" layoutX="29.0" layoutY="601.0" prefHeight="33.0" prefWidth="118.0" spacing="5" style="-fx-background-color: #836FFF; -fx-background-radius: 10px;" />
+
+      <!-- Title Section -->
+      <HBox alignment="CENTER_LEFT" layoutX="32.0" layoutY="312.0" prefHeight="37.0" prefWidth="334.0" spacing="5" style="-fx-background-color: #836FFF; -fx-background-radius: 6px;" />
+      <HBox alignment="CENTER_LEFT" layoutX="32.0" layoutY="399.0" prefHeight="89.0" prefWidth="334.0" spacing="5" style="-fx-background-color: #836FFF; -fx-background-radius: 6px;" />
+      <HBox alignment="CENTER_LEFT" layoutX="32.0" layoutY="531.0" prefHeight="51.0" prefWidth="334.0" spacing="5" style="-fx-background-color: #836FFF; -fx-background-radius: 6px;" />
+      <Button layoutX="29.0" layoutY="649.0" mnemonicParsing="false" onAction="#handleAddTask" prefHeight="38.0" prefWidth="370.0" style="-fx-background-color: #836FFF;" styleClass="button2" text="Add" />
+
+      <!-- Header Label -->
+      <Label alignment="TOP_CENTER" layoutX="41.0" layoutY="247.0" prefHeight="18.0" prefWidth="347.0" style="-fx-font-size: 20px;" stylesheets="@../css/AddTaskPopUp.css" text="ENTER YOUR TASK" />
+      <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="33.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+         <image>
+            <Image url="@../img/title_icon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="52.0" layoutY="279.0" prefHeight="26.0" prefWidth="56.0" stylesheets="@../css/AddTaskPopUp.css" text=" Title :" />
+      <TextField id="title" fx:id="taskFieldTitle" layoutX="37.0" layoutY="311.0" prefHeight="39.0" prefWidth="357.0" promptText="enter a title" styleClass="text-field" stylesheets="@../css/AddTaskPopUp.css" />
+      <Label layoutX="51.0" layoutY="362.0" prefHeight="25.0" prefWidth="354.0" text=" Description : " />
+      <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="33.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/description_icon.png" />
+         </image>
+      </ImageView>
+      <TextField id="description" fx:id="taskFieldDescription" alignment="TOP_LEFT" layoutX="37.0" layoutY="398.0" minHeight="10.0" minWidth="10.0" prefHeight="91.0" prefWidth="357.0" promptText="enter your task" styleClass="text-field" stylesheets="@../css/AddTaskPopUp.css" />
+      <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="32.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/date_icon.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="51.0" layoutY="497.0" prefHeight="25.0" prefWidth="351.0" stylesheets="@../css/AddTaskPopUp.css" text=" Due Date :" />
+      <DatePicker fx:id="taskFieldDueDate" layoutX="36.0" layoutY="531.0" prefHeight="50.0" prefWidth="357.0" promptText="select a date" style="-fx-border-radius: 7px; -fx-background-radius: 9px;" styleClass="date-picker" stylesheets="@../css/AddTaskPopUp.css" />
+      <ComboBox fx:id="taskCategoryComboBox" layoutX="280.0" layoutY="595.0" prefHeight="34.0" prefWidth="119.0" promptText="Category" style="-fx-background-color: white;" styleClass="button" stylesheets="@../css/AddTaskPopUp.css" />
+      <ComboBox fx:id="taskReminderComboBox" layoutX="29.0" layoutY="595.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="119.0" promptText="Reminder" style="-fx-background-color: white;" styleClass="button" stylesheets="@../css/AddTaskPopUp.css" />
+      <ComboBox fx:id="taskPriorityComboBox" layoutX="155.0" layoutY="595.0" prefHeight="34.0" prefWidth="119.0" promptText="Priority" style="-fx-background-color: white;" styleClass="button" stylesheets="@../css/AddTaskPopUp.css" />
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

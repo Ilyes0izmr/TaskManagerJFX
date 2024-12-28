@@ -29,7 +29,7 @@
 
 .text-field:focused {
     -fx-background-color: -fx-color-white;
-    -fx-border-color: -fx-color-green;
+
     -fx-border-width: 1.5px;
     -fx-border-radius: 5px;
 }
@@ -54,7 +54,6 @@
 }
 
 .date-picker-popup {
-    -fx-background-color: -fx-color-light-purple;
     -fx-background-radius: 10px;
     -fx-padding: 10px;
     -fx-effect: dropshadow(gaussian, -fx-color-grey, 15, 0.5, 0, 0);
@@ -66,17 +65,7 @@
     -fx-font-size: 16px;
 }
 
-.date-cell:hover {
-    -fx-background-color: -fx-color-green;
-    -fx-text-fill: -fx-color-white;
-    -fx-background-radius: 5px;
-}
 
-.date-cell:selected {
-    -fx-background-color: -fx-color-pink;
-    -fx-text-fill: -fx-color-white;
-    -fx-background-radius: 5px;
-}
 
 /* Style for ComboBox */
 .combo-box {
@@ -88,39 +77,46 @@
 
 .combo-box:focused {
     -fx-background-color: -fx-color-white;
-    -fx-border-color: -fx-color-green;
+    -fx-border-color: -fx-color-light-purple;
     -fx-border-width: 1.5px;
     -fx-border-radius: 5px;
 }
 
 /* Style for the Button */
+
 .button2 {
     -fx-background-color: -fx-color-green;
     -fx-text-fill: -fx-color-white;
     -fx-font-weight: bold;
-    -fx-background-radius: 20px;
-    -fx-padding: 10px 20px;
-    -fx-font-size: 14px;
+    -fx-background-radius: 10px; /* Reduced corner radius for a sleeker look */
+    -fx-padding: 5px 10px; /* Reduced padding for compact size */
+    -fx-font-size: 12px; /* Smaller font size for buttons */
+}
+
+.button2:hover {
+    -fx-background-color: -fx-color-light-purple; /* Change color on hover */
+}
+
+.button2:pressed {
+    -fx-background-color: -fx-color-pink; /* Change color when pressed */
+}
+
+/* Smaller Buttons in General */
+.button {
+    -fx-background-color: -fx-color-green;
+    -fx-text-fill: -fx-color-white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px; /* Reduced corner radius */
+    -fx-padding: 5px 10px; /* Compact padding */
+    -fx-font-size: 12px; /* Reduced font size */
 }
 
 .button:hover {
-    -fx-background-color: -fx-color-light-purple;
+    -fx-background-color: -fx-color-light-purple; /* Change color on hover */
 }
 
 .button:pressed {
-    -fx-background-color: -fx-color-pink;
+    -fx-background-color: -fx-color-pink; /* Change color when pressed */
 }
 
-/* VBox padding and alignment */
-.vbox {
-    -fx-spacing: 15px;
-    -fx-alignment: center;
-    -fx-padding: 20px;
-}
-
-/* General background and layout adjustments */
-.anchor-pane {
-    -fx-padding: 20px;
-    -fx-background-color: -fx-color-white2;
-}
 

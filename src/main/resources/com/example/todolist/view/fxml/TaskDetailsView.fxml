@@ -2,62 +2,129 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="420.0" prefWidth="350.0" styleClass="anchor-pane" stylesheets="@../css/taskDetails.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.TaskDetailsController">
-    <VBox fx:id="detailsVBox" alignment="TOP_CENTER" layoutX="10" layoutY="10" prefHeight="380.0" prefWidth="330.0" spacing="20" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
-        <padding>
-            <Insets bottom="20" left="20" right="20" top="20" />
-        </padding>
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="398.0" styleClass="anchor-pane" stylesheets="@../css/taskDetails.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.TaskDetailsController">
+    <children>
+      <HBox alignment="CENTER_LEFT" layoutX="44.0" layoutY="218.0" prefHeight="33.0" prefWidth="307.0" spacing="10" style="-fx-background-color: #836FFF; -fx-border-color: #836FFF;" styleClass="info-box" stylesheets="@../css/taskDetails.css" />
+      <HBox alignment="CENTER_LEFT" layoutX="44.0" layoutY="267.0" prefHeight="55.0" prefWidth="307.0" spacing="10" style="-fx-background-color: #836FFF; -fx-border-color: #836FFF;" styleClass="info-box" stylesheets="@../css/taskDetails.css" />
+      <HBox alignment="CENTER_LEFT" layoutX="44.0" layoutY="338.0" prefHeight="33.0" prefWidth="307.0" spacing="10" style="-fx-background-color: #836FFF; -fx-border-color: #836FFF;" styleClass="info-box" stylesheets="@../css/taskDetails.css" />
+      <HBox alignment="CENTER_LEFT" layoutX="44.0" layoutY="387.0" prefHeight="33.0" prefWidth="307.0" spacing="10" style="-fx-background-color: #836FFF; -fx-border-color: #836FFF;" styleClass="info-box" stylesheets="@../css/taskDetails.css" />
+      <HBox alignment="CENTER_LEFT" layoutX="44.0" layoutY="583.0" prefHeight="33.0" prefWidth="307.0" spacing="10" style="-fx-background-color: #836FFF; -fx-border-color: #836FFF;" styleClass="info-box" stylesheets="@../css/taskDetails.css" />
+      <HBox alignment="CENTER_LEFT" layoutX="44.0" layoutY="534.0" prefHeight="33.0" prefWidth="307.0" spacing="10" style="-fx-background-color: #836FFF; -fx-border-color: #836FFF;" styleClass="info-box" stylesheets="@../css/taskDetails.css" />
+      <HBox alignment="CENTER_LEFT" layoutX="44.0" layoutY="485.0" prefHeight="33.0" prefWidth="307.0" spacing="10" style="-fx-background-color: #836FFF; -fx-border-color: #836FFF;" styleClass="info-box" stylesheets="@../css/taskDetails.css" />
+      <HBox alignment="CENTER_LEFT" layoutX="44.0" layoutY="436.0" prefHeight="33.0" prefWidth="307.0" spacing="10" style="-fx-background-color: #836FFF; -fx-border-color: #836FFF;" styleClass="info-box" stylesheets="@../css/taskDetails.css" />
+      <HBox alignment="CENTER_LEFT" layoutX="-40.0" layoutY="655.0" prefHeight="34.0" prefWidth="490.0" spacing="10" style="-fx-background-color: #836FFF; -fx-border-color: #836FFF;" styleClass="info-box" stylesheets="@../css/taskDetails.css" />
+        <!-- Illustration Image -->
+        <ImageView fitHeight="243.0" fitWidth="256.0" layoutX="75.0" layoutY="-42.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/viewTask.png" />
+            </image>
+        </ImageView>
 
-        <!-- Task Details (Section for each detail) -->
-        <VBox alignment="CENTER_LEFT" spacing="15">
-            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
-                <Label styleClass="field-label" text="ID:" />
-                <Label fx:id="idLabel" styleClass="field-value" />
-            </HBox>
+         <!-- Header Label -->
+         <Label alignment="TOP_CENTER" layoutX="36.0" layoutY="181.0" prefHeight="18.0" prefWidth="347.0" style="-fx-font-size: 20px;" styleClass="field-label" text="TASK DETAILS     " />
 
-            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
-                <Label styleClass="field-label" text="Title:" />
-                <Label fx:id="titleLabel" styleClass="field-value" />
-            </HBox>
+         <!-- Task Details (Section for each detail) -->
+         <VBox alignment="CENTER_LEFT" layoutX="49.0" layoutY="218.0" spacing="15">
 
-            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
-                <Label styleClass="field-label" text="Description:" />
-                <Label fx:id="descriptionLabel" styleClass="field-value" />
-            </HBox>
 
-            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
-                <Label styleClass="field-label" text="Status:" />
-                <Label fx:id="statusLabel" styleClass="field-value" />
-            </HBox>
 
-            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
-                <Label styleClass="field-label" text="Due Date:" />
-                <Label fx:id="dueDateLabel" styleClass="field-value" />
-            </HBox>
+             <!-- Title -->
+             <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
+                 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                         <Image url="@../img/title_icon.png" />
+                     </image>
+                 </ImageView>
+                 <Label styleClass="field-label" text="Title:" />
+                 <Label fx:id="titleLabel" styleClass="field-value" />
+             </HBox>
 
-            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
-                <Label styleClass="field-label" text="Creation Date:" />
-                <Label fx:id="creationDateLabel" styleClass="field-value" />
-            </HBox>
+             <!-- Description -->
+             <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="307.0" spacing="10" styleClass="info-box">
+                 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                         <Image url="@../img/description_icon.png" />
+                     </image>
+                 </ImageView>
+                 <Label prefHeight="16.0" prefWidth="90.0" styleClass="field-label" text="Description:" />
+                 <Label fx:id="descriptionLabel" prefHeight="16.0" prefWidth="138.0" styleClass="field-value" />
+             </HBox>
 
-            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
-                <Label styleClass="field-label" text="Priority:" />
-                <Label fx:id="priorityLabel" styleClass="field-value" />
-            </HBox>
+             <!-- Status -->
+             <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
+                 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                         <Image url="@../img/status_icon.png" />
+                     </image>
+                 </ImageView>
+                 <Label styleClass="field-label" text="Status:" />
+                 <Label fx:id="statusLabel" styleClass="field-value" />
+             </HBox>
 
-            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
-                <Label styleClass="field-label" text="Category:" />
-                <Label fx:id="categoryLabel" styleClass="field-value" />
-            </HBox>
+             <!-- Due Date -->
+             <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
+                 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                         <Image url="@../img/date_icon.png" />
+                     </image>
+                 </ImageView>
+                 <Label styleClass="field-label" text="Due Date:" />
+                 <Label fx:id="dueDateLabel" styleClass="field-value" />
+             </HBox>
 
-            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
-                <Label styleClass="field-label" text="Owner:" />
-                <Label fx:id="ownerLabel" styleClass="field-value" />
-            </HBox>
-        </VBox>
-    </VBox>
+             <!-- Creation Date -->
+             <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="307.0" spacing="10" styleClass="info-box">
+                 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                         <Image url="@../img/created_icon.png" />
+                     </image>
+                 </ImageView>
+                 <Label styleClass="field-label" text="Creation Date:" />
+                 <Label fx:id="creationDateLabel" styleClass="field-value" />
+             </HBox>
+
+             <!-- Priority -->
+             <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
+                 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                         <Image url="@../img/priority_icon.png" />
+                     </image>
+                 </ImageView>
+                 <Label styleClass="field-label" text="Priority:" />
+                 <Label fx:id="priorityLabel" styleClass="field-value" />
+             </HBox>
+
+             <!-- Category -->
+             <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
+                 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                         <Image url="@../img/category_icon.png" />
+                     </image>
+                 </ImageView>
+                 <Label styleClass="field-label" text="Category:" />
+                 <Label fx:id="categoryLabel" styleClass="field-value" />
+             </HBox>
+
+             <!-- Owner -->
+             <HBox alignment="CENTER_LEFT" spacing="10" styleClass="info-box">
+                 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                         <Image url="@../img/owner_icon.png" />
+                     </image>
+                 </ImageView>
+                 <Label styleClass="field-label" text="Owner:" />
+                 <Label fx:id="ownerLabel" styleClass="field-value" />
+             </HBox>
+         </VBox>
+    </children>
+
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+    </padding>
 </AnchorPane>
