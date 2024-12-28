@@ -6,44 +6,75 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="435.0" prefWidth="217.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.EditTaskController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="398.0" stylesheets="@../css/editTask.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.EditTaskController">
     <children>
-        <VBox alignment="CENTER" layoutX="5.0" layoutY="9.0" prefHeight="366.0" prefWidth="330.0" spacing="10.0">
-            <!-- Title -->
-            <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="347.0" styleClass="header-label" text="ENTER YOUR TASK" />
-
-            <!-- Task Title -->
-            <Label prefHeight="18.0" prefWidth="358.0" styleClass="field-label" text="Title :" />
-            <TextField fx:id="taskFieldTitle" prefHeight="45.0" prefWidth="330.0" promptText="Enter a title" styleClass="field-input" />
-
-            <!-- Task Description -->
-            <Label prefHeight="18.0" prefWidth="334.0" styleClass="field-label" text="Description :" />
-            <TextField fx:id="taskFieldDescription" prefHeight="74.0" prefWidth="345.0" promptText="Enter your task description" styleClass="field-input" />
-
-            <!-- Due Date -->
-            <Label prefHeight="18.0" prefWidth="439.0" styleClass="field-label" text="Due Date :" />
-            <DatePicker fx:id="taskFieldDueDate" prefHeight="36.0" prefWidth="330.0" promptText="Select a date" styleClass="field-input" />
-         <ComboBox fx:id="taskStatusComboBox" layoutX="30.0" layoutY="351.0" prefHeight="35.0" prefWidth="330.0" promptText="Status" styleClass="field-input" />
-
-            <!-- Reminder -->
-            <ComboBox fx:id="taskReminderComboBox" prefHeight="26.0" prefWidth="330.0" promptText="Reminder" styleClass="field-input" />
-
-            <!-- Priority -->
-            <ComboBox fx:id="taskPriorityComboBox" prefHeight="36.0" prefWidth="330.0" promptText="Priority" styleClass="field-input" />
-
-            <!-- Category -->
-            <ComboBox fx:id="taskCategoryComboBox" prefHeight="35.0" prefWidth="330.0" promptText="Categories" styleClass="field-input" />
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-        </VBox>
+      <Button layoutX="266.0" layoutY="545.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleSaveTask" prefHeight="35.0" prefWidth="47.0" style="-fx-background-color: #836FFF; -fx-text-fill: #07002D;" styleClass="menu-button-green-border-background" stylesheets="@../css/home.css" />
+      <HBox fx:id="buttonEffect2111" layoutX="28.0" layoutY="429.0" prefHeight="52.0" prefWidth="335.0" style="-fx-background-color: #836FFF; -fx-background-radius: 4px;" stylesheets="@../css/home.css" />
+      <Button layoutX="324.0" layoutY="545.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleCancel" prefHeight="35.0" prefWidth="47.0" style="-fx-background-color: #836FFF; -fx-text-fill: white;" styleClass="menu-button-green-border-background" stylesheets="@../css/home.css" />
+        <!-- Illustration Image -->
+        <ImageView fitHeight="223.0" fitWidth="227.0" layoutX="85.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/editillustration.png" />
+            </image>
+        </ImageView>
 
         <!-- Add Button -->
-        <Button layoutX="80.0" layoutY="379.0" onAction="#handleSaveTask" styleClass="action-button" text="Save" />
-        <Button layoutX="131.0" layoutY="379.0" onAction="#handleCancel" text="Cancel" />
+        <Button layoutX="266.0" layoutY="542.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleSaveTask" prefHeight="35.0" prefWidth="47.0" style="-fx-background-color: white;" styleClass="button-green" stylesheets="@../css/editTask.css" />
+      <HBox fx:id="buttonEffect11" layoutX="28.0" layoutY="496.0" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #836FFF;" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
+        <Button layoutX="324.0" layoutY="542.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleCancel" prefHeight="35.0" prefWidth="47.0" style="-fx-background-color: white;" styleClass="button-pink" stylesheets="@../css/editTask.css" />
+         <!-- Title -->
+         <Label alignment="TOP_CENTER" layoutX="22.0" layoutY="193.0" prefHeight="18.0" prefWidth="347.0" styleClass="header-label" text="EDIT YOUR TASK" />
+          <Label layoutX="52.0" layoutY="224.0" prefHeight="18.0" prefWidth="40.0" styleClass="field-label" text="Title :" />
+      <HBox fx:id="buttonEffect211111" layoutX="28.0" layoutY="254.0" prefHeight="42.0" prefWidth="346.0" style="-fx-background-color: #836FFF; -fx-background-radius: 4px;" stylesheets="@../css/home.css" />
+         <TextField fx:id="taskFieldTitle" layoutX="33.0" layoutY="254.0" prefHeight="42.0" prefWidth="343.0" promptText="Enter a title" styleClass="field-input" />
+          <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="28.0" layoutY="230.0" rotate="-90.0">
+              <image>
+                  <Image url="@../img/title_icon.png" />
+              </image>
+          </ImageView>
+      <HBox fx:id="buttonEffect21111" layoutX="28.0" layoutY="342.0" prefHeight="42.0" prefWidth="334.0" style="-fx-background-color: #836FFF; -fx-background-radius: 4px;" stylesheets="@../css/home.css" />
+          <Label layoutX="51.0" layoutY="305.0" prefHeight="30.0" prefWidth="107.0" styleClass="field-label" text="Description :" />
+      <HBox fx:id="buttonEffect1" layoutX="149.0" layoutY="496.0" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #836FFF;" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
+      <HBox fx:id="buttonEffect" layoutX="268.0" layoutY="495.0" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #836FFF;" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
+      <HBox fx:id="buttonEffect2" layoutX="26.0" layoutY="546.0" prefHeight="35.0" prefWidth="222.0" style="-fx-background-color: #836FFF;" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
+         <TextField fx:id="taskFieldDescription" layoutX="33.0" layoutY="342.0" prefHeight="42.0" prefWidth="343.0" promptText="Enter your task description" styleClass="field-input" />
+      <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="27.0" layoutY="313.0">
+         <image>
+            <Image url="@../img/description_icon.png" />
+         </image>
+      </ImageView>
+        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="333.0" layoutY="546.0">
+            <image>
+                <Image url="@../img/x.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="40.0" fitWidth="39.0" layoutX="270.0" layoutY="541.0">
+            <image>
+                <Image url="@../img/plus.png" />
+            </image>
+        </ImageView>
+          <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="26.0" layoutY="400.0">
+              <image>
+                  <Image url="@../img/date_icon.png" />
+              </image>
+          </ImageView>
+          <Label layoutX="50.0" layoutY="391.0" prefHeight="30.0" prefWidth="142.0" styleClass="field-label" text="Due Date :" />
+         <DatePicker fx:id="taskFieldDueDate" layoutX="33.0" layoutY="429.0" prefHeight="52.0" prefWidth="343.0" promptText="Select a date" styleClass="field-input" />
+          <ComboBox fx:id="taskStatusComboBox" layoutX="30.0" layoutY="492.0" prefHeight="35.0" prefWidth="100.0" promptText="Status" styleClass="menu-button-green-border-background" stylesheets="@../css/editTask.css" />
+          <ComboBox fx:id="taskReminderComboBox" layoutX="270.0" layoutY="491.0" prefHeight="35.0" prefWidth="100.0" promptText="Reminder" styleClass="menu-button-green-border-background" stylesheets="@../css/editTask.css" />
+          <ComboBox fx:id="taskPriorityComboBox" layoutX="151.0" layoutY="492.0" prefHeight="35.0" prefWidth="100.0" promptText="Priority" styleClass="menu-button-green-border-background" stylesheets="@../css/editTask.css" />
+          <ComboBox fx:id="taskCategoryComboBox" layoutX="28.0" layoutY="542.0" prefHeight="35.0" prefWidth="222.0" promptText="Categories" styleClass="menu-button-green-border-background" stylesheets="@../css/editTask.css" />
+      <HBox fx:id="buttonEffect211" layoutX="-6.0" layoutY="602.0" prefHeight="30.0" prefWidth="412.0" style="-fx-background-color: #07002D;" styleClass="menu-button-green-effect" stylesheets="@../css/home.css" />
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="270.0" layoutY="541.0">
+         <image>
+            <Image url="@../img/plus.png" />
+         </image>
+      </ImageView>
     </children>
 
     <padding>

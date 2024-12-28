@@ -77,13 +77,21 @@ public class DashBoardController {
         // Clear existing data
         progressPieChart.getData().clear();
 
-        // Add data to the pie chart
-        progressPieChart.getData().add(new PieChart.Data("Completed", completedTasks));
-        progressPieChart.getData().add(new PieChart.Data("Pending", pendingTasks));
+        // Create PieChart.Data objects for each slice
+        PieChart.Data completedData = new PieChart.Data("Completed", completedTasks);
+        PieChart.Data pendingData = new PieChart.Data("Pending", pendingTasks);
+
+        // Add data to the pie chart first
+        progressPieChart.getData().addAll(completedData, pendingData);
+
+        // Set custom colors for each slice
+        completedData.getNode().setStyle("-fx-pie-color: #15F5BA;"); // Green color
+        pendingData.getNode().setStyle("-fx-pie-color: #EB3678;"); // Pink color
 
         // Customize the pie chart
         progressPieChart.setLabelsVisible(false); // Hide labels inside the pie chart
     }
+
 
     // Method to generate the key dynamically
     private void generateKey() {
@@ -94,7 +102,7 @@ public class DashBoardController {
         for (PieChart.Data data : progressPieChart.getData()) {
             // Create a colored rectangle
             Rectangle colorRect = new Rectangle(20, 20);
-            colorRect.setFill(data.getName().equals("Completed") ? Color.GREEN : Color.RED);
+            colorRect.setFill(data.getName().equals("Completed") ? Color.valueOf("#15F5BA") : Color.valueOf("#EB3678"));
 
             // Create a label for the description
             Label descriptionLabel = new Label(data.getName() + " (" + (int) data.getPieValue() + ")");
@@ -107,6 +115,7 @@ public class DashBoardController {
             keyContainer.getChildren().add(keyItem);
         }
     }
+
 
     // Method to populate the Bar Chart for task categories
     private void populateTaskBarChart() {
@@ -131,9 +140,16 @@ public class DashBoardController {
             series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }
 
+        // Customize the Y-axis
+        yAxis.setAutoRanging(false); // Disable auto-ranging
+        yAxis.setLowerBound(0); // Set the lower bound to 0
+        yAxis.setUpperBound(20); // Set the upper bound to 5
+        yAxis.setTickUnit(1); // Set the tick unit to 1 (increment by 1)
+
         // Add the series to the bar chart
         taskBarChart.getData().add(series);
     }
+
 
     // Method to populate the Bar Chart for task priorities
     private void populatePriorityBarChart() {
@@ -153,19 +169,18 @@ public class DashBoardController {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Task Count");
 
-
         // Add data to the series
         for (Map.Entry<String, Integer> entry : taskCountsByPriority.entrySet()) {
-            // Ensure the types match: xAxis is CategoryAxis (String), yAxis is NumberAxis (Number)
-            String priority = entry.getKey(); // Priority is a String (e.g., "High", "Medium", "Low")
-            Number taskCount = entry.getValue(); // Task count is a Number (e.g., 5, 3, 2)
-
-            // Debugging: Print the data being added
-            System.out.println("Adding to chart: Priority = " + priority + ", Task Count = " + taskCount);
-
-            // Add the data to the series
-            series.getData().add(new XYChart.Data<>(priority, taskCount));
+            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }
+
+        // Customize the Y-axis
+        NumberAxis priorityYAxis = (NumberAxis) priorityBarChart.getYAxis();
+        priorityYAxis.setAutoRanging(false); // Disable auto-ranging
+        priorityYAxis.setLowerBound(0); // Set the lower bound to 0
+        priorityYAxis.setUpperBound(20); // Set the upper bound to 5
+        priorityYAxis.setTickUnit(1); // Set the tick unit to 1 (increment by 1)
+
 
         // Add the series to the bar chart
         priorityBarChart.getData().add(series);

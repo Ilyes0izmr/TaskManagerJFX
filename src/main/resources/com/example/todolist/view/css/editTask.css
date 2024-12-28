@@ -21,15 +21,72 @@
     -fx-text-fill: #3c3c3c;
     -fx-padding: 10px;
 }
-
-.action-button {
-    -fx-background-color: #4CAF50;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
+/* Green Border Background Style */
+.menu-button-green-border-background {
+    -fx-background-color: #FDFCFC; /* White background */
+    -fx-background-radius: 11px;       /* Rounded corners */
+    -fx-border-color: -fx-color-green;  /* Green border */
+    -fx-border-width: 1px;        /* Border width */
+    -fx-border-radius: 10px;       /* Rounded corners */
 }
 
-.action-button:hover {
-    -fx-background-color: #45a049;
+/* Hover Effect for Green Border Background Style */
+.menu-button-green-border-background:hover {
+    -fx-background-color: -fx-color-green; /* Change to green background on hover */
+    -fx-text-fill: white; /* Change text color to white */
+
 }
+
+/* Green Glowing Button */
+.menu-button-green-effect {
+    -fx-background-color: -fx-color-green; /* Green background */
+    -fx-background-radius: 10px;       /* Rounded corners */
+    -fx-border-color: -fx-color-green;  /* Green border */
+    -fx-border-width: 7px;              /* Border width */
+    -fx-border-radius: 10px;            /* Rounded corners */
+}
+
+/* Hover Effect for Green Glowing Button */
+.menu-button-green-effect:hover {
+    -fx-border-width: 10px; /* Increase border width for a glowing effect */
+    -fx-background-color: #FDFCFC; /* Change to white background on hover */
+    -fx-border-color: -fx-color-green; /* Keep the border green */
+}
+
+
+/* Green Button Style */
+.button-green {
+    -fx-background-color: #FDFCFC; /* Green background */
+    -fx-background-radius: 11px;
+    -fx-border-width: 2px;        /* Border width */
+    -fx-padding: 10px 20px;       /* Padding for a nice size */
+    -fx-cursor: hand;             /* Pointer cursor on hover */
+}
+
+/* Green Button Hover Effect */
+.button-green:hover {
+    -fx-background-color: #15F5BA; /* Darker green background */
+    -fx-text-fill: #fdfcfc;        /* Ensure text remains visible */
+    -fx-scale-x: 1.05;             /* Slightly enlarge button on hover */
+    -fx-scale-y: 1.05;             /* Slightly enlarge button on hover */
+}
+
+/* Pink Button Style */
+.button-pink {
+    -fx-background-color: #FDFCFC; /* Pink background */
+    -fx-background-radius: 11px;
+    -fx-border-width: 2px;        /* Border width */
+    -fx-border-radius: 10px;      /* Match the background radius */
+    -fx-padding: 10px 20px;       /* Padding for a nice size */
+    -fx-cursor: hand;             /* Pointer cursor on hover */
+}
+
+/* Pink Button Hover Effect */
+.button-pink:hover {
+    -fx-background-color: #EB3678; /* Darker pink background */
+
+    -fx-scale-x: 1.05;             /* Slightly enlarge button on hover */
+    -fx-scale-y: 1.05;             /* Slightly enlarge button on hover */
+}
+
+

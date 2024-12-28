@@ -1,162 +1,170 @@
 /* General styles for the VBox */
 .vbox {
-    -fx-padding: 20; /* Padding around the VBox */
-    -fx-spacing: 20; /* Spacing between child nodes */
-    -fx-background-color: #2e2e2e; /* Dark gray background */
+    -fx-padding: 20;
+    -fx-spacing: 20;
+    -fx-background-color: linear-gradient(to bottom, #F2F3F5, #E0E0E0);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
 }
 
 /* Dashboard title styles */
 .dashboard-title {
-    -fx-font-size: 24; /* Larger font size */
-    -fx-font-weight: bold; /* Bold text */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 28;
+    -fx-font-weight: bold;
+    -fx-text-fill: #07002D;
 }
 
 /* Section title styles */
 .section-title {
-    -fx-font-size: 18; /* Medium font size */
-    -fx-font-weight: bold; /* Bold text */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-fill: #07002D;
 }
 
 /* Key label styles */
 .key-label {
-    -fx-font-size: 14; /* Smaller font size */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 14;
+    -fx-text-fill: #07002D;
 }
 
 /* Key title styles */
 .key-title {
-    -fx-font-size: 16; /* Slightly larger font size */
-    -fx-font-weight: bold; /* Bold text */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: #07002D;
 }
 
-/* Donut chart styles */
-.donut-chart {
-    -fx-pie-label-visible: false; /* Hide labels inside the pie chart */
-    -fx-start-angle: 90; /* Start angle for the pie chart */
-    -fx-legend-visible: false; /* Hide the legend */
+/* Pie chart styles */
+.pie-chart {
+    -fx-pie-label-visible: false;
+    -fx-start-angle: 90;
+    -fx-legend-visible: false;
+    -fx-pref-height: 400px;
+    -fx-pref-width: 400px;
+    -fx-alignment: CENTER;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
 }
 
 /* Bar chart styles */
 .bar-chart {
-    -fx-background-color: #3e3e3e; /* Dark gray background */
-    -fx-padding: 20; /* Padding around the chart */
-    -fx-border-color: #444444; /* Border color */
-    -fx-border-width: 1; /* Border width */
-    -fx-border-radius: 5; /* Rounded corners */
-    -fx-bar-gap: 2; /* Reduced gap between bars */
-    -fx-category-gap: 20; /* Increased gap between categories */
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 20;
+    -fx-border-color: #07002D;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-bar-gap: 1;
+    -fx-category-gap: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
 }
 
 .bar-chart .chart-bar {
-    -fx-bar-fill: #2E5077; /* Green bars */
-    -fx-bar-stroke: #2E5077;
+    -fx-bar-fill: #15F5BA;
+    -fx-bar-stroke: #15F5BA;
 }
 
 .bar-chart .chart-bar:hover {
-    -fx-bar-fill: #66BB6A; /* Lighter green on hover */
+    -fx-bar-fill: #42A5F5;
 }
 
 .bar-chart .axis {
-    -fx-tick-label-fill: #ffffff; /* White axis labels */
+    -fx-tick-label-fill: #07002D;
 }
 
 .bar-chart .axis-label {
-    -fx-text-fill: #ffffff; /* White axis titles */
+    -fx-text-fill: #07002D;
 }
 
 /* Horizontal bar chart styles */
 .horizontal-bar-chart {
-    -fx-background-color: #3e3e3e; /* Dark gray background */
-    -fx-padding: 20; /* Padding around the chart */
-    -fx-border-color: #444444; /* Border color */
-    -fx-border-width: 1; /* Border width */
-    -fx-border-radius: 5; /* Rounded corners */
-    -fx-bar-gap: 5; /* Gap between bars */
-    -fx-category-gap: 10; /* Gap between categories */
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 20;
+    -fx-border-color: #07002D;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-bar-gap: 5;
+    -fx-category-gap: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
 }
 
 .horizontal-bar-chart .chart-bar {
-    -fx-bar-fill: #2196F3; /* Blue bars */
+    -fx-bar-fill: #836FFF;
 }
 
 .horizontal-bar-chart .chart-bar:hover {
-    -fx-bar-fill: #42A5F5; /* Lighter blue on hover */
+    -fx-bar-fill: #42A5F5;
 }
 
 .horizontal-bar-chart .axis {
-    -fx-tick-label-fill: #ffffff; /* White axis labels */
+    -fx-tick-label-fill: #07002D;
 }
 
 .horizontal-bar-chart .axis-label {
-    -fx-text-fill: #ffffff; /* White axis titles */
-}
-
-/* Horizontal bar chart styles */
-.horizontal-bar-chart {
-    -fx-background-color: #3e3e3e; /* Dark gray background */
-    -fx-padding: 20; /* Padding around the chart */
-    -fx-border-color: #444444; /* Border color */
-    -fx-border-width: 1; /* Border width */
-    -fx-border-radius: 5; /* Rounded corners */
-}
-
-.horizontal-bar-chart .chart-bar {
-    -fx-bar-fill: #2196F3; /* Blue bars */
-}
-
-.horizontal-bar-chart .chart-bar:hover {
-    -fx-bar-fill: #42A5F5; /* Lighter blue on hover */
-}
-
-.horizontal-bar-chart .axis {
-    -fx-tick-label-fill: #ffffff; /* White axis labels */
-}
-
-.horizontal-bar-chart .axis-label {
-    -fx-text-fill: #ffffff; /* White axis titles */
+    -fx-text-fill: #07002D;
 }
 
 /* Key item styles */
 .key-item {
-    -fx-spacing: 10; /* Spacing between rectangle and label */
-    -fx-alignment: CENTER-LEFT; /* Align items to the left */
+    -fx-spacing: 10;
+    -fx-alignment: CENTER-LEFT;
 }
 
 .key-item Rectangle {
-    -fx-stroke: #000000; /* Black border for rectangles */
-    -fx-stroke-width: 1; /* Border width */
+    -fx-stroke: #000000;
+    -fx-stroke-width: 1;
 }
 
 .key-item Label {
-    -fx-font-size: 14; /* Font size for labels */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 14;
+    -fx-text-fill: #07002D;
 }
 
 /* Separator styles */
 .separator {
-    -fx-background-color: #444444; /* Dark gray separator */
+    -fx-background-color: #07002D;
 }
 
 /* ListView styles */
 .list-view {
-    -fx-background-color: #3e3e3e; /* Dark gray background */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #07002D;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
 }
 
 .list-view .list-cell {
-    -fx-background-color: #3e3e3e; /* Dark gray background */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #07002D;
 }
 
 .list-view .list-cell:hover {
-    -fx-background-color: #4e4e4e; /* Lighter gray on hover */
+    -fx-background-color: #E0E0E0;
+    -fx-cursor: hand;
 }
 
 /* Info label styles */
 .info-label {
-    -fx-font-size: 14; /* Smaller font size */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 14;
+    -fx-text-fill: #07002D;
+}
+
+/* Button styles */
+.button {
+    -fx-background-color: #836FFF;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 3);
+    -fx-transition: all 0.3s ease;
+}
+
+.button:hover {
+    -fx-background-color: #15F5BA;
+    -fx-text-fill: #07002D;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 5);
+    -fx-cursor: hand;
 }

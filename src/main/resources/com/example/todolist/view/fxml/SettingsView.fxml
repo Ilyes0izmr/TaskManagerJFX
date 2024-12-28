@@ -4,36 +4,74 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane fx:id="settingsPane" prefHeight="800.0" prefWidth="1550.0" styleClass="anchor-pane" stylesheets="@../css/SettingsView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.SettingsController">
 
     <!-- Left Sidebar -->
-    <VBox fx:id="sidebar" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="372.0" spacing="10.0" styleClass="sidebar" stylesheets="@../css/SettingsView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox fx:id="sidebar" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="370.0" spacing="10.0" styleClass="sidebar" stylesheets="@../css/SettingsView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Label styleClass="settings-label" text="Settings">
             <VBox.margin>
                 <Insets top="10.0" />
             </VBox.margin>
         </Label>
-        <Separator prefWidth="166.0" stylesheets="@../css/SettingsView.css" />
-        <Button fx:id="dashboardButton" onAction="#handleDashboard" prefWidth="342.0" stylesheets="@../css/SettingsView.css" text="Dashboard" />
-        <Button fx:id="appearanceButton" onAction="#handleAppearance" prefWidth="343.0" stylesheets="@../css/SettingsView.css" text="Appearance" />
-        <Button fx:id="notificationButton" onAction="#handleNotification" prefWidth="349.0" stylesheets="@../css/SettingsView.css" text="Notification" />
-        <Separator prefWidth="166.0" stylesheets="@../css/SettingsView.css" />
+        <Pane prefHeight="14.0" prefWidth="350.0" />
+
+        <!-- Dashboard Button with Icon -->
+        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="293.0" spacing="10.0">
+            <Button fx:id="dashboardButton" onAction="#handleDashboard" prefHeight="38.0" prefWidth="311.0" stylesheets="@../css/SettingsView.css" text="Dashboard" />
+        </HBox>
+
+        <!-- Appearance Button with Icon -->
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Button fx:id="appearanceButton" onAction="#handleAppearance" prefHeight="38.0" prefWidth="298.0" stylesheets="@../css/SettingsView.css" text="InBox        " />
+        </HBox>
+
+        <!-- Notification Button with Icon -->
+        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="264.0" spacing="10.0">
+            <Button fx:id="notificationButton" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleNotification" prefHeight="38.0" prefWidth="281.0" stylesheets="@../css/SettingsView.css" text="      cooming soon" />
+        </HBox>
+
+        <Pane prefHeight="517.0" prefWidth="280.0" />
+
+        <!-- Home and Logout Buttons with Icons -->
         <HBox alignment="CENTER" spacing="10.0">
-            <Button fx:id="homeButton" onAction="#handleBackToHome" prefHeight="31.0" prefWidth="178.0" styleClass="home-button" stylesheets="@../css/SettingsView.css" text="Home" />
-            <Button fx:id="logoutButton" onAction="#handleLogout" prefHeight="31.0" prefWidth="224.0" styleClass="logout-button" stylesheets="@../css/SettingsView.css" text="Logout" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <Button fx:id="homeButton" onAction="#handleBackToHome" prefHeight="50.0" prefWidth="162.0" styleClass="home-button" stylesheets="@../css/SettingsView.css" text="Home" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <Button fx:id="logoutButton" onAction="#handleLogout" prefHeight="31.0" prefWidth="74.0" styleClass="logout-button" stylesheets="@../css/SettingsView.css" text="Logout" />
+            </HBox>
         </HBox>
     </VBox>
 
     <!-- Content Pane (Right Side) -->
     <ScrollPane fx:id="scrollPane" layoutX="375.0" layoutY="0.0" prefHeight="800.0" prefWidth="1178.0" styleClass="scroll-pane" stylesheets="@../css/SettingsView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
-            <AnchorPane fx:id="contentPane" prefHeight="2014.0" prefWidth="1178.0" styleClass="content-pane" stylesheets="@../css/SettingsView.css" />
+            <AnchorPane fx:id="contentPane" prefHeight="798.0" prefWidth="1271.0" styleClass="content-pane" stylesheets="@../css/SettingsView.css" />
         </content>
     </ScrollPane>
+       <ImageView fitHeight="18.0" fitWidth="19.0" layoutX="222.0" layoutY="765.0" pickOnBounds="true" preserveRatio="true">
+           <Image url="@../img/logout_icon.png" />
+       </ImageView>
+       <ImageView fitHeight="16.0" fitWidth="24.0" layoutX="42.0" layoutY="766.0" pickOnBounds="true" preserveRatio="true">
+           <Image url="@../img/home.png" />
+       </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="105.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+          <Image url="@../img/chart-pie.png" />
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="104.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+          <Image url="@../img/notification.png" />
+      </ImageView>
+   <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="104.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../img/notification.png" />
+      </image>
+   </ImageView>
 
 </AnchorPane>

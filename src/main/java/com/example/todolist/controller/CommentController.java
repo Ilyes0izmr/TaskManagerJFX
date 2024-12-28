@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.util.Callback;
 import com.example.todolist.model.TaskImpl;
 
@@ -70,64 +72,64 @@ public class CommentController {
         }
     }
 
-    // Custom ListCell class for enhanced UI with delete functionality
     private class CommentCell extends ListCell<Comment> {
         private final TextField textField = new TextField();
-        private final Button deleteButton = new Button("Delete");
-        private final Button editButton = new Button("Edit");
-        private final Label creationDateLabel = new Label();  // Label for the creation date
-        private final HBox container = new HBox(10, textField, creationDateLabel, editButton, deleteButton);  // Added the label to the container
+        private final Button deleteButton = new Button("-");
+        private final Button editButton = new Button("+");
+        private final Label creationDateLabel = new Label();
+        private final Region spacer = new Region(); // Spacer to push buttons to the right
+        private final HBox container = new HBox(5, textField, spacer, creationDateLabel, editButton, deleteButton); // Date label next to buttons
 
         public CommentCell() {
             super();
+
+            // Apply style classes
+            container.getStyleClass().add("comment-container");
+            textField.getStyleClass().add("comment-textfield");
+            creationDateLabel.getStyleClass().add("due-date-label"); // Apply the due-date-label style
+            editButton.getStyleClass().add("comment-button");
+            deleteButton.getStyleClass().add("comment-button");
+            deleteButton.getStyleClass().add("delete-button");
+
+            // Set component sizes
+            container.setPrefWidth(400); // Reduced container width
+            textField.setPrefWidth(120); // Reduced text field width to give more space
+            textField.setEditable(false);
+
+            // Make the spacer grow to push buttons to the right
+            HBox.setHgrow(spacer, Priority.ALWAYS);
+
+            // Set button actions
             deleteButton.setOnAction(event -> handleDeleteComment());
             editButton.setOnAction(event -> handleEditComment());
-
-            // Set properties for TextField
-            textField.setPrefWidth(350);  // Set the preferred width
-            textField.setMaxWidth(350);   // Optionally set the maximum width
-            textField.setMinWidth(200);   // Optionally set the minimum width
-            //textField.setWrapText(true);  // Enable text wrapping so that content stays inside the field
-
-            // Set an initial height for the TextField (can be adjusted dynamically based on content)
-            textField.setPrefHeight(30);  // Initial height (can be adjusted dynamically)
-
-            // Set the container width and allow it to accommodate the growing TextField
-            container.setPrefWidth(600);  // Ensure container can grow with the TextField
-            textField.setEditable(false);  // Keep the textField non-editable for display
-            // Ensure the container grows with the TextField
-            container.setMinHeight(30);  // Min height to allow the growing effect
         }
-
 
         @Override
         protected void updateItem(Comment comment, boolean empty) {
             super.updateItem(comment, empty);
             if (empty || comment == null) {
                 setGraphic(null);
+                getStyleClass().remove("task-cell"); // Remove the style class if the cell is empty
             } else {
                 textField.setText(comment.getText());
 
-                // Format the date and time (e.g., "2024-12-13 15:30")
+                // Format the date and time
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 String formattedDate = comment.getCreationDate().format(formatter);
-
-                // Set the formatted date to the creationDateLabel
                 creationDateLabel.setText(formattedDate);
 
                 setGraphic(container);
+                getStyleClass().add("task-cell"); // Add the style class for the task cell
             }
         }
 
         private void handleDeleteComment() {
             Comment comment = getItem();
             if (comment != null) {
-                // Remove from ObservableList
                 comments.remove(comment);
                 if (task != null) {
-                    task.setComments(new ArrayList<>(comments)); // Update task's comments list
+                    task.setComments(new ArrayList<>(comments));
                 }
-                // Delete from database
                 commentDAO.deleteComment(comment.getId());
             }
         }
@@ -136,29 +138,24 @@ public class CommentController {
             Comment comment = getItem();
             if (comment != null) {
                 if (!isEditing) {
-                    // Start editing mode
-                    textField.setEditable(true);  // Allow text editing
-                    editButton.setText("Save");   // Change button text to "Save"
-                    isEditing = true;  // Set the editing flag to true
+                    textField.setEditable(true);
+                    editButton.setText("Save");
+                    isEditing = true;
                 } else {
-                    // Save the edited text
                     String newText = textField.getText();
                     if (!newText.trim().isEmpty()) {
-                        // Update the comment's text
                         comment.setText(newText);
-                        comment.setCreationDate(LocalDateTime.now()); // Update the creation date to the current time
-                        commentDAO.editComment(comment.getId(), newText); // Update in the database
+                        comment.setCreationDate(LocalDateTime.now());
+                        commentDAO.editComment(comment.getId(), newText);
 
-                        // Update the task's comments list
                         if (task != null) {
                             task.setComments(new ArrayList<>(comments));
                         }
                     }
 
-                    // End editing mode
-                    textField.setEditable(false); // Make the text field non-editable again
-                    editButton.setText("Edit");   // Change button text back to "Edit"
-                    isEditing = false;  // Reset the editing flag
+                    textField.setEditable(false);
+                    editButton.setText("Edit");
+                    isEditing = false;
                 }
             }
         }

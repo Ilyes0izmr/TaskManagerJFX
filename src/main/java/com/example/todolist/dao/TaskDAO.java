@@ -402,8 +402,4 @@ public class TaskDAO {
 
         return upcomingDeadlines;
     }
-
-
-
-
 }
