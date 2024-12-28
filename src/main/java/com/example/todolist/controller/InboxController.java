@@ -83,6 +83,8 @@ public class InboxController {
             e.printStackTrace();
             footerLabel.setText("Failed to load notifications.");
         }
+
+
     }
 
     private void showNotificationContent(Notification notification) {
@@ -139,8 +141,7 @@ public class InboxController {
                 }
 
                 // Due Date Reminders (1 Day Before)
-                if (today.equals(task.getDueDate().minusDays(1)) &&
-                        !notificationDAO.notificationExists("Due Date Approaching", today)) {
+                if (today.equals(task.getDueDate().minusDays(1)) ) {
                     Notification notification = new Notification(
                             "Due Date Approaching",
                             "The task '" + task.getTitle() + "' is due tomorrow. Make sure to finish it before then.",
