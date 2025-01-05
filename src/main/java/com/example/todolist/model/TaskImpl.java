@@ -7,7 +7,11 @@ import java.util.ArrayList;
  * Implements the Task interface and represents a task in the to-do list application.
  * Contains information such as title, description, due date, priority, and category, along with functionality to edit the task and change its status.
  *
+ * @see java.util.ArrayList
+ * @see java.time.LocalDate
+ *
  * @author Meftah Mohamed
+ * @author Izemmouren Ilyes
  */
 public class TaskImpl implements Task {
     private int id;

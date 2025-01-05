@@ -21,7 +21,7 @@ public class User {
      * @param email    The email address of the user.
      */
     public User(String userName, String fullName, String passWord, String email) {
-        this.userName = userName;
+        User.userName = userName;
         this.fullName = fullName;
         this.passWord = passWord;
         this.email = email;

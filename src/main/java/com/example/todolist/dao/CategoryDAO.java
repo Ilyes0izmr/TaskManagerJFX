@@ -1,27 +1,29 @@
 package com.example.todolist.dao;
+
 import com.example.todolist.model.Category;
 import com.example.todolist.model.User;
 import com.example.todolist.util.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
- * Provides Data Access Object (DAO) methods for interacting with categories in the database.
- * This class allows adding, retrieving, renaming, and checking for categories.
+ * @brief Provides Data Access Object (DAO) methods for interacting with categories in the database.
+ * This class allows adding, retrieving, renaming, deleting, and searching for categories.
+ * Categories are associated with specific users and can be managed through this class.
  *
  * @author Meftah Mohamed
  */
 public class CategoryDAO {
 
     /**
-     * Adds a new category to the database.
+     * @brief Adds a new category to the database.
      *
      * @param categoryName The name of the category to be added.
-     * @param userName the name of the user that created this category
+     * @param userName The username of the user creating the category.
      * @return {@code true} if the category was successfully added, {@code false} otherwise.
+     *
+     * @note This method checks if the category already exists for the user before adding it.
      */
     public boolean addCategory(String categoryName, String userName) {
         // First, check if the category already exists for the user
@@ -45,11 +47,13 @@ public class CategoryDAO {
     }
 
     /**
-     * Checks if a category already exists for the user.
+     * @brief Checks if a category already exists for the user.
      *
      * @param categoryName The name of the category to check.
-     * @param userName The name of the user to check the category for.
+     * @param userName The username of the user to check the category for.
      * @return {@code true} if the category exists for the user, {@code false} otherwise.
+     *
+     * @note This method is used to avoid duplicate categories for the same user.
      */
     public boolean getCategoryByNameAndUser(String categoryName, String userName) {
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -66,6 +70,15 @@ public class CategoryDAO {
         }
     }
 
+    /**
+     * @brief Searches for categories by a keyword, filtered by the username of the owner.
+     *
+     * @param keyword The keyword to search for in the category names.
+     * @param userName The username of the user to filter categories by.
+     * @return A list of categories that match the keyword and belong to the specified user.
+     *
+     * @note The search is case-insensitive and matches partial category names.
+     */
     public ArrayList<Category> searchCategoriesByKeyword(String keyword, String userName) {
         ArrayList<Category> categories = new ArrayList<>();
 
@@ -100,12 +113,13 @@ public class CategoryDAO {
         return categories; // Return the list of categories
     }
 
-
     /**
-     * Retrieves all categories for a specific user.
+     * @brief Retrieves all categories for a specific user.
      *
-     * @param userName The name of the user to fetch categories for.
-     * @return A list of category names associated with the specified user.
+     * @param userName The username of the user to fetch categories for.
+     * @return A list of categories associated with the specified user.
+     *
+     * @note This method returns all categories owned by the user, including their names and usernames.
      */
     public ArrayList<Category> getAllCategories(String userName) {
         ArrayList<Category> categories = new ArrayList<>();
@@ -132,12 +146,15 @@ public class CategoryDAO {
         return categories;
     }
 
-
     /**
-     * Renames an existing category in the database.
+     * @brief Renames an existing category in the database.
      *
+     * @param categoryName The current name of the category.
+     * @param userName The username of the user who owns the category.
      * @param newName The new name for the category.
      * @return {@code true} if the category was successfully renamed, {@code false} otherwise.
+     *
+     * @note Ensure the category exists before attempting to rename it.
      */
     public boolean rename(String categoryName, String userName, String newName) {
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -145,7 +162,7 @@ public class CategoryDAO {
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             statement.setString(1, newName);
             statement.setString(2, categoryName);
-            statement.setString(3,userName);
+            statement.setString(3, userName);
 
             int rowsAffected = statement.executeUpdate();
             return rowsAffected > 0;
@@ -155,6 +172,14 @@ public class CategoryDAO {
         }
     }
 
+    /**
+     * @brief Deletes a category from the database.
+     *
+     * @param name The name of the category to be deleted.
+     * @return {@code true} if the category was successfully deleted, {@code false} otherwise.
+     *
+     * @note This method deletes the category only if it belongs to the currently logged-in user.
+     */
     public boolean deleteCategory(String name) {
         try (Connection connection = DatabaseConnection.getConnection()) {
             String sqlQuery = "DELETE FROM categories WHERE name = ? AND userName = ?";
@@ -169,6 +194,4 @@ public class CategoryDAO {
             return false;
         }
     }
-
-
 }
