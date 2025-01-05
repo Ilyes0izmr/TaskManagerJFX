@@ -7,14 +7,16 @@ src/
 |   |   |   |   |   |-- MainApp.java             // Main entry point of the JavaFX application
 |   |   |   |   |   |-- model/
 |   |   |   |   |   |   |-- Comment.java
-|   |   |   |   |   |   |-- Priority.java
+|   |   |   |   |   |   |-- Notification.java
+|   |   |   |   |   |   |-- NotifType.java //enum
+|   |   |   |   |   |   |-- Priority.java //enum
 |   |   |   |   |   |   |-- Category.java    //category
-|   |   |   |   |   |   |-- Reminder.java
-|   |   |   |   |   |   |-- Status.java
+|   |   |   |   |   |   |-- Reminder.java //enum
+|   |   |   |   |   |   |-- Status.java //enum
 |   |   |   |   |   |   |-- Task.java           //interface implemented by TaskImpl
 |   |   |   |   |   |   |-- TaskImpl.java       // represent a task
-|   |   |   |   |   |   |-- TaskList.java
-|   |   |   |   |   |   |-- TaskListImpl.java
+|   |   |   |   |   |   |-- TaskList.java   //abstract class for a list of tasks
+|   |   |   |   |   |   |-- TaskListImpl.java //extends TaskList
 |   |   |   |   |   |   |-- User.java
 |   |   |   |   |   |
 |   |   |   |   |   |-- dao/
@@ -23,6 +25,7 @@ src/
 |   |   |   |   |   |   |-- CommentDAO.java
 |   |   |   |   |   |   |-- CategoryDAO.java
 |   |   |   |   |   |   |-- CollabCategoryDAO.java
+|   |   |   |   |   |   |-- NotificationDAO.java
 |   |   |   |   |   |
 |   |   |   |   |   |-- controller/
 |   |   |   |   |   |   |-- AddCategoryController.java
@@ -36,37 +39,41 @@ src/
 |   |   |   |   |   |   |-- EditCategoryController.java
 |   |   |   |   |   |   |-- EditTaskController.java
 |   |   |   |   |   |   |-- HomeController.java
+|   |   |   |   |   |   |-- inboxcontroller.java
 |   |   |   |   |   |   |-- LoginController.java
 |   |   |   |   |   |   |-- NewCollabController.java
 |   |   |   |   |   |   |-- SettingsController.java
 |   |   |   |   |   |   |-- SignUpController.java
 |   |   |   |   |   |   |-- TaskCell.java
 |   |   |   |   |   |   |-- TaskDetailsController.java
-|   |   |   |   |   |
+|   |   |   |   |   |-- ui/
+|   |   |   |   |   |   |-- NotificationAlert.java
+|   |   |   |   |   |   |-- RandomColor.java
 |   |   |   |   |   |-- util/
 |   |   |   |   |   |   |-- DatabaseConnection.java
+|   |   |   |   |   |   |-- TaskImplSerializer.java
 |   |-- resources/
 |   |   |-- com/
 |   |   |   |-- example/
 |   |   |   |   |-- todolist/
 |   |   |   |   |   |-- view/
 |   |   |   |   |   |   |-- fxml/
-    |   |   |   |   |   |   |-- AddCategoryPopUp.fxml
-    |   |   |   |   |   |   |-- AddTaskPopUp.fxml
-    |   |   |   |   |   |   |-- AppearanceView.fxml
-    |   |   |   |   |   |   |-- CommentsView.fxml
-    |   |   |   |   |   |   |-- DashboardView.fxml
-    |   |   |   |   |   |   |-- DeleteCategoryView.fxml
-    |   |   |   |   |   |   |-- DeleteTaskView.fxml
-    |   |   |   |   |   |   |-- EditCategoryView.fxml
-    |   |   |   |   |   |   |-- EditTaskView.fxml
-    |   |   |   |   |   |   |-- HomeView.fxml
-    |   |   |   |   |   |   |-- LoginView.fxml
-    |   |   |   |   |   |   |-- NewCollabPopUp.fxml
-    |   |   |   |   |   |   |-- NotificationView.fxml
-    |   |   |   |   |   |   |-- SettingsView.fxml
-    |   |   |   |   |   |   |-- SignUpView.fxml
-    |   |   |   |   |   |   |-- TaskDetailsView.fxml
+|   |   |   |   |   |   |   |-- AddCategoryPopUp.fxml
+|   |   |   |   |   |   |   |-- AddTaskPopUp.fxml
+|   |   |   |   |   |   |   |-- AppearanceView.fxml
+|   |   |   |   |   |   |   |-- CommentsView.fxml
+|   |   |   |   |   |   |   |-- DashboardView.fxml
+|   |   |   |   |   |   |   |-- DeleteCategoryView.fxml
+|   |   |   |   |   |   |   |-- DeleteTaskView.fxml
+|   |   |   |   |   |   |   |-- EditCategoryView.fxml
+|   |   |   |   |   |   |   |-- EditTaskView.fxml
+|   |   |   |   |   |   |   |-- HomeView.fxml
+|   |   |   |   |   |   |   |-- LoginView.fxml
+|   |   |   |   |   |   |   |-- NewCollabPopUp.fxml
+|   |   |   |   |   |   |   |-- NotificationView.fxml
+|   |   |   |   |   |   |   |-- SettingsView.fxml
+|   |   |   |   |   |   |   |-- SignUpView.fxml
+|   |   |   |   |   |   |   |-- TaskDetailsView.fxml
 |   |   |   |   |   |   |-- css/
 |   |   |   |   |   |   |   |-- styles.css
 |   |   |   |   |   |   |-- font/

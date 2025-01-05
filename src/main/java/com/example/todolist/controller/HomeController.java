@@ -130,7 +130,6 @@ public class HomeController {
         clock.setCycleCount(Timeline.INDEFINITE);
         clock.play();
 
-
         categoryList.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 String name = handleCategoryDoubleClick();
@@ -200,6 +199,32 @@ public class HomeController {
         }
     }
 
+    public void refreshCategories() {
+        try {
+            categoryList.getItems().clear();
+            ObservableList<Category> categories = FXCollections.observableArrayList(categoryDAO.getAllCategories(User.getUserName()));
+            categoryList.setItems(categories);
+            categoryList.setCellFactory(param -> new CategoryCell());
+            System.out.println("Category list refreshed successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error refreshing categories: " + e.getMessage());
+        }
+    }
+
+    public void refreshCollabCategories() {
+        try {
+            collabList.getItems().clear();
+            ObservableList<Category> categories = FXCollections.observableArrayList(collabCategoryDAO.getAllCollabCategories(User.getUserName()));
+            collabList.setItems(categories);
+            collabList.setCellFactory(param -> new CollabCategoryCell());
+            System.out.println("Collab category list refreshed successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error refreshing collab categories: " + e.getMessage());
+        }
+    }
+
     private void setGreetingMessage() {
         int hour = LocalDateTime.now().getHour();
         if (hour < 12) {
@@ -218,29 +243,6 @@ public class HomeController {
         clockLabel.setText(LocalDateTime.now().format(formatter2));
     }
 
-    public void refreshCategories() {
-        try {
-            ObservableList<Category> categories = FXCollections.observableArrayList(categoryDAO.getAllCategories(User.getUserName()));
-            categoryList.setItems(categories);
-            categoryList.setCellFactory(param -> new CategoryCell());
-            System.out.println("Category list refreshed successfully.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error refreshing categories: " + e.getMessage());
-        }
-    }
-
-    public void refreshCollabCategories() {
-        try {
-            ObservableList<Category> categories = FXCollections.observableArrayList(collabCategoryDAO.getAllCollabCategories(User.getUserName()));
-            collabList.setItems(categories);
-            collabList.setCellFactory(param -> new CollabCategoryCell());
-            System.out.println("Collab category list refreshed successfully.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error refreshing collab categories: " + e.getMessage());
-        }
-    }
 
     private String handleCategoryDoubleClick() {
         Category selectedCategory = categoryList.getSelectionModel().getSelectedItem();
