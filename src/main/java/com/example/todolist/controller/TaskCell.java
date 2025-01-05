@@ -57,7 +57,7 @@ public class TaskCell extends ListCell<TaskImpl> {
 
 
         MenuItem editItem = new MenuItem("Edit");
-        MenuItem addCommentItem = new MenuItem("Add Comment");
+        MenuItem addCommentItem = new MenuItem("Comments");
         MenuItem deleteItem = new MenuItem("Delete");
         MenuItem viewDetailsItem = new MenuItem("View Details");
 

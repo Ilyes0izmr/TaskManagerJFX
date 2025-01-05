@@ -1,11 +1,11 @@
 /* General styles for the AnchorPane */
 .anchor-pane {
-    -fx-background-color: #121212; /* Dark background color */
+    -fx-background-color: #FDFCFC; /* Light background color */
 }
 
-/* Sidebar styles */
+/* Sidebar (Navbar Left) styles */
 .sidebar {
-    -fx-background-color: #1e1e1e; /* Slightly lighter dark background for the sidebar */
+    -fx-background-color: -fx-color-dark-purple; /* Correct purple background for the sidebar */
     -fx-padding: 10;
     -fx-spacing: 10;
 }
@@ -14,35 +14,36 @@
 .settings-label {
     -fx-font-size: 20;
     -fx-font-weight: bold;
-    -fx-text-fill: #ffffff; /* White text color */
+    -fx-text-fill: #FFFFFF; /* White text color for better contrast */
 }
 
 /* Separator styles */
 .separator {
-    -fx-background-color: #444444; /* Dark gray separator */
+    -fx-background-color: #CCCCCC; /* Light gray separator */
 }
 
 /* Sidebar button styles */
 .sidebar .button {
     -fx-pref-width: 342;
     -fx-pref-height: 40;
-    -fx-background-color: #333333; /* Dark gray background for buttons */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-background-color: -fx-color-dark-purple; /* Match the sidebar's purple color */
+    -fx-text-fill: #FFFFFF; /* White text for better contrast */
     -fx-font-size: 14;
     -fx-font-weight: bold;
-    -fx-border-color: transparent;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+    -fx-background-radius: 5; /* Rounded corners */
+    -fx-border-width: 0; /* No borders */
 }
 
 /* Hover effect for sidebar buttons */
 .sidebar .button:hover {
-    -fx-background-color: #0078d7; /* Blue color on hover */
+    -fx-background-color: -fx-color-green; /* Green background on hover */
+    -fx-text-fill: -fx-color-light-purple; /* Light purple text on hover */
 }
 
 /* Active (pressed) effect for sidebar buttons */
 .sidebar .button:pressed {
-    -fx-background-color: #005a9e; /* Darker blue on press */
+    -fx-background-color: -fx-color-light-purple; /* Light purple background on press */
+    -fx-text-fill: #FFFFFF; /* White text */
 }
 
 /* Home and Logout button styles */
@@ -50,37 +51,46 @@
 .sidebar .button.logout-button {
     -fx-pref-width: 178;
     -fx-pref-height: 30;
-    -fx-background-color: #444444; /* Slightly lighter gray */
+    -fx-background-color: -fx-color-dark-purple; /* Match the sidebar's purple color */
+    -fx-text-fill: #FFFFFF; /* White text */
+    -fx-background-radius: 5; /* Rounded corners */
+    -fx-border-width: 0; /* No borders */
 }
 
 /* Hover effect for Home and Logout buttons */
 .sidebar .button.home-button:hover,
 .sidebar .button.logout-button:hover {
-    -fx-background-color: #0078d7; /* Blue color on hover */
+    -fx-background-color: -fx-color-green; /* Green background on hover */
+    -fx-text-fill: -fx-color-light-purple; /* Light purple text */
 }
 
 /* Active (pressed) effect for Home and Logout buttons */
 .sidebar .button.home-button:pressed,
 .sidebar .button.logout-button:pressed {
-    -fx-background-color: #005a9e; /* Darker blue on press */
+    -fx-background-color: -fx-color-light-purple; /* Light purple background on press */
+    -fx-text-fill: #FFFFFF; /* White text */
 }
 
 /* Content pane styles */
 .content-pane {
-    -fx-background-color: #1e1e1e; /* Dark background for content area */
+    -fx-background-color: #FFFFFF; /* White background for content area */
     -fx-padding: 20;
 }
 
 /* Active button styles */
 .active-button {
-    -fx-background-color: #0078d7; /* Blue color for the active button */
-    -fx-text-fill: white; /* White text */
+    -fx-background-color: -fx-color-dark-purple; /* Match the sidebar's purple color */
+    -fx-text-fill: #FFFFFF; /* White text */
+    -fx-border-width: 0; /* No borders */
 }
 
 /* Hover effect for active button */
 .active-button:hover {
-    -fx-background-color: #005a9e; /* Darker blue on hover */
+    -fx-background-color: -fx-color-green; /* Green background on hover */
+    -fx-text-fill: -fx-color-light-purple; /* Light purple text */
 }
+
+/* Scroll Pane Styles */
 .scroll-pane {
     -fx-background-color: transparent;
     -fx-fit-to-width: true;
@@ -89,4 +99,12 @@
 
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
+}
+
+/* Define color variables */
+.root {
+    -fx-color-green: #15F5BA;
+    -fx-color-light-purple: #836FFF;
+    -fx-color-dark-purple: #07002D;
+    -fx-color-pink: #EB3678;
 }

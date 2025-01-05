@@ -14,6 +14,7 @@ public class CollabCategoryCell extends ListCell<Category> {
     HBox hbox = new HBox();
     Label name = new Label();
     Label ownerName = new Label();
+    Pane spacer = new Pane();
     Button deleteButton;
 
     public CollabCategoryCell() {
@@ -22,18 +23,20 @@ public class CollabCategoryCell extends ListCell<Category> {
         // Apply CSS classes
         name.getStyleClass().add("collab-name");
         ownerName.getStyleClass().add("collab-owner");
+        spacer.getStyleClass().add("collab-spacer");
 
         deleteButton = new Button("Delete");
         deleteButton.getStyleClass().add("collab-delete-button");
 
         // Set up the HBox
-
-        HBox.setMargin(deleteButton, new Insets(0, 0, 0, 5)); // Smaller margin
+        HBox.setHgrow(spacer, Priority.ALWAYS); // Make spacer expand
+        HBox.setMargin(deleteButton, new Insets(0, 8, 0, 0)); // Right margin for delete button
+        HBox.setMargin(ownerName, new Insets(0, 12, 0, 12)); // Margins around owner name
 
         // Add elements to the HBox
-        hbox.getChildren().addAll(name, ownerName, deleteButton);
+        hbox.getChildren().addAll(name, ownerName, spacer, deleteButton);
         hbox.setAlignment(Pos.CENTER_LEFT);
-        hbox.setSpacing(5); // Reduced spacing between elements
+        hbox.setPadding(new Insets(6, 10, 6, 10)); // Padding around the entire cell
         hbox.getStyleClass().add("collab-hbox");
 
         // Apply ListCell styling
@@ -49,13 +52,6 @@ public class CollabCategoryCell extends ListCell<Category> {
         } else {
             name.setText(category.getName());
             ownerName.setText("Owner: " + category.getUserName());
-
-            // Delete button functionality
-            deleteButton.setOnAction(event -> {
-                System.out.println("Deleting collab category: " + category.getName());
-                HomeController.getInstance().deleteCollabCategory(category);
-            });
-
             setGraphic(hbox);
         }
     }

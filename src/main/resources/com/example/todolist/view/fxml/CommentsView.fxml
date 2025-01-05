@@ -3,17 +3,23 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.CommentController">
+<AnchorPane prefHeight="723.0" prefWidth="540.0" stylesheets="@../css/CommentsView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.CommentController">
     <children>
-        <HBox alignment="CENTER_LEFT" layoutY="21.0" prefHeight="43.0" prefWidth="600.0" spacing="10">
-            <children>
-                <TextField fx:id="commentInput" prefHeight="41.0" prefWidth="551.0" promptText="Enter new comment" HBox.hgrow="ALWAYS" />
-                <Button fx:id="addButton" prefHeight="40.0" prefWidth="38.0" text="Add" />
-            </children>
-        </HBox>
-        <ListView fx:id="taskListView" layoutY="62.0" prefHeight="338.0" prefWidth="600.0" />
+      <ImageView fitHeight="465.0" fitWidth="450.0" layoutX="46.0" layoutY="-41.0" pickOnBounds="true" preserveRatio="true">
+          <Image url="@../img/comment.png" />
+      </ImageView>
+        <ListView fx:id="taskListView" layoutX="20.0" layoutY="367.0" prefHeight="338.0" prefWidth="502.0" styleClass="task-cell" />
+          <TextField fx:id="commentInput" layoutX="17.0" layoutY="294.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="510.0" promptText="Enter new comment" style="-fx-background-radius: 30px;" styleClass="comment-container" />
+          <Button fx:id="addButton" layoutX="489.0" layoutY="299.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="35.0" style="-fx-background-radius: 90px; -fx-cursor: hand; -fx-background-color: white;">
+              <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                      <Image url="@../img/add3.png" />
+                  </ImageView>
+              </graphic>
+          </Button>
     </children>
 </AnchorPane>

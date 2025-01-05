@@ -15,8 +15,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="backgroundContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1550.0" styleClass="backgroundContainer" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.HomeController">
-   <AnchorPane fx:id="taskContainer" layoutX="299.2" prefHeight="801.0" prefWidth="1251.0" styleClass="tasksContainer" stylesheets="@../css/home.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="299.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1550.0" styleClass="backgroundContainer" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.controller.HomeController">
+   <AnchorPane layoutX="318.4" prefHeight="801.0" prefWidth="1232.0" styleClass="tasksContainer" stylesheets="@../css/home.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="318.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
 
       <!-- WELCOME MESSAGE -->
@@ -154,10 +154,10 @@
       </ImageView>
    </AnchorPane>
 
-
-   <AnchorPane layoutX="1.0" minHeight="200.0" minWidth="200.0" prefHeight="802.0" prefWidth="300.0" styleClass="leftNavbar" stylesheets="@../css/home4.css">
-      <AnchorPane layoutX="6.0" layoutY="57.0" prefHeight="150.0" prefWidth="273.0" styleClass="left-pane" stylesheets="@../css/home.css">
-         <VBox layoutX="-1.0" layoutY="-8.0" prefHeight="142.0" prefWidth="267.0" styleClass="vbox" stylesheets="@../css/home.css">
+   
+      <AnchorPane layoutX="1.0" minHeight="200.0" minWidth="200.0" prefHeight="802.0" prefWidth="319.0" styleClass="leftNavbar" stylesheets="@../css/home4.css">
+      <AnchorPane layoutX="6.0" layoutY="57.0" prefHeight="154.0" prefWidth="286.0" styleClass="left-pane" stylesheets="@../css/home.css">
+         <VBox layoutX="-1.0" layoutY="-8.0" prefHeight="162.0" prefWidth="282.0" styleClass="vbox" stylesheets="@../css/home.css">
             <Button layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleSettings" prefHeight="40.0" prefWidth="236.0" stylesheets="@../css/home.css">
                <VBox.margin>
                   <Insets left="20.0" top="5.0" />
@@ -175,18 +175,18 @@
                   </HBox.margin>
                </TextField>
 
-            </HBox>
+               </HBox>
          </VBox>
       </AnchorPane>
-      <AnchorPane layoutX="10.0" layoutY="256.0" prefHeight="291.0" prefWidth="270.0" stylesheets="@../css/home3.css">
-         <ListView fx:id="categoryList" layoutX="12.0" layoutY="8.0" prefHeight="297.0" prefWidth="258.0" stylesheets="@../css/home3.css" />
+      <AnchorPane layoutX="10.0" layoutY="256.0" prefHeight="306.0" prefWidth="282.0" stylesheets="@../css/home3.css">
+         <ListView fx:id="categoryList" layoutX="12.0" layoutY="8.0" prefHeight="298.0" prefWidth="274.0" stylesheets="@../css/home3.css" />
       </AnchorPane>
-      <AnchorPane layoutX="23.0" layoutY="559.0" prefHeight="178.0" prefWidth="255.0" stylesheets="@../css/homeCollab.css">
-         <ListView fx:id="collabList" layoutX="6.4" layoutY="16.0" prefHeight="158.0" prefWidth="246.0" stylesheets="@../css/homeCollab.css" AnchorPane.leftAnchor="6.0" />
+      <AnchorPane layoutX="11.0" layoutY="559.0" prefHeight="178.0" prefWidth="286.0" stylesheets="@../css/homeCollab.css">
+         <ListView fx:id="collabList" layoutX="7.2" layoutY="16.0" prefHeight="158.0" prefWidth="274.0" stylesheets="@../css/homeCollab.css" AnchorPane.leftAnchor="7.0" />
       </AnchorPane>
-      <Label layoutX="36.0" layoutY="231.0" prefHeight="19.0" prefWidth="89.0" styleClass="label2" text="Categories" />
+      <Label layoutX="25.0" layoutY="231.0" prefHeight="19.0" prefWidth="101.0" styleClass="label2" text="Categories" />
 
-      <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="45.0" layoutY="75.0">
+         <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="45.0" layoutY="75.0">
          <style>
                      -fx-cursor: hand;
                   </style>
@@ -195,7 +195,7 @@
          </image>
       </ImageView>
 
-      <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="46.0" layoutY="129.0">
+         <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="46.0" layoutY="129.0">
          <style>
             -fx-cursor: hand;
          </style>
@@ -212,7 +212,7 @@
          </image>
       </ImageView>
       <!-- Replaced + Button with ImageView inside a Button -->
-      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="236.0" layoutY="175.0" onMouseClicked="#handleAddCategoryPopup">
+      <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="240.0" layoutY="175.0" onMouseClicked="#handleAddCategoryPopup">
          <style>
                      -fx-cursor: hand;
                   </style>
@@ -220,12 +220,12 @@
             <Image url="@../img/add2.png" />
          </image>
       </ImageView>
-      <Button layoutX="38.0" layoutY="733.0" mnemonicParsing="false" onAction="#showNewCollabPopUp" prefHeight="51.0" prefWidth="229.0" stylesheets="@../css/home.css" text="Invite members" />
+      <Button layoutX="33.0" layoutY="747.0" mnemonicParsing="false" onAction="#showNewCollabPopUp" prefHeight="40.0" prefWidth="248.0" stylesheets="@../css/home.css" text="Invite members" />
       <Label layoutX="22.0" layoutY="539.0" prefHeight="11.0" prefWidth="140.0" styleClass="label2" stylesheets="@../css/home.css" text="   Collaborations" />
       <Label layoutX="78.0" layoutY="73.0" prefHeight="22.0" prefWidth="74.0" style="-fx-text-fill: #ececec; -fx-font-size: 16px;" styleClass="label1" text="settings" />
       <Label layoutX="81.0" layoutY="128.0" prefHeight="22.0" prefWidth="52.0" style="-fx-text-fill: #ececec; -fx-font-size: 16px;" styleClass="label1" text="Home" />
 
-            <ImageView fitHeight="22.0" fitWidth="21.0" layoutX="56.0" layoutY="746.0">
+               <ImageView fitHeight="22.0" fitWidth="21.0" layoutX="56.0" layoutY="756.0">
          <style>
             -fx-cursor: hand;
          </style>

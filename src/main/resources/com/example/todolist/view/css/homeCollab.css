@@ -1,73 +1,70 @@
 /* Style for the ListCell */
 .list-cell {
-    -fx-background-color: #07002D; /* Dark purple background */
-    -fx-padding: 0; /* Remove default padding */
-    -fx-border-color: transparent; /* Remove borders */
+    -fx-background-color: #07002D;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
 }
 
-/* Hover effect for the ListCell */
-.list-cell:hover {
-    -fx-background-color: #836FFF !important; /* Light purple on hover */
-}
-
-/* Selected state for the ListCell */
-.list-cell:selected {
-    -fx-background-color: #836FFF !important; /* Light purple when selected */
+.list-cell:filled:hover,
+.list-cell:filled:selected {
+    -fx-background-color: #836FFF;
 }
 
 /* Style for the HBox */
 .collab-hbox {
     -fx-alignment: center-left;
-    -fx-spacing: 2; /* Reduced spacing between elements */
-    -fx-padding: 0 5 0 5; /* Smaller padding */
-    -fx-min-height: 30px;
-    -fx-background-color: #07002D; /* Dark purple background */
-    -fx-transition: all 0.3s ease-in-out;
-}
-
-/* Hover effect for the HBox */
-.collab-hbox:hover {
-    -fx-background-color: #836FFF !important; /* Light purple on hover */
+    -fx-min-height: 40px;
+    -fx-background-color: transparent;
 }
 
 /* Style for the name Label */
 .collab-name {
-    -fx-font-size: 12px;
-    -fx-text-fill: #FDFCFC !important; /* White text */
-    -fx-min-width: 150px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FDFCFC;
+    -fx-min-width: 120px;
     -fx-max-width: 200px;
     -fx-wrap-text: true;
-    -fx-alignment: center-left;
-    -fx-cursor: hand;
-    -fx-transition: all 0.3s ease-in-out;
 }
 
 /* Style for the ownerName Label */
 .collab-owner {
     -fx-font-size: 12px;
-    -fx-text-fill: #FDFCFC !important; /* White text */
-    -fx-cursor: hand;
-    -fx-transition: all 0.3s ease-in-out;
+    -fx-text-fill: #FDFCFC;
+    -fx-opacity: 0.8;
 }
 
 /* Style for the spacer Pane */
 .collab-spacer {
     -fx-background-color: transparent;
-    -fx-hgrow: always; /* Makes the spacer fill available space */
 }
 
 /* Style for the delete Button */
 .collab-delete-button {
-    -fx-background-color: #EB3678; /* Pink background */
-    -fx-text-fill: #fdfcfc; /* White text */
-    -fx-font-size: 10px;
-    -fx-background-radius: 3px;
-    -fx-padding: 3px 8px;
+    -fx-background-color: #EB3678;
+    -fx-text-fill: #FDFCFC;
+    -fx-font-size: 12px;
+    -fx-background-radius: 4px;
+    -fx-padding: 4px 12px;
     -fx-cursor: hand;
-    -fx-transition: all 0.3s ease-in-out;
 }
 
-/* Hover effect for the delete Button */
 .collab-delete-button:hover {
-    -fx-background-color: #ff6b8b; /* Lighter pink on hover */
+    -fx-background-color: #ff6b8b;
+}
+
+/* ListView container styles */
+.list-view {
+    -fx-background-color: #07002D;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.list-view .scroll-bar:vertical {
+    -fx-background-color: #07002D;
+}
+
+.list-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #836FFF;
+    -fx-background-radius: 4px;
 }

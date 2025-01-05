@@ -1,0 +1,122 @@
+/* General Settings for Consistency */
+* {
+    -fx-font-family: "Ubuntu", "Sans-Serif"; /* Keeping Ubuntu for consistency */
+    -fx-transition: all 0.3s ease-in-out; /* Smooth transition for all elements */
+}
+
+/* Comment Container Styling */
+.comment-container {
+    -fx-padding: 10px; /* Balanced padding for a clean layout */
+    -fx-spacing: 10px; /* Adequate spacing for better separation */
+    -fx-alignment: center-left;
+    -fx-background-color:  #ffffff; /* Your original white background */
+    -fx-border-color: #e0e0e0; /* Light grey border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 25px; /* Slightly rounded corners */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 6, 0, 0, 2);
+    -fx-background-radius: 25px;
+    -fx-pref-height: 43px; /* Consistent height */
+}
+
+.comment-container:hover {
+    -fx-background-color: #f7f7f7; /* Slightly darker on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 4); /* Enhanced shadow */
+}
+
+/* HBox (container) Styling */
+.comment-container HBox {
+    -fx-effect: none; /* No shadow effect by default */
+    -fx-padding: 5px; /* Ensure spacing around content */
+    -fx-alignment: center-left; /* Align elements inside the HBox */
+}
+
+.comment-container HBox:hover {
+    -fx-background-color: #f1f1f1; /* Light grey background when hovering over the HBox */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 6, 0, 0, 3); /* Subtle shadow */
+}
+
+.comment-container HBox:pressed {
+    -fx-background-color: #e0e0e0; /* Darker grey when pressed */
+}
+
+/* TextField Styling */
+.comment-textfield {
+    -fx-background-color: #f9f9f9; /* Light background for the field */
+    -fx-border-color: transparent; /* No border for a cleaner look */
+    -fx-padding: 5px 10px; /* Balanced padding */
+    -fx-font-family: "Ubuntu";
+    -fx-font-size: 14px; /* Comfortable font size */
+    -fx-text-fill: #4a4a4a; /* Your original grey text */
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-pref-width: 300px; /* Consistent width */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0, 0, 2);
+}
+
+.comment-textfield:focused {
+    -fx-background-color: #ffffff; /* Maintain white background */
+    -fx-border-color: #15f5ba; /* Your bright green border */
+    -fx-effect: dropshadow(gaussian, rgba(21, 245, 186, 0.3), 6, 0, 0, 2); /* Glow effect */
+}
+
+/* Due Date Label Styling */
+.due-date-label {
+    -fx-font-size: 12px; /* Slightly increased font size */
+    -fx-font-weight: bold;
+    -fx-text-fill: #07002D; /* Your preferred purple */
+    -fx-padding: 4px 8px; /* Balanced padding */
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(112, 39, 195, 0.2), 4, 0, 0, 1); /* Subtle glow */
+}
+
+/* Button Styling */
+.comment-button {
+    -fx-background-color:  #836FFF; /* Your original green */
+    -fx-text-fill: white; /* White text for contrast */
+    -fx-font-weight: bold; /* Bold text for emphasis */
+    -fx-font-family: "Ubuntu";
+    -fx-font-size: 18px; /* Comfortable font size */
+    -fx-padding: 5px 12px; /* Balanced padding */
+    -fx-border-radius: 4px; /* Rounded corners */
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 2); /* Subtle shadow */
+    -fx-pref-width: 60px; /* Consistent width */
+}
+
+.comment-button:hover {
+    -fx-background-color: #13d6a6; /* Your slightly darker green on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 6, 0, 0, 4); /* Enhanced shadow */
+    -fx-transform: scale(1.05); /* Slight enlargement for feedback */
+}
+
+.comment-button:pressed {
+    -fx-background-color: #0bb58a; /* Your even darker green when pressed */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 1); /* Reduced shadow */
+    -fx-transform: scale(0.95); /* Slight shrink for feedback */
+}
+
+/* Delete Button Styling */
+.delete-button {
+    -fx-background-color: #07002D; /* Your original pink */
+}
+
+.delete-button:hover {
+    -fx-background-color: #d02f69; /* Your darker pink on hover */
+    -fx-effect: dropshadow(gaussian, rgba(235, 54, 120, 0.3), 6, 0, 0, 4); /* Enhanced shadow */
+    -fx-transform: scale(1.05); /* Slight enlargement for feedback */
+}
+
+.delete-button:pressed {
+    -fx-background-color: #b12859; /* Your even darker pink when pressed */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 1); /* Reduced shadow */
+    -fx-transform: scale(0.95); /* Slight shrink for feedback */
+}
+
+//* Task Cell Styling */
+ .task-cell {
+
+     -fx-background-color: #ffffff; /* White background */
+     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 6, 0, 0, 2); /* Subtle shadow */
+     -fx-transition: all 0.3s ease-in-out; /* Smooth transition */
+ }

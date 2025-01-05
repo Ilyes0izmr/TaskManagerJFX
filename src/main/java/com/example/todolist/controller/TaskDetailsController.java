@@ -7,9 +7,6 @@ import javafx.scene.control.Label;
 public class TaskDetailsController {
 
     @FXML
-    private Label idLabel;
-
-    @FXML
     private Label titleLabel;
 
     @FXML
@@ -34,7 +31,6 @@ public class TaskDetailsController {
     private Label ownerLabel;
 
     public void setTask(TaskImpl task) {
-        idLabel.setText(String.valueOf(task.getId()));
         titleLabel.setText(task.getTitle());
         descriptionLabel.setText(task.getDescription());
         statusLabel.setText(task.getStatus().toString());
