@@ -9,9 +9,25 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @brief Provides Data Access Object (DAO) methods for interacting with notifications in the database.
+ * This class allows adding, retrieving, and managing notifications for users. It also includes
+ * methods to check if a notification exists and to mark notifications as read.
+ *
+ * @author Izemmouren Ilyes
+ */
 public class NotificationDAO {
 
-    // Method to add a new notification
+    /**
+     * @brief Adds a new notification to the database.
+     *
+     * @param notification The notification to be added.
+     * @param userName The username of the user associated with the notification.
+     * @throws SQLException If a database access error occurs.
+     *
+     * @note The notification type is stored as a string in the database.
+     * //TODO: Consider adding validation for the notification title and content to ensure they are not empty.
+     */
     public void addNotification(Notification notification, String userName) throws SQLException {
         String query = "INSERT INTO notifications (title, content, notificationType, userName) VALUES (?, ?, ?, ?)";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -24,7 +40,16 @@ public class NotificationDAO {
         }
     }
 
-    // Method to retrieve all notifications for a user
+    /**
+     * @brief Retrieves all notifications for a specific user.
+     *
+     * @param userName The username of the user whose notifications are to be retrieved.
+     * @return A list of notifications belonging to the specified user.
+     * @throws SQLException If a database access error occurs.
+     *
+     * @note The notification type is converted from a string to an enum.
+     * //TODO Consider adding pagination or filtering options for large datasets.
+     */
     public List<Notification> getNotificationsByUser(String userName) throws SQLException {
         List<Notification> notifications = new ArrayList<>();
         String query = "SELECT * FROM notifications WHERE userName = ?";
@@ -45,6 +70,17 @@ public class NotificationDAO {
         }
         return notifications;
     }
+
+    /**
+     * @brief Checks if a notification with the specified title and creation date already exists.
+     *
+     * @param title The title of the notification to check.
+     * @param creationDate The creation date of the notification to check.
+     * @return {@code true} if the notification exists, {@code false} otherwise.
+     * @throws SQLException If a database access error occurs.
+     *
+     * @note This method is useful for avoiding duplicate notifications.
+     */
     public boolean notificationExists(String title, LocalDate creationDate) throws SQLException {
         String query = "SELECT COUNT(*) FROM notifications WHERE title = ? AND creationDate = ?";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -61,8 +97,12 @@ public class NotificationDAO {
         return false;
     }
 
-    // Method to mark a notification as read
+    /**
+     * @brief Marks a notification as read in the database.
+     *
+     * @throws SQLException If a database access error occurs.
+     */
     public void markNotificationAsRead() throws SQLException {
-
+        // TODO: Implement this method to mark a notification as read
     }
 }

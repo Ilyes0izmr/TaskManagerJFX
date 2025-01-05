@@ -1,4 +1,5 @@
 package com.example.todolist.dao;
+
 import com.example.todolist.model.Comment;
 import com.example.todolist.util.DatabaseConnection;
 
@@ -6,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * Provides Data Access Object (DAO) methods for interacting with comments in the database.
+ * @brief Provides Data Access Object (DAO) methods for interacting with comments in the database.
  * This class allows adding, retrieving, editing, and deleting comments associated with tasks.
  *
  * @author Meftah Mohamed
@@ -14,11 +15,13 @@ import java.util.ArrayList;
 public class CommentDAO {
 
     /**
-     * Adds a new comment to a task.
+     * @brief Adds a new comment to a task.
      *
      * @param taskId The ID of the task to which the comment will be added.
      * @param commentText The text content of the comment.
      * @return {@code true} if the comment was successfully added, {@code false} otherwise.
+     *
+     * @note Ensure the task ID exists in the database before adding a comment.
      */
     public boolean addComment(int taskId, String commentText) {
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -36,10 +39,12 @@ public class CommentDAO {
     }
 
     /**
-     * Retrieves all comments associated with a specific task.
+     * @brief Retrieves all comments associated with a specific task.
      *
      * @param taskId The ID of the task for which comments are to be retrieved.
      * @return A list of comments associated with the specified task.
+     *
+     * @note The comments are ordered by their creation date in ascending order.
      */
     public ArrayList<Comment> getCommentsByTaskId(int taskId) {
         ArrayList<Comment> comments = new ArrayList<>();
@@ -64,10 +69,12 @@ public class CommentDAO {
     }
 
     /**
-     * Deletes a comment from the database.
+     * @brief Deletes a comment from the database.
      *
      * @param commentId The ID of the comment to be deleted.
      * @return {@code true} if the comment was successfully deleted, {@code false} otherwise.
+     *
+     * @note Ensure the comment ID exists in the database before attempting to delete it.
      */
     public boolean deleteComment(int commentId) {
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -84,11 +91,13 @@ public class CommentDAO {
     }
 
     /**
-     * Edits an existing comment's text.
+     * @brief Edits an existing comment's text.
      *
      * @param commentId The ID of the comment to be edited.
      * @param newText The new text for the comment.
      * @return {@code true} if the comment was successfully updated, {@code false} otherwise.
+     *
+     * @note Ensure the comment ID exists in the database before attempting to edit it.
      */
     public boolean editComment(int commentId, String newText) {
         try (Connection connection = DatabaseConnection.getConnection()) {

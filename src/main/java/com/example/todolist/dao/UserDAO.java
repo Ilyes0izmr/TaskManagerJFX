@@ -38,7 +38,6 @@ public class UserDAO {
                 return false;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -53,7 +52,7 @@ public class UserDAO {
         try (Connection connection = DatabaseConnection.getConnection()) {
             String sqlQuery = "INSERT INTO users (userName, passWord, fullName, email) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
-            statement.setString(1, user.getUserName());
+            statement.setString(1, User.getUserName());
             statement.setString(2, user.getPassWord());
             statement.setString(3, user.getFullName());
             statement.setString(4, user.getEmail());
@@ -62,7 +61,6 @@ public class UserDAO {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
