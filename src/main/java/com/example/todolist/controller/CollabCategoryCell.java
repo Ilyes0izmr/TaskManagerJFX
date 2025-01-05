@@ -41,6 +41,14 @@ public class CollabCategoryCell extends ListCell<Category> {
 
         // Apply ListCell styling
         this.getStyleClass().add("list-cell");
+
+        HomeController homeController = new HomeController();
+        deleteButton.setOnAction(event -> {
+            Category category = getItem();
+            if (category != null) {
+                homeController.deleteCollabCategory(category);
+            }
+        });
     }
 
     @Override
